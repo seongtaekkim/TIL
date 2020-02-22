@@ -75,3 +75,54 @@ $(document).read(function() {
 })
 ~~~
 
+
+
+
+
+#### 함수형 플러그인 제작 
+
+~~~javascript
+(function($) {
+	$.fn.tabMenu=function() {
+		this.each(function(index) {
+			var $tabMenu = null;
+			var $menuItems = null;
+			var $selectMenuItem = null;
+			
+            function init(initSelector) {
+                $tabMenu = $(initSelector);
+                $menuItems = $tabMenu.find("li");
+            }
+            
+            function initEvent() {
+                $menuItems.on("click", function() {
+                    setSelectItem($(this));
+                });
+            }
+            
+            function setselectItem($menuItem) {
+                if($selectMenuItem) {
+                    $selectMenuItem.removeClass("select");
+                }
+                $selectMenuItem = $menuItem;
+                $selectMenuItem.addClass("select");
+            }
+            
+            init(this); // 현재 노드정보가 담긴 this를 매개변수로 선택한다.
+            initEvent();
+		});
+        
+        return this; // jquery의 체인기능을 사용하기 위해 this를 리턴한다.
+	}
+})(jQuery);
+
+$(document).ready(function() {
+	$(".tab-menu").tabMenu();
+    // $(".tab-menu").eq(0).tabMenu(); 
+    // $(".tab-menu").eq(1).tabMenu(); 
+    // $(".tab-menu").eq(2).tabMenu(); 
+    // -> 호출한 갯수만큼 tabMenu 함수형 플로그인이 계속 생성된다.ㄷ 
+})
+~~~
+
+- 단점 : 함수형 플러그인을 n번 호출하면, n번만큼의 내부함수가 중복해서 만들어져 메모리를 잡아먹는다.
