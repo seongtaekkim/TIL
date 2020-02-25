@@ -240,9 +240,169 @@ $(document).ready(function() {
 
 
 
+#### extend() 메서드를 활용한 플러그인 옵션처리
 
 
 
+##### 플러그인 함수 정의
+
+~~~~javascript
+(function($) {
+	$.fn.removeAni=function() {
+		this.each(function(index) {
+			var $target = $(this);
+			$target.delay(index*1000).animate({
+			height:0
+			},500,"easeInQuint",function() {
+				$target.remove();
+			})
+		})
+		return this;
+	}
+})(jQuery)
+
+$(document).ready(function() {
+	$("tag").removeAni();
+});
+~~~~
+
+- 위의 animate 안의 설정값을 변경하려면 플러그인 내부소스를 직접 수정해야 한다.
+
+
+
+##### default 설정을 활용한 플러그인 함수 정의
+
+~~~javascript
+(function($) {
+	$.defaultOptions = {
+		duration:500,
+		easing:"easeInQuint",
+		delayTime:1000,
+	}
+	$.fn.removeAni=function(duration, easing, delayTime) {
+	// 값이 없는경우 기본값으로 설정함.
+	duration = duration || $.defaultOptions.duration;
+	easing = easing || $.defaultOptions.easing;
+	delayTime = delayTime || $.defaultOptions.delayTime;
+	
+	//옵션값을 변경
+    this.each(function(index) {
+    var $target = $(this);
+    $target.delay(index*delayTime).animate({
+    height:0
+    },duration,easing,function() {
+    $target.remove();
+    })
+    })
+    return this;
+	}
+})(jQuery)
+
+$(document).ready(function() {
+	$("tag").removeAni();
+});
+~~~
+
+
+
+
+
+##### extend() 문법
+
+~~~javascript
+var data = jQuery.extend(target[,object1][,objectN]);
+~~~
+
+- target : 합쳐진 기능을 최종적으로 저장할 객체
+- object1, objectN : 합쳐질 기능을 가진 객체
+
+
+
+##### extend() 예제
+
+~~~javascript
+$(document).ready(function() {
+	
+	var target = {
+		property1:"a",
+		property2:"b",
+		method1:function() {
+			console.log("method1");
+		},
+	    method2:function() {
+			console.log("method2");
+		}
+	};
+	var object1 = {
+		property1:"o1",
+		property3:"o3",
+		method1:function() {
+			console.log("omethod1");
+		},
+		method3function() {
+			console.log("method3);
+		}
+	};
+	
+    /* 
+    	1.target에 object1의 모든 파라메터(or 메서드)가 엎어쳐진다. 
+    	  (없는 값은 생성되고 있는 값은 엎어쳐진다.)
+    	2.엎어쳐진 결과가 result에 저장된다.
+    	3.target과 result는 결과가 같다.
+    */
+	var result = jQuery.extend(target,object1);
+	console.log("target = " + target);
+	console.log("object1 = " + object1);
+	console.log("result = " + result");
+});
+~~~
+
+
+
+~~~javascript
+$(document).ready(function() {
+	var data = jQuery.extend(null, target, object1);
+	var data2 = jQuery.exteend({}, target, object1);
+});
+~~~
+
+- 프로퍼티(or메서드) 가 엎어쳐지는 현상을 방지하기 위해 첫번째 파라메터를 빈값으로 세팅해줍니다.]
+
+​      (첫번째 파라메타에 엎어쳐짐.)
+
+
+
+
+
+##### extend() 를활용한 플러그인 예제
+
+~~~javascript
+(function($) {
+	$.defaultOptions = {
+		duration:500,
+		easing:"easeInQuint",
+		delayTime:1000,
+	}
+	$.fn.removeAni=function(options) {
+		options = $.extend(null, $.defaultOptions, options);
+		
+		this.each(function(index) {
+			var $target = $(this);
+			$target.delay(index*options.delayTime).animate({
+			 height:0
+			}, options.duration, options.easing, function() {
+				$target.remove();
+			})
+		});
+		return this;
+	}
+});
+
+$(document).ready(function() {
+    // 이렇게 옵션을 주면, extend에 의해 프로퍼티설정값이 업데이트되는 효과가 있다.
+	$("tag").removeAni({delayTime : 100});
+})
+~~~
 
 
 
