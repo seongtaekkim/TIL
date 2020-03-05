@@ -111,6 +111,55 @@ child1.info();
 
 
 
+#### 메서드 오버로딩
+
+~~~javascript
+function sum() {
+	var result =0;
+	for(var i=0; i<arguments.length ; i++) {
+		result+=arguments[i];
+	}
+	return result;
+}
+
+console.log(sum(10,20));
+console.log(sum(10,20,30));
+console.log(sum(10,20,30,40));
+~~~
+
+- argument 객체에 담긴 매개변수 값을 매개변수만큼 반복해서 더해준다.
+
+
+
+
+
+#### constructor 프로퍼티 활용
+
+~~~javascript
+function MyParent() {
+	this.property1 = "data1";
+}
+
+MyChild.prototype=new MyParent();
+
+var parent1= new  MyParent();
+var child1 = new MyChild();
+
+if(parent1.constructor==MyParent) {
+    console.log("1. parent1은 MyParent의 인스턴스이다.");
+}
+if(child1.constructor==MyChild) {
+    console.log("1. child1 MyChild의 인스턴스이다.");
+}
+~~~
+
+- 클래스를 만들면 prototype의 constructor 프로퍼티가 만들어진다.
+- 여기엔 해당 클래스의 생성자정보가 기본값으로 담긴다.
+
+
+
+
+
 
 
 
