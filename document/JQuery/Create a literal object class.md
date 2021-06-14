@@ -4,25 +4,25 @@
 
 
 
-#### create a literal object 
+- #### create a literal object 
 
-~~~javascript
-// 클래스 정의, 인스턴스 생성
-var user = {
-    name:"seongtaek",
-    age: 31,
-    info:function(){
-    	document.write("name = "+this.name+", age = "+this.age);
-    }
-}
+  ~~~javascript
+  // 클래스 정의, 인스턴스 생성
+  var user = {
+      name:"seongtaek",
+      age: 31,
+      info:function(){
+      	document.write("name = "+this.name+", age = "+this.age);
+      }
+  }
+  
+  //메서드 접근하기
+  user.showInfo();
+  ~~~
 
-//메서드 접근하기
-user.showInfo();
-~~~
-
-- property : name, age 
-- method : info
-- 인스턴스 객체 내부에서 프로퍼티와 객체를 접근하려면 this. 를 사용한다.
+  - property : name, age 
+  - method : info
+  - 인스턴스 객체 내부에서 프로퍼티와 객체를 접근하려면 this. 를 사용한다.
 
 
 

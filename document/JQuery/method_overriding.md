@@ -139,15 +139,20 @@ console.log(sum(10,20,30,40));
 function MyParent() {
 	this.property1 = "data1";
 }
+function MyChild() {
+    
+}
 
 MyChild.prototype=new MyParent();
-
+MyChild.prototype.constructor=MyChild;
+//-> 자식객체의 기본 constructor는 부모생성자정보가 담기므로 constructor에 자식생성자를 설정해준다.
 var parent1= new  MyParent();
 var child1 = new MyChild();
 
 if(parent1.constructor==MyParent) {
     console.log("1. parent1은 MyParent의 인스턴스이다.");
 }
+
 if(child1.constructor==MyChild) {
     console.log("1. child1 MyChild의 인스턴스이다.");
 }
