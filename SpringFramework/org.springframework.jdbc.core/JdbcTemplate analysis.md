@@ -152,3 +152,126 @@ public <T> T query( PreparedStatementCreator psc, final PreparedStatementSetter 
 
 
 
+
+
+JdbcTemplate > update(sql)
+
+~~~java
+this.jdbcTemplate.update("delete from users");
+~~~
+
+(1)  함수 호출
+
+
+
+
+
+JdbcTemplate > update(final String sql)
+
+~~~java
+public int update(final String sql) throws DataAccessException {
+    Assert.notNull(sql, "SQL must not be null");
+    if (logger.isDebugEnabled()) {
+        logger.debug("Executing SQL update [" + sql + "]");
+    }
+    class UpdateStatementCallback implements StatementCallback<Integer>, SqlProvider {
+        @Override
+        public Integer doInStatement(Statement stmt) throws SQLException {
+            int rows = stmt.executeUpdate(sql);
+            if (logger.isDebugEnabled()) {
+                logger.debug("SQL update affected " + rows + " rows");
+            }
+            return rows;
+        }
+        @Override
+        public String getSql() {
+            return sql;
+        }
+    }
+    return execute(new UpdateStatementCallback());
+}
+~~~
+
+(1)  StatementCallback 인터페이스로 전략을 만들었는데,  익명클래스가 아닌 내부클래스로 되어있고, 함수를 두개 구현하였다.
+
+(2) doInStatement는 Statement를 받아 실제 쿼리를실행한다.
+
+(3) sql을 리턴한다.
+
+
+
+#### StatementCallback<T>
+
+~~~java
+T doInStatement(Statement stmt) throws SQLException, DataAccessException;
+~~~
+
+#### SqlProvider
+
+~~~java
+String getSql();
+~~~
+
+
+
+
+
+#### JdbcTemplate > <T> T execute(StatementCallback<T>)
+
+~~~java
+	@Override
+	public <T> T execute(StatementCallback<T> action) throws DataAccessException {
+		Assert.notNull(action, "Callback object must not be null");
+
+		Connection con = DataSourceUtils.getConnection(getDataSource());
+		Statement stmt = null;
+		try {
+			Connection conToUse = con;
+			if (this.nativeJdbcExtractor != null &&
+					this.nativeJdbcExtractor.isNativeConnectionNecessaryForNativeStatements()) {
+				conToUse = this.nativeJdbcExtractor.getNativeConnection(con);
+			}
+			stmt = conToUse.createStatement();
+			applyStatementSettings(stmt);
+			Statement stmtToUse = stmt;
+			if (this.nativeJdbcExtractor != null) {
+				stmtToUse = this.nativeJdbcExtractor.getNativeStatement(stmt);
+			}
+			T result = action.doInStatement(stmtToUse);
+			handleWarnings(stmt);
+			return result;
+		}
+		catch (SQLException ex) {
+			// Release Connection early, to avoid potential connection pool deadlock
+			// in the case when the exception translator hasn't been initialized yet.
+			JdbcUtils.closeStatement(stmt);
+			stmt = null;
+			DataSourceUtils.releaseConnection(con, getDataSource());
+			con = null;
+			throw getExceptionTranslator().translate("StatementCallback", getSql(action), ex);
+		}
+		finally {
+			JdbcUtils.closeStatement(stmt);
+			DataSourceUtils.releaseConnection(con, getDataSource());
+		}
+	}
+~~~
+
+(1) connection 객체를 얻는다.
+
+(2) doInStatement 함수를 실행한다.
+
+(3) T를 리턴받아 리턴한다. (여기서는 int)
+
+
+
+
+
+
+
+
+
+
+
+
+
