@@ -98,9 +98,85 @@ public class Main {
 
 
 
+# Adapter pattern
+
+Adapter는 실생활에서는 100v를 220v로 변경해주거나, 그 반대로 해주는 흔히 돼지코라고 불리는 변환기로 예를 들 수 있다. 호환성이 없는 기존 클래스의 인터페이스를 변환하여 재사용 할 수 있도록 한다.
+
+SOLID중에서 개방폐쇄원칙(OCP)를 따른다.
 
 
 
 
 
+#### 110v로동작하는 헤어드라이어와 220v로 동작하는 에어컨을 정의한다.
 
+```java
+public interface Electronic110V {
+    void powerOn();
+}
+public interface Electronic220V {
+    void conect();
+}
+
+public class HairDryer implements  Electronic110V {
+
+    @Override
+    public void powerOn() {
+        System.out.println("에어드라이키 110v on");
+    }
+}
+public class AirConditioner implements  Electronic220V {
+    @Override
+    public void connect() {
+        System.out.println("에어컨디셔너 220v");
+    }
+}
+```
+
+
+
+#### 220v의 에어컨을 110v에서 동작할수 있도록  어뎁터를 생성해준다.
+
+```java
+public class SocketAdapter implements Electronic110V{
+    private Electronic220V electronic220V;
+
+    public SocketAdapter(Electronic220V electronic220V) {
+        this.electronic220V = electronic220V;
+    }
+
+    @Override
+    public void powerOn() {
+        electronic220V.connect();
+    }
+}
+```
+
+- 110v를 상속받았으나, 실제로는  220v로 객체를생성하여 함수를 수행함.
+
+
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        HairDryer hairDryer = new HairDryer();
+        connect(hairDryer);
+
+        // 220v를 110v로 변환해주어야 함.
+        // 변환해주는 adater를 만들어주는걸 어뎁터패턴이라고 한다.
+        AirConditioner airConditioner = new AirConditioner();
+        Electronic110V airAdapter = new SocketAdapter(airConditioner);
+        connect(airAdapter);
+    }
+
+    // 콘센트
+    public static void connect(Electronic110V electronic110V) {
+        electronic110V.powerOn();
+    }
+}
+
+```
+
+- 110v를 실행하기 위해 adapter를 이용하여 220v 기계를 실행할 수 있음.
