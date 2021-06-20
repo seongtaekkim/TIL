@@ -180,3 +180,215 @@ public class Main {
 ```
 
 - 110v를 실행하기 위해 adapter를 이용하여 220v 기계를 실행할 수 있음.
+
+
+
+
+
+
+
+# Proxy pattern
+
+Proxy는 대리인이라는 뜻으로서, 뭔가를 대신 처리하는것.
+
+Proxy Class를 통해서 대신 전달하는 형태로 설계되며, 실제 Client는 Proxy로부터 결과를 받는다.
+
+Cache의 기능으로도 활용이 가능하다.
+
+SOLID중에서 개방폐쇄원칙(OCP)과 의존역전원칙(DIP)를 따른다.
+
+
+
+
+
+#### url을 요청받아서, HTML을 생성하여 로딩해주는 class를 구성한다.
+
+```java
+public interface IBrowser {
+    Html show();
+}
+public class Html {
+    private String url;
+
+    public Html(String url) {
+        this.url = url;
+    }
+}
+
+public class Browser implements IBrowser{
+    private String url;
+
+    public Browser(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public Html show() {
+        System.out.println("browser loading html from : " + url);
+        return new Html(url);
+    }
+}
+```
+
+- Html : html문서 생성
+- Browser : html문서 로딩
+
+
+
+
+
+#### 캐시 기능이 있는 BrowserProxy class를 구성한다.
+
+```java
+public class BrowserProxy implements  IBrowser {
+    private String url;
+    private Html html;
+
+    public BrowserProxy(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public Html show() {
+        if(html == null) {
+            this.html = new Html(url);
+            System.out.println("BrowserProxy loading html from : " + url);
+        }
+        System.out.println("BrowserProxy use cache html : " + url);
+        return html;
+    }
+}
+```
+
+- Html문서가 없을 경우 생성하고, 있을경우 존재하는 문서를 리턴함.
+
+
+
+#### proxy pattern에 aop패턴을 추가한 class를 구성한다.
+
+```java
+public class AopBrowser implements IBrowser {
+
+    private String url;
+    private Html html;
+    private Runnable before;
+    private Runnable after;
+
+    public AopBrowser(String url, Runnable before, Runnable after) {
+        this.url = url;
+        this.before = before;
+        this.after = after;
+    }
+    @Override
+    public Html show() {
+
+        before.run();
+
+        if(html == null) {
+            this.html = new Html(url);
+            System.out.println("AopBrowser html loading from : " + url);
+            try {
+                Thread.sleep(1500);
+            } catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        after.run();
+        return html;
+    }
+}
+```
+
+- 프록시패턴 앞뒤로  Runnable함수를 수행한다.
+
+
+
+```JAVA
+public class Main {
+
+    public static void main(String[] args) {
+
+        Browser browser = new Browser("www.naver.com");
+        // 계속호출하면 캐시기능없이 계속 호출함
+        browser.show();
+        browser.show();
+        browser.show();
+        browser.show();
+        browser.show();
+
+        BrowserProxy browserProxy = new BrowserProxy("www.naver.com");
+        // 캐시기능을 이용하면, 이미 생성된 객체를 호출한다.
+        browserProxy.show();
+        browserProxy.show();
+        browserProxy.show();
+        browserProxy.show();
+        browserProxy.show();
+
+        AtomicLong start = new AtomicLong();
+        AtomicLong end = new AtomicLong();
+
+        //AOP
+        IBrowser aopBrowser = new AopBrowser("www.naver.com"
+        ,()->{
+           System.out.println("before");
+            start.set(System.currentTimeMillis());
+        },()->{
+            long now = System.currentTimeMillis();
+            end.set(now - start.get());
+        });
+        // AOP 패턴을 이용하면, 프록시패턴 이전,이후에 원하는 함수를 일괄적으로 사용할 수 있다.
+        aopBrowser.show();
+        System.out.println("loading time : " + end.get());
+        aopBrowser.show();
+        System.out.println("loading time : " + end.get());
+        aopBrowser.show();
+        System.out.println("loading time : " + end.get());
+    }
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
