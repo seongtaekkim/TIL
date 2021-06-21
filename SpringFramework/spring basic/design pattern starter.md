@@ -352,6 +352,126 @@ public class Main {
 
 
 
+# Decorator pattern
+
+데코레이터 패턴은 기존 뼈대 (클래스)는 유지하되, 이후 필요한 형태로 꾸밀 때 사용한다. 확장이 필요한 경우 상속의 대안으로도 활용한다. SOLID중에서 개방폐쇄원칙(OCP)과 의존역전원칙(DIP)를 따른다
+
+
+
+
+
+### 기본 Audi class를 구성한다.
+
+```java
+public interface ICar {
+    int getPrice();
+    void showPrice();
+}
+
+public class Audi implements ICar{
+    private  int price;
+    public Audi(int price) {
+        this.price = price;
+    }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public void showPrice() {
+        System.out.println("audi 의 가격은 "+ getPrice());
+    }
+}
+```
+
+- price, showPrice 생성
+
+
+
+
+
+### decorator를 생성한다.
+
+```java
+public class AudiDecorator implements ICar {
+    protected ICar audi;
+    protected String modelName;
+    protected int modelPrice;
+
+    public AudiDecorator(ICar audi, String modelName, int modelPrice) {
+        this.audi = audi;
+        this.modelName = modelName;
+        this.modelPrice = modelPrice;
+    }
+
+    @Override
+    public int getPrice() {
+        return audi.getPrice() + modelPrice;
+    }
+
+    @Override
+    public void showPrice() {
+        System.out.println(modelName + " 의 가격은 " + getPrice()+"원 입니다");
+    }
+}
+```
+
+-  AudiDecorator의 price는 기본 Audi의 price에  modelPrice를 더한 값이다.
+
+
+
+
+
+### audi 모델이 decorator를 상속받는다.
+
+```java
+public class A3 extends AudiDecorator {
+    public A3(ICar audi, String modelName) {
+        super(audi, modelName,1000);
+    }
+}
+ublic class A4 extends AudiDecorator {
+    public A4(ICar audi, String modelName) {
+        super(audi, modelName,2000);
+    }
+}
+public class A5 extends AudiDecorator {
+    public A5(ICar audi, String modelName) {
+        super(audi, modelName,3000);
+    }
+}
+
+```
+
+- A3는 기본 audi 가격 + A3의 모델가격이다. 
+
+
+
+
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        ICar audi = new Audi(1000);
+        audi.showPrice();
+
+        //a3
+        ICar audi3 = new A3(audi, "A3");
+        audi3.showPrice();
+        //a4
+        ICar audi4 = new A4(audi, "A4");
+        audi4.showPrice();
+        //a5
+        ICar audi5 = new A5(audi,"A5");
+        audi5.showPrice();
+    }
+```
+
+- 기본 audi를 생성 후, 모델 별 가격을 생성한다.
 
 
 
@@ -359,28 +479,63 @@ public class Main {
 
 
 
+# Observer pattern
+
+관찰자 패턴은 변화가 일어났을 때, 미리 등록된 다른 클래스에 통보해주는 패턴을 구현한 것이다.
+
+많이 보이는 곳은 event listner에서 해당 패턴을 사용하고 있다.
+
+```java
+public interface IButtonListener {
+    void clickEvent(String event);
+}
+
+public class Button {
+    private String name;
+    private IButtonListener buttonListener;
+
+    public Button(String name) {
+        this.name = name;
+    }
+    public void click(String message) {
+        buttonListener.clickEvent(message);
+    }
+
+    public void addListener(IButtonListener ButtonListener) {
+        this.buttonListener = ButtonListener;
+    }
+}
+```
+
+- button 클릭 시 클릭이벤트를 호출하기위한 listener를 정의한다.
 
 
 
+```java
+public class Main {
 
+    public static void main(String[] args) {
 
+        Button button = new Button("버튼");
 
+        button.addListener(new IButtonListener() {
+            @Override
+            public void clickEvent(String event) {
+                System.out.println(event);
+            }
+        });
 
+        button.click("메세지 전달 : click1");
+        button.click("메세지 전달 : click2");
+        button.click("메세지 전달 : click3");
+        button.click("메세지 전달 : click4");
+        button.click("메세지 전달 : click5");
+    }
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 버튼 인스턴스 생성
+- 버튼클릭 리스너생성(콜백 인터페이스)
+- 클릭시마다 콜백함수를 호출함.(옵저버 패턴)
 
 
 
