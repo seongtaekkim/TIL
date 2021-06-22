@@ -543,6 +543,338 @@ public class Main {
 
 
 
+# Facade pattern
+
+Facade는 건물의 앞쪽 정면 이라는 뜻을 가진다. 여러개의 객체와 실제 사용하는 서브객체 사이에 복잡한 의존관계가 있을 때 , 중간에 facade라는 객체를 두고 여기서 제공하는 interface만을 활용하여 기능을 사용하는 방식이다. Facade는 자신이 가지고 있는 각 클래스의 기능을 명확히 알아야 한다.
+
+
+
+
+
+
+
+### Ftp접속후, 파일읽기쓰기를 수행하는 class를 구현
+
+```java
+public class Ftp {
+    private String host;
+    private int port;
+    private String path;
+
+    public Ftp(String host, int port, String path) {
+        this.host = host;
+        this.port = port;
+        this.path = path;
+    }
+
+    public void connect() {
+        System.out.println("FTP host : " + host +" Port : " + port + "로 연결합니다.");
+    }
+
+    public void moveDirectory() {
+        System.out.println("path : " + path + "로 이동합니다");
+    }
+
+    public void disConnect() {
+        System.out.println("FTP 연결을 종료합니다.");
+    }
+}
+
+public class Reader {
+    private String fileName;
+
+    public Reader(String fileName ) {
+        this.fileName = fileName;
+    }
+
+    public void fileConnect() {
+        String msg = String.format("Reader %s 로 연결합니다.",fileName);
+        System.out.println(msg);
+
+    }
+
+    public void fileRead() {
+        String msg = String.format("Reader %s 내용을 읽어옵니다.",fileName);
+        System.out.println(msg);
+    }
+
+    public void fileDisconnect() {
+        String msg = String.format("Reader %s 로 연결종료합니다.",fileName);
+        System.out.println(msg);
+    }
+}
+
+public class Writer {
+    private String fileName;
+
+    public Writer(String fileName ) {
+        this.fileName = fileName;
+    }
+
+    public void fileConnect() {
+        String msg = String.format("Writer %s 로 연결합니다.",fileName);
+        System.out.println(msg);
+
+    }
+
+    public void write() {
+        String msg = String.format("Writer %s 파일쓰기를 합니다.",fileName);
+        System.out.println(msg);
+    }
+
+    public void fileDisconnect() {
+        String msg = String.format("Writer %s 로 연결종료합니다.",fileName);
+        System.out.println(msg);
+    }
+}
+```
+
+- Ftp는 host,port,path로 접속, 디렉토리이동, 접속종료가 가능하다.
+- reader는 fileName으로 접속, 읽기, 종료가 가능하다.
+- writer는 faileName으로 접속,쓰기,종료가 가능하다.
+
+
+
+
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Ftp ftpClient = new Ftp("www.foo.co.kr",22,"/home/etc");
+        ftpClient.connect();
+        ftpClient.moveDirectory();
+
+        Writer writer = new Writer("text.tmp");
+        writer.fileConnect();
+        writer.write();
+
+        Reader reader = new Reader("text.tmp");
+        reader.fileConnect();
+        reader.fileRead();
+
+        reader.fileDisconnect();
+        writer.fileDisconnect();
+        ftpClient.disConnect();
+
+    }
+```
+
+- Ftp, writer, reader는 순서대로 함수를 실행한다.
+- main에서 일련의 과정을 간략하게 수행하기 위해 facade를 구현한다.
+
+
+
+
+
+### facade pattern 을 위해 sftpClient를 구현한다
+
+```java
+public class SftpClient {
+    private Ftp ftp;
+    private Reader reader;
+    private Writer writer;
+
+    public SftpClient(Ftp ftp, Reader reader, Writer writer) {
+        this.ftp = ftp;
+        this.reader = reader;
+        this.writer = writer;
+
+    }
+    public SftpClient(String host, int port,String path, String fileName) {
+    this.ftp = new Ftp(host, port, path);
+    this.reader = new Reader(fileName);
+    this.writer = new Writer(fileName);
+    }
+
+    public void connct() {
+        ftp.connect();
+        ftp.moveDirectory();
+        writer.fileConnect();
+        reader.fileConnect();
+    }
+
+    public void disConnect() {
+        writer.fileDisconnect();
+        reader.fileDisconnect();
+        ftp.disConnect();
+    }
+    public void reader() {
+        reader.fileRead();
+    }
+    public void writer() {
+        writer.write();
+    }
+}
+
+```
+
+- connect는 ftp, reader, writer 모두 하므로, 함수하나에 모아준다.
+- disconnect 도 마찬가지.
+
+
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        SftpClient sftpClient = 
+        			new SftpClient("www.foo.co.kr",22, "/home/etc","text.tmp");
+        sftpClient.connct();
+        sftpClient.writer();
+        sftpClient.reader();
+        sftpClient.disConnect();
+
+    }
+```
+
+- 일련의 과정을 간략하게 수행할 수 있다.
+
+
+
+
+
+# Strategy pattern
+
+전략패턴이라고 불리며, 객체지향의 꽃이다.
+
+유사한 행위들을 캡슐화하여, 객체의 행위를 바꾸고 싶은 경우 직접 변경하는 것이 아닌 전략만을 변경하여, 유연하게 확장하는 패턴 SOLID중에서 개방폐쇄원칙(OCP)과 의존역전원칙(DIP)를 딸느다.
+
+
+
+전략 메서드를 가진 전략객체 (Nornal Strategy, Base64 Strategy)
+
+전략객체를 사용하는 컨텍스트(Encoder)
+
+전략 객체를 생성해 컨텍스트에 주입하는 클라이언트
+
+
+
+
+
+### 전략 인터페이스 생성
+
+```java
+public interface EncodingStrategy {
+    String encode(String text);
+}
+```
+
+
+
+
+
+### 전략 class 생성
+
+```java
+public class Base64Strategy implements EncodingStrategy{
+    @Override
+    public String encode(String text) {
+        return Base64.getEncoder().encodeToString(text.getBytes());
+    }
+}
+public class NornalStrategy implements  EncodingStrategy{
+    @Override
+    public String encode(String text) {
+        return text;
+    }
+}
+```
+
+
+
+### 전략객체를 사용하는 Context 생성
+
+```java
+public class Encoder {
+
+    private EncodingStrategy encodingStrategy;
+
+    public String getMessage(String message) {
+        return this.encodingStrategy.encode(message);
+    }
+    public void setEncodingStrategy(EncodingStrategy encodingStrategy) {
+        this.encodingStrategy = encodingStrategy;
+    }
+}
+
+```
+
+- 외부에서 전략객체를 주입(런타임)한 후 전략객체의 메서드를 수행한다.
+
+
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Encoder encoder = new Encoder();
+
+        //base64
+        EncodingStrategy base64 = new Base64Strategy();
+
+        //normal
+        EncodingStrategy normal = new NornalStrategy();
+        String message = "hello java";
+
+        encoder.setEncodingStrategy(base64);
+        String base64Result = encoder.getMessage(message);
+        System.out.println(base64Result);
+
+        encoder.setEncodingStrategy(normal);
+        String normalResult = encoder.getMessage(message);
+        System.out.println(normalResult);
+
+    }
+```
+
+- 같은 컨텍스트객체에 전략을 바꿔가며 사용할 수 있다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
