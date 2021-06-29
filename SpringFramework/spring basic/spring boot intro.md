@@ -82,15 +82,7 @@ spring initializr 에서 프로젝트 config 설정할 수 있음 ( intellj 에�
 
 크롬 웹스토어에서 Talend API Tester - Free Edition를 설치.
 
-
-
-
-
-
-
-
-
-resource > application.propterties
+- REST TEST를 할 수 있는 크롬 확장프로그램
 
 
 
@@ -105,6 +97,103 @@ server.port=9090
 
 
 
+
+
+
+# GET API
+
+
+
+
+
+### @GetMapping은 다음과같은 인자를 사용할 수 있다.
+
+```java
+public @interface GetMapping {
+
+	/**
+	 * Alias for {@link RequestMapping#name}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String name() default "";
+
+	/**
+	 * Alias for {@link RequestMapping#value}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] value() default {};
+
+	/**
+	 * Alias for {@link RequestMapping#path}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] path() default {};
+
+	/**
+	 * Alias for {@link RequestMapping#params}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] params() default {};
+
+	/**
+	 * Alias for {@link RequestMapping#headers}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] headers() default {};
+
+	/**
+	 * Alias for {@link RequestMapping#consumes}.
+	 * @since 4.3.5
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] consumes() default {};
+
+	/**
+	 * Alias for {@link RequestMapping#produces}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] produces() default {};
+
+}
+```
+
+
+
+
+
+
+
+### @GetMapping  인자 사용법을 알아보자.
+
+```java
+@RestController
+@RequestMapping("/api/get")
+public class GetApiController {
+
+    @GetMapping(path = "/hello") 
+    // http://localhost:9090/api/get/hello // 현재 사용하는 방식
+    public String hello() {
+        return "get Hello";
+    }
+    @RequestMapping(path = "/hi", method= RequestMethod.GET) 
+    // RequestMapping은get / post / put / delete 모두 동작하므로 지정해서 사용해야함
+    public String hi(){
+        return "hi";
+    }
+
+    // http://localhost:9090/api/get/path-variable/{name}
+    // getmapping 인자의 {name}과 함수인자의 @PathVariable String name 변수명이 같거나
+    // {name}과 함수인자의 @PathVariable(name="name") String pathName 이 같으면 됨
+    // (@Pathvariable의 name key)
+    @GetMapping("/path-variable/{name}")
+    public String pathVariable(@PathVariable(name="name") String pathName) {
+        System.out.println("PathVariable : " + pathName);
+        return pathName;
+    }
+
+    // http://localhost:9090/api/get/query-param?user=steve&email=steve@gmail.com&age=30
+}
+```
 
 
 
