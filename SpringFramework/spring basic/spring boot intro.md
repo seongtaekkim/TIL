@@ -287,3 +287,176 @@ public class GetApiController {
 
 
 
+
+
+
+
+
+
+
+
+# POST API
+
+
+
+- 데이터를 주고받을 때는 주로 JSON 방식을 사용한다.
+
+- JSON에서 사용하는 데이터 타입은 아래와 같다.
+
+String : value
+
+number : value
+
+boolean : value {}
+
+object : value
+
+array : value [ 
+
+{
+
+​	"key" : "value"
+
+}
+
+
+
+
+
+- json 에서는 카멜케이스 보다 스네이크 케이스를 더 많이 사용한다.
+
+  스네이크 케이스 : phone_number
+
+  카멜케이스 : phoneNumber
+
+
+
+
+
+
+
+### JSON 예제
+
+```json
+{
+	"phone-number" : "010-1111-1111",	 // string
+	"age":10,							 // int
+	"isAgree" : false,					 // boolean
+	"account" :{						 // object
+		"email" : "steve@gmail.com",
+		"password" : "1234"
+	}
+}
+
+// user 조회하는 경우
+
+{
+	"user-list" : [						// array
+		{
+			"account" : "abcd",
+			"password" : "1234"
+		},
+		{
+			"account" : "aaaa",
+			"password" : "1111"
+		}
+	]
+
+}
+
+```
+
+
+
+
+
+### POST 사용법(1)
+
+```java
+    @PostMapping("/post")
+    public void post(@RequestBody  Map<String,Object> requestData) {
+        requestData.entrySet().forEach(stringObjectEntry -> {
+            System.out.println("key : " +stringObjectEntry.getKey());
+            System.out.println("value : " +stringObjectEntry.getValue());
+        });
+    }
+```
+
+- @RequestBody : Json 타입의 body를 파싱하여 java object로 변환한다.
+- Map<String,Object> 타입을 key,value로 각각 분리하여 조회할 수 있다.
+
+
+
+
+
+### POST 사용법(2)
+
+```JAVA
+    @PostMapping("/post")
+    public void post(@RequestBody  postRequestDto requestData) {
+       System.out.println(requestData.toString());
+    }
+```
+
+- DTO를 사용하면, 일일이 바르지않아도  JSON을 파싱하여 매핑할수 있다.
+
+
+
+
+
+
+
+### DTO 
+
+```java
+public class postRequestDto {
+    private String account;
+    private String email;
+    private String address;
+    private String password;
+
+    // 파싱이 안될경우
+    // json key가 다른 방법, 카멜도아니고 스네이크케이스도 아닌 경우 사용할 수 있다.
+    @JsonProperty("phone_number")
+    private String phoneNumber; // phone_number
+
+    @JsonProperty("OTP")
+    private String OTP;
+```
+
+- @JsonProperty  : json 파싱 타입을 설정할 수 있다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
