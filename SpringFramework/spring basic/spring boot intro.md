@@ -163,7 +163,7 @@ public @interface GetMapping {
 
 
 
-### @GetMapping  인자 사용법을 알아보자.
+### @GetMapping  인자 사용법(1)
 
 ```java
 @RestController
@@ -191,15 +191,99 @@ public class GetApiController {
         return pathName;
     }
 
-    // http://localhost:9090/api/get/query-param?user=steve&email=steve@gmail.com&age=30
+        // http://localhost:9090/api/get/query-param?			user=steve&email=steve@gmail.com&age=30
+    // @RequestParam Map<String,String> queryParam 를 이용해서, 쿼리파라메터의 key,value를 추출 할 수 있다.
+    @GetMapping(path = "/query-param")
+    public String queryParam(@RequestParam Map<String,String> queryParam) {
+        StringBuilder sb = new StringBuilder();
+        queryParam.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+            System.out.println("\n");
+
+            sb.append(entry.getKey() + " " + entry.getValue() + "\n");
+        });
+
+        return sb.toString();
+    }
+    
+    //@RequestParam String name 를 이용해서, 쿼리파라메터의 key를 추출할 수 있다.
+    @GetMapping("query-param2")
+    public String queryParam2(
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam int age
+    ) {
+        System.out.println(name);
+        System.out.println(email);
+        System.out.println(age);
+
+        return name + " " + email + " " + age;
+
+    }
 }
 ```
 
 
 
+### @GetMapping  인자 사용법(2)
 
+```java
+    public class UserRequest {
 
+    private String name;
+    private String email;
+    private String age;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRequest{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", age='" + age + '\'' +
+                '}';
+    }
+}
+    
+    // 인자로 어노테이션 없이 객체만 넣어도, 스프링에서 쿼리파라메터를 판단해서 매핑해줌.
+    // 가장 자주 사용되는 방식.
+    // 쿼리파라메터 key 중에 객체에 매핑되는 키가 없다면, 무시됨.
+    @GetMapping("query-param3")
+    public String queryParam3(
+            UserRequest userRequest
+    ) {
+        System.out.println(userRequest.getName());
+        System.out.println(userRequest.getEmail());
+        System.out.println(userRequest.getAge());
+
+        return userRequest.toString();
+
+    }
+```
 
 
 
