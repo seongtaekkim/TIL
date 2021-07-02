@@ -608,6 +608,28 @@ public class CarDto {
 
 
 
+# DELETE API
+
+
+
+
+
+```java
+@RestController
+@RequestMapping("/api")
+public class DeleteApiController {
+
+    @DeleteMapping("/delete")
+    public void delete(@PathVariable String userId, @RequestParam String account) {
+        System.out.println(userId);
+        System.out.println(account);
+
+        // delete -> 리소스삭제 200ok
+        // 삭제를 해도,데이터가 없어도 똑같이 200ok 이므로 멱등하다 라고 말할 수 있다.
+    }
+}
+```
+
 
 
 
