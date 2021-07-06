@@ -1,456 +1,634 @@
-# Web 이란
 
-World Wid Web은 인터넷 연결된 컴퓨터를 통해 사람들이 정보를 공유할 수 있는 전세계적인 정보공간을 말한다.
 
-Web의 용도는 다양하게 나눌 수 있습니다.
 
 
+# Spring Boot
 
-Web Site
 
-google, naver, daum, facebook 등  HTML로 구성된 사이트
 
+- Spring Boot 는 단순히 실행되며, 프로덕션 제품 수준의 스프링 기반 어플리케이션을 쉽게 만들 수 있다..
 
 
-API(Application Programming Interface) Web Service
 
-KaKao Open API, 등
+- Spring Boot 어플리케이션에는 Spring 구성이 거의 필요하지 않다.
 
 
 
-User Interface
+- Spring Boot java -jar로 실행하는 java 어플리케이션을 만들 수 있다.
 
-Chrome, Safari, Explorer, Ip Tv 등
 
 
+### 주요목표
 
-## Web의 기본 3가지 요소
 
-### URI
 
-Uniform Resource Identifier (리소스 식별자)
+- Spring 개발에 대해 빠르고, 광범위하게 적용할 수 있는 환경
 
-- 특정한 사이트
-- 특정 쇼핑목록
-- 동영상목록
 
-- 모든 정보에 접근 할 수 있는 정보
 
+- 기본값 설정이 있지만 설정을 바꿀 수 있다.
 
 
-### HTTP
 
-Hypertext Transfer Protocol (어플리케이션 컨트롤)
+- 대규모 프로젝트에 공통적인 비 기능 제공 (보안, 모니터링 등등)
 
-- GET, POST, PUT, DELETE, OPTIONS, HEAD, TRACE, CONNECT
 
 
+- XML 구성 요구사항이 전혀 없음 (어노테이션으로 정부 바뀌었다.)
 
-### HTML
 
-Hyper Text Markup Language (하이퍼미디어 포맷)
 
-XML을 바탕으로 한 범용문서 포맷
+| Name   | version                      |
+| ------ | ---------------------------- |
+| Maven  | 3.3+                         |
+| Gradle | 4.x(4.4. and later)  and 5.x |
 
-이를 이용하여 Chrome, safari, Explorer에서 사용자가 알아보기 쉬운 형태로 표현.
 
 
+| name         | servlet version |
+| ------------ | --------------- |
+| Tomcat 9.x   | 3.3             |
+| Jetty9.4     | 3.1             |
+| Undertow 2.0 | 4               |
+| Netty        | -               |
 
+ 
 
+https://start.spring.io
 
-# REST
+spring initializr 에서 프로젝트 config 설정할 수 있음 ( intellj 에서 설정이 가능하기 때문에 필요없음)
 
-REST (Representational State Transfer : 자원의 상태 전달) - 네트워크 아키텍처
 
 
 
-1. Client, Server : 클라이언트와 서버가 서로 독립적으로 분리되어 있어야 한다.
-2. Stateless : 요청에 대해서 클라이언트의 상태를 서버에 저장하지 않는다.
-3. Cache : 클라이언트는 서버의 응답을 Cache(임시저장)할 수 있어야 한다.
 
-​       클라이언트가 Cache를 통해서 응답을 재사용할 수 있어야 하며, 이를 통해서 서버의 부하를 낮춘다.
+- 어플리케이션 개발에 필수 요소들만 모아두었다.
 
-4. 계층화 (Layered System) : 서버와 클라이언트 사이에 방화벽, 게이트웨이 ,Proxy 등 다양한 계층 형태로 구성이 가능해야 하며, 이를 확장할 수 있어야 한다.
-5. 인터페이스 일관성 : 인터페이스의 일관성을 지키고, 아키텍처를 단순화 시켜 작은 단위로 분리하여 클라이언트, 서버가 독립적으로 개선될 수 있어야 한다.
-6. Code on Demand (Optional) : 자바 애플릿, 자바스크립트, 플래시 등 특정한 기능을 서버로부터 클라이언트가 전달받아 코드를 실행할 수 있어야 한다.
+- 간단한 설정으로 개발 및 커스텀이 가능하다.
+- 간단하고, 빠르게 어플리케이션 실행 및 배포가 가능하다.
+- 대규모 프로젝트(운영환경)에 필요한 비 기능적 기능도 제공한다.
+- 오랜 경험에서 나오는 안정적인 운영이 가능하다.
+- Spring에서 불편한 설정이 없어졌다.  (xml 등등)
 
 
 
 
 
-다음의 인터페이스  일관성이 잘 지켜졌는지에 따라, REST를 잘 사용했는지 판단을 할 수 있다.
 
 
+# REST Client 설치하기
 
-1. 자원의 식별
-2. 메시지를 통한 리소스 조작
-3. 자기 서술적 메시지
 
 
+크롬 웹스토어에서 Talend API Tester - Free Edition를 설치.
 
+- REST TEST를 할 수 있는 크롬 확장프로그램
 
 
-1. 자원의 식별
 
-웹 기반의 REST 에서는 리소스 접근을 하 때 URI를 사용한다.
 
-https://foo.co.kr/user/100
 
-Resource : user
+- resource > application.properties 에서 톰캣 port 설정 가능
 
-식별자 : 100
+```properties
+server.port=9090
+```
 
 
 
-2. 메세지를 통한 리소스 조작
 
-Web에서는 다양한 방식으로 데이터를 전달 할 수 있다.
 
-그 중에서 가장 많이 사용하는 방식은 HTML, XML, JSON, TEXT 등이 있습니다.
 
-이 중에서 어떠한 타입의 데이터인지를 알려주기 위하여 HTTP Header부분에
 
-content-type을 통해서 데이터의 타입을 지정해 줄 수 있습니다.
+# GET API
 
-또한 리소스 조작을 위해서 데이터 전체를 전달하지 않고 이를 메세지로 전달합니다.
 
 
 
-Ex) 서버의 user라는 정보의 전화번호를 처음에는  number로 결정했고, 이정보를
 
-Client와 주고 받을때 그대로 사용하고 있었다면, 후에 서버의 resource변경으로 phone-number로 바뀌게 된다면
+### @GetMapping은 다음과같은 인자를 사용할 수 있다.
 
-Client는 처리하지 못하고 에러가 납니다.
+```java
+public @interface GetMapping {
 
+	/**
+	 * Alias for {@link RequestMapping#name}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String name() default "";
+
+	/**
+	 * Alias for {@link RequestMapping#value}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] value() default {};
 
+	/**
+	 * Alias for {@link RequestMapping#path}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] path() default {};
 
-이러한 부분을 방지하기 위하여, 별도의 메시지의 형태로 데이터를 주고 받으며, client-server가 독립적으로 확장 가능하도록 합니다.
+	/**
+	 * Alias for {@link RequestMapping#params}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] params() default {};
 
+	/**
+	 * Alias for {@link RequestMapping#headers}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] headers() default {};
 
+	/**
+	 * Alias for {@link RequestMapping#consumes}.
+	 * @since 4.3.5
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] consumes() default {};
 
-3. 자기서술적 메세지
+	/**
+	 * Alias for {@link RequestMapping#produces}.
+	 */
+	@AliasFor(annotation = RequestMapping.class)
+	String[] produces() default {};
 
-요청하는 데이터가 어떻게 처리되져야 하는 지 충분한 데이터를 포함할 수 있어야 한다.
+}
+```
 
-HTTP 기반의 REST에서는 HTTP Method와 Header 정보, URI의 포함하는 정보로 표현할 수 있다.
 
-GET : https://foo.co.kr/user/100, 사용자의 정보요청
 
-POST : https://foo.co.kr/user/, 사용자 정보생성
 
-PUT : https://foo.co.kr/user/, 사용자 정보생성 및 수정
 
-DELETE : https://foo.co.kr/user/100, 사용자정보 삭제
 
-** 그 외에 담지 못한 정보는 URI의 메세지를 통해 표현한다.
 
+### @GetMapping  인자 사용법(1)
 
+```java
+@RestController
+@RequestMapping("/api/get")
+public class GetApiController {
 
+    @GetMapping(path = "/hello") 
+    // http://localhost:9090/api/get/hello // 현재 사용하는 방식
+    public String hello() {
+        return "get Hello";
+    }
+    @RequestMapping(path = "/hi", method= RequestMethod.GET) 
+    // RequestMapping은get / post / put / delete 모두 동작하므로 지정해서 사용해야함
+    public String hi(){
+        return "hi";
+    }
+
+    // http://localhost:9090/api/get/path-variable/{name}
+    // getmapping 인자의 {name}과 함수인자의 @PathVariable String name 변수명이 같거나
+    // {name}과 함수인자의 @PathVariable(name="name") String pathName 이 같으면 됨
+    // (@Pathvariable의 name key)
+    @GetMapping("/path-variable/{name}")
+    public String pathVariable(@PathVariable(name="name") String pathName) {
+        System.out.println("PathVariable : " + pathName);
+        return pathName;
+    }
 
+        // http://localhost:9090/api/get/query-param?			user=steve&email=steve@gmail.com&age=30
+    // @RequestParam Map<String,String> queryParam 를 이용해서, 쿼리파라메터의 key,value를 추출 할 수 있다.
+    @GetMapping(path = "/query-param")
+    public String queryParam(@RequestParam Map<String,String> queryParam) {
+        StringBuilder sb = new StringBuilder();
+        queryParam.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+            System.out.println("\n");
 
-4. Application  상태에 대한 엔진으로서 하이퍼미디어
+            sb.append(entry.getKey() + " " + entry.getValue() + "\n");
+        });
 
+        return sb.toString();
+    }
+    
+    //@RequestParam String name 를 이용해서, 쿼리파라메터의 key를 추출할 수 있다.
+    @GetMapping("query-param2")
+    public String queryParam2(
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam int age
+    ) {
+        System.out.println(name);
+        System.out.println(email);
+        System.out.println(age);
 
+        return name + " " + email + " " + age;
 
-REST API를 개발 할 때 단순히 client 요청에 대한 데이터만 응답 해주는것이 아닌 관련된 리소스에 대한 link정보까지 같이 포함 되어져야 한다.
+    }
+}
+```
 
-이러한 조건들을 잘 갖춘 경우 REST FUL 하다고 표현하고, 이를 REST API라고 부른다.
 
 
+### @GetMapping  인자 사용법(2)
 
+```java
+    public class UserRequest {
 
+    private String name;
+    private String email;
+    private String age;
 
-# URI 설계
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getEmail() {
+        return email;
+    }
 
-1. URI(Uniform Resource Identifier)
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-인터넷에서 특정 자원을 나타내는 주소 괎. 해당 값은 유일하다.(응답은 달라질 수 있다.)
+    public String getAge() {
+        return age;
+    }
 
-요청 : https://www.fastcampus.co.kr/resource/sample/1
+    public void setAge(String age) {
+        this.age = age;
+    }
 
-응답 : fastcampus,pdf, fastcampus.docx
+    @Override
+    public String toString() {
+        return "UserRequest{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", age='" + age + '\'' +
+                '}';
+    }
+}
+    
+    // 인자로 어노테이션 없이 객체만 넣어도, 스프링에서 쿼리파라메터를 판단해서 매핑해줌.
+    // 가장 자주 사용되는 방식.
+    // 쿼리파라메터 key 중에 객체에 매핑되는 키가 없다면, 무시됨.
+    @GetMapping("query-param3")
+    public String queryParam3(
+            UserRequest userRequest
+    ) {
+        System.out.println(userRequest.getName());
+        System.out.println(userRequest.getEmail());
+        System.out.println(userRequest.getAge());
 
+        return userRequest.toString();
 
+    }
+```
 
-2. URL(Uniform Resource Locator)
 
-인터넷상에서의 자원, 특정파일이 어디에 위치하는 지 식별하는 주소
 
-요청 : https://www.fastcampus.co.kr/fastcampus.pdf
 
 
 
-URL은 URI의 하위 개념이다.
 
 
 
 
 
-## 1. URI 설계원칙 (RFC-3986)
+# POST API
 
-- 슬래시 구분자(/)는 계층관계를 나타내는데 사용한다.
 
-https://fastcampus.co./kr/classes/java/curriculums/web-master
 
+- 데이터를 주고받을 때는 주로 JSON 방식을 사용한다.
 
+- JSON에서 사용하는 데이터 타입은 아래와 같다.
 
-- URI마지막 문자로(/)는 포함하지 않는다.
+String : value
 
-https://fastcampus.co.kr/classes/java/curriculums/web-master/
+number : value
 
+boolean : value {}
 
+object : value
 
-- 하이픈(-)은 URI가독성을 높이는데 사용한다.
+array : value [ 
 
-https://fastcampus.co.kr/classes/java/curriculums/web-master/
+{
 
+​	"key" : "value"
 
+}
 
-- 밑줄(_)은 사용하지 않는다.
 
-https://fastcampus.co.kr/classes/java/curriculums/web**_**master
 
 
 
-- URI경로에는 소문자가 적합하다.
+- json 에서는 카멜케이스 보다 스네이크 케이스를 더 많이 사용한다.
 
-https://fastcampus.co.kr/classes/**JAVA**/curriculums/web-master  (X)
+  스네이크 케이스 : phone_number
 
-https://fastcampus.co.kr/classes/**java**/curriculums/web-master  (O)
+  카멜케이스 : phoneNumber
 
 
 
-- 파일확장자는 URI에 포함하지 않는다.
 
-https://fastcampus.co.kr/classes/java/curriculums/web-master.**jsp**
 
 
 
+### JSON 예제
 
+```json
+{
+	"phone-number" : "010-1111-1111",	 // string
+	"age":10,							 // int
+	"isAgree" : false,					 // boolean
+	"account" :{						 // object
+		"email" : "steve@gmail.com",
+		"password" : "1234"
+	}
+}
 
-- 프로그래밍 언어에 의존적인 확장자를 사용하지 않는다.
+// user 조회하는 경우
 
-https://fastcampus.co.kr/classes/java/curriculums/web-master**.do**
+{
+	"user-list" : [						// array
+		{
+			"account" : "abcd",
+			"password" : "1234"
+		},
+		{
+			"account" : "aaaa",
+			"password" : "1111"
+		}
+	]
 
+}
 
+```
 
-- 구현에 의존적인 경로를 사용하지 않는다.
 
-https://fastcampus.co.kr/**servlet**/classes/java/curriculums/web+master
 
 
 
-- 세션 id를 포함하지 않는다.
+### POST 사용법(1)
 
-https://fastcampus.co.kr/classes/java/curriculums/web+master?**session-id=abcde**
+```java
+    @PostMapping("/post")
+    public void post(@RequestBody  Map<String,Object> requestData) {
+        requestData.entrySet().forEach(stringObjectEntry -> {
+            System.out.println("key : " +stringObjectEntry.getKey());
+            System.out.println("value : " +stringObjectEntry.getValue());
+        });
+    }
+```
 
+- @RequestBody : Json 타입의 body를 파싱하여 java object로 변환한다.
+- Map<String,Object> 타입을 key,value로 각각 분리하여 조회할 수 있다.
 
 
-- 프로그래밍 언어의 method명을 사용하지 않는다.
 
-https://fastcampus.co.kr/classes/java/curriculums/web+master?**action=intro**
 
 
+### POST 사용법(2)
 
-- 명사에 단수형보다는 복수형을 사용해야 한다. 컬렉션에 대한 표현은 복수로 사용
+```JAVA
+    @PostMapping("/post")
+    public void post(@RequestBody  postRequestDto requestData) {
+       System.out.println(requestData.toString());
+    }
+```
 
-https://fastcampus.co.kr/class**es**/java/curriculum**s**/web+master/
+- DTO를 사용하면, 일일이 바르지않아도  JSON을 파싱하여 매핑할수 있다.
 
 
 
-- 컨트롤러 이름으로는 동사나 동사구를 사용한다.
 
-https://fastcampus.co.kr/classes/java/curriculums/web+master/**re-order**
 
 
 
-- 경로 부분 중 변하는 부분은 유일한 값으로 대체한다
+### DTO 
 
+```java
+public class postRequestDto {
+    private String account;
+    private String email;
+    private String address;
+    private String password;
 
+    // 파싱이 안될경우
+    // json key가 다른 방법, 카멜도아니고 스네이크케이스도 아닌 경우 사용할 수 있다.
+    @JsonProperty("phone_number")
+    private String phoneNumber; // phone_number
 
-https://fastcampus.co.kr/classes/java/curriculums/web+master/lessons/{**lesson-id}/users/{user-id}**
+    @JsonProperty("OTP")
+    private String OTP;
+```
 
-https://fastcampus.co.kr/classes/java/curriculums/web+master/2/users**/100**
+- @JsonProperty  : json 파싱 타입을 설정할 수 있다.
 
 
 
-- CRUD 기능을 나타내는 것은 URI에 사용하지 않는다.
 
-GET : https://fastcampus.co.kr/classes/java/curriculums/web+master**/2/users/100/READ**  (x)
 
-DELETE : https://fastcampus.co.kr/classes/java/curriculums/web+master/**2/users/100**         (o)
 
 
+# PUT API
 
-- URI Query Parameter 디자인
 
-URI 쿼리부분으로 컬렉션 결과에 대해서 필터링 할 수 있다.
 
-https://fastcampus.co.kr/classes/java/curriculums/web+master?**chapter=2**
+### PUT Example
 
+```java
+@RestController
+@RequestMapping("/api")
+public class PutApiController {
 
 
-- URI 쿼리는 컬렉션의 결과를 페이지로 구분하여 나타내는데 사용한다.
+    @PutMapping("/put")
+    public PostRequestDto put(@RequestBody PostRequestDto requestDto) {
+        System.out.println(requestDto);
 
-https://fastcampus.co.kr/classes/java/curriculums/web+master?**chapter=2&page=0&size=10&sort=asc**
+        return requestDto;
+    }
 
 
+    @PutMapping("/put/{userId}")
+    public PostRequestDto put(@RequestBody PostRequestDto requestDto
+                              	, @PathVariable(name = "userId") Long id) {
+        System.out.println(id);
 
-- API에 있어서 서브 도메인은 일관성 있게 사용해야 한다.
+        return requestDto;
+    }
+}
+```
 
-https://fastcampus.co.kr
 
-https://api.fastcampus.co,kr
 
-https://api-fastcampus.co,kr
+### DTO
 
+```java
+@JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
+public class PostRequestDto {
 
+    private String name;
+    private int age;
+    private List<CarDto> carList;
 
-- 클라이언트 개발자 포탈 서브 도메인은 일관성 있게 만든다.
+    public String getName() {
+        return name;
+    }
 
-https://dev-fastcampus.co.kr
+    public void setName(String name) {
+        this.name = name;
+    }
 
-https://developer-fastcampus.co.kr
+    public int getAge() {
+        return age;
+    }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
 
+    public List<CarDto> getCarList() {
+        return carList;
+    }
 
+    public void setCarList(List<CarDto> carList) {
+        this.carList = carList;
+    }
 
+    @Override
+    public String toString() {
+        return "PostRequestDto{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", carList=" + carList +
+                '}';
+    }
+}
+```
 
-# HTTP Protocal
+- Json value 형식정의  : @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 
-- HTTP(Hyper Text Transfer Protocol) 로 RFC 2616 에서 규정된 Web에서 데이터를 주고받는 프로토콜,
 
 
 
-- 이름에는 하이퍼텍스트 전송용 프로토콜로 정의되어 있지만 실제로는 HTML, XML, JSON,  Image, Voice, Video, javascript, PDF 등 다양한 컴퓨터에서 다룰 수 있는것은 모두 전송할 수 있습니다.
 
+### DTO(2)
 
+```java
+public class CarDto {
+    private String name;
 
--  HTTP는 TCP를 기반으로 한 REST의 특징을 모두 구현하고 있는 Web기반의 프로토콜이다.
+    @JsonProperty("car_number")
+    private String carNumber;
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getCarNumber() {
+        return carNumber;
+    }
 
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
+    }
 
+    @Override
+    public String toString() {
+        return "CarDto{" +
+                "name='" + name + '\'' +
+                ", carNumber='" + carNumber + '\'' +
+                '}';
+    }
+}
+```
 
+- Json 배열형태를 위해 sub dto를 생성한다.
 
 
 
-### HTTP는 메시지를 주고(REQUEST) 받는(RESPONSE) 형태의 통신방법이다.
 
 
+### DTO Json 구조
 
-**CLIENT** 
+```json
+{
+	"name" :"steve",
+	"age" : 20 ,
+	"car_list" : [
+		{
+			"name" : "BMW"
+			"car_number" : "11가 1234"
+		},
+		{
+			"name" : "A4"
+			"car_number" : "22가 1234"
+		}
+	]
+}
+```
 
-1.요청메시지작성
 
-2. 요청메시지정송
 
-3. 응답대기 (서버로전송)
+### PUT 요청 결과
 
+```json
+{
+"name": "steve",
+"age": 20,
+"car_list":[
+{
+"name": "BMW",
+"car_number": "11가 1234"
+},
+{
+"name": "A4",
+"car_number": "22가 1234"
+}
+]
+}
+```
 
+- dto를 그대로 return하면 json형식으로 파싱해서 응답한다.
 
-**SERVER**
 
-4. 요청대기 (CLIENT 대기)
 
-5. 요청메시지수신
 
-6. 요청메시지 해석
 
-7. 애플리케이션 할당
 
-8.  애플리케이션 결과생성
 
-9. 응답메시지 송신
 
 
 
-**CLIENT**
 
-10. 응답메시지 수신 (SERVER대기)
+# DELETE API
 
-11. 응답메시지 해석
 
-12. 데이터표시 및 처리
 
 
 
+```java
+@RestController
+@RequestMapping("/api")
+public class DeleteApiController {
 
+    @DeleteMapping("/delete")
+    public void delete(@PathVariable String userId, @RequestParam String account) {
+        System.out.println(userId);
+        System.out.println(account);
 
-
-
-#### HTTP의 요청을  특정하는 METHOD는 8가지가 있다.
-
-### REST를 구현하기 위한 인터페이스이니 알아둬야 합니다.
-
-|         | 의미                             | CURD | 멱등성 | 안정성 | Path     Variable | Query Parameter | DataBody |
-| ------- | -------------------------------- | ---- | ------ | ------ | ----------------- | --------------- | -------- |
-| GET     | 리소스 취득                      | R    | ○      | ○      | ○                 | ○               | X        |
-| POST    | 리소스 생성, 추가                | C    | X      | X      | ○                 | △               | ○        |
-| PUT     | 리소스 갱신, 생성                | C/U  | ○      | X      | ○                 | △               | ○        |
-| DELETE  | 리소스 삭제                      | D    | ○      | X      | ○                 | ○               | X        |
-| HEAD    | 헤더 데이터 취득                 | -    | ○      | ○      | -                 | -               | -        |
-| OPTIONS | 지원하는 메소드 취득             | -    | ○      | -      | -                 | -               | -        |
-| TRACE   | 요청메시지 반환                  | -    | ○      | -      | -                 | -               | -        |
-| CONNECT | 프록시 동작의 터널 접속으로 변경 | -    | X      | -      | -                 | -               | -        |
-
-
-
-
-
-### HTTP Status Code
-
-### 응답의 상태를 나타내는 코드
-
-
-
-|      | 의미            | 내용                                                         |
-| ---- | --------------- | ------------------------------------------------------------ |
-| 1xx  | 처리중          | 처리가 계속되고 있는 상태.  클라이언트는 요청을 계속 하거나 서버의 지시에 따라서 재요청 |
-| 2xx  | 성공            | 요청의 성공                                                  |
-| 3xx  | 리다이렉트      | 다른 리소스로 리다이렉트. 해당 코드를  받았을때는 Response의 새로운 주소로 다시 요청 |
-| 4xx  | 클라이언트 에러 | 클라이언트의 요청에 에러가 있는상태.  재전송 하여도 에러가 해결되지 않는다. |
-| 5xx  | 서버에러        | 서버 처리중 에러가 발생한 상태. 재  전송시 에러가 해결되었을 수도 있다. |
-
-
-
-
-
-### 자주 사용되는 코드
-
-| 200  | 성공                                                       |
-| ---- | ---------------------------------------------------------- |
-| 201  | 성공, 리소스를 생성성공                                    |
-| 301  | 리다이렉트, 리소스가 다른 장소로  변경됨을 알림            |
-| 303  | 리다이렉트, Client에서 자동으로  새로운 리소스로 요청 처리 |
-| 400  | 요청오류, 파라미터 에러                                    |
-| 401  | 권한없음(인증실패)                                         |
-| 404  | 리소스 없음(페이지를 찾을 수 없음)(                        |
-| 500  | 서버 내부 에러(서버동작처리에러)                           |
-| 503  | 서비스 정지(점검 등)                                       |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // delete -> 리소스삭제 200ok
+        // 삭제를 해도,데이터가 없어도 똑같이 200ok 이므로 멱등하다 라고 말할 수 있다.
+    }
+}
+```
 
 
 
