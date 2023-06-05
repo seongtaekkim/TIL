@@ -1,4 +1,4 @@
-## 개요
+## outline
 
 
 
@@ -10,7 +10,7 @@ https://github.com/cncf/curriculum
 
 
 
-## 목표
+## objective
 
 ### CKA - 7/15 취득
 
@@ -18,7 +18,7 @@ https://github.com/cncf/curriculum
 
 
 
-## 참고
+## reference
 
 [후기 및 정보1](https://moaimoai.tistory.com/323)
 
