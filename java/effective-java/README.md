@@ -1,6 +1,6 @@
 # Effective Java
 
-* effecive java note.
+
 
 
 # Sections
@@ -8,8 +8,9 @@
   - [introduction](docs/01-introduction/introduction.md)
 
 - [02-creating-and-destroying-objects](docs/02-creating-and-destroying-objects)
-  - [item01](docs/02-creating-and-destroying-objects/item01.md)
-
+  - [item01](docs/02-creating-and-destroying-objects/item01)
+  - [item02](docs/02-creating-and-destroying-objects/item02)
+  
 - [03-methods-common-to-all-objects](docs/03-methods-common-to-all-objects)
 
 - [04-classes-and-interfaces](docs/04-classes-and-interfaces)
@@ -34,7 +35,8 @@
 # Reference
 
 - [book](https://www.yes24.com/Product/Goods/65551284)
-- [inflearn-1](https://www.inflearn.com/course/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%9E%90%EB%B0%94-1)
-- [inflearn-2](https://www.inflearn.com/course/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%9E%90%EB%B0%94-2)
+- [source](https://github.com/jbloch/effective-java-3e-source-code)
+- [inflearn1-1](https://github.com/whiteship/effective-java)
+- [inflearn1-2](https://github.com/whiteship/chinese-hello-service)
 - spring framework API
 - java API
