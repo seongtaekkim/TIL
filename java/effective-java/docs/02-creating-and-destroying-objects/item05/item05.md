@@ -51,7 +51,7 @@ public class SpellChecker {
   ...
 ~~~
 
-- 의존객체주입을 확장하여 [팩터리 메소드 패턴 ](../../../../../design-pattern/docs/02-factory-method.md) 을 사용할 수 있다.
+- 의존객체주입을 확장하여 [팩터리 메소드 패턴 ](../../../../../design-pattern/docs/02-factory-method.md) 을 사용할 수 있다. ([dictionary factory example](./item05-factory-method.md))
 - 의존 객체가 많은 경우에 Dagger, Guice, [스프링](./item05-string-ioc.md) 같은 의존 객체 주입 프레임워크 도입을 고려할 수 있다.
 
 
@@ -68,10 +68,6 @@ public class SpellChecker {
 ~~~
 
 - dictionary를 상속받는 mock class 를 통해 테스트를 쉽게 할 수 있다.
-
-
-
-
 
 
 
