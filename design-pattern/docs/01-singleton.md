@@ -2,7 +2,7 @@
 
 
 
-![스크린샷 2023-06-28 오후 2.58.59](img/singleton-01.png)
+![스크린샷 2023-06-28 오후 2.58.59](../img/singleton-01.png)
 
 - 인스턴스를 오직 한개만 제공하는 클래스 
 
@@ -242,7 +242,7 @@ for (Constructor<?> c : declaredConstructors) {
 System.out.println(settings5 == settings51);
 ```
 
-![스크린샷 2023-06-28 오후 3.00.04](img/singleton-02.png)
+![스크린샷 2023-06-28 오후 3.00.04](../img/singleton-02.png)
 
 - ENUM 일 경우, 예외가 발생.
 

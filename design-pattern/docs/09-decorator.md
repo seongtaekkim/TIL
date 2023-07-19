@@ -1,6 +1,6 @@
 ## 1. intro
 
-<img src="img/decorator-01.png" alt="스크린샷 2023-07-06 오후 2.23.09" style="zoom:50%;" />
+<../img src="../img/decorator-01.png" alt="스크린샷 2023-07-06 오후 2.23.09" style="zoom:50%;" />
 
 기존 코드를 변경하지 않고 부가기능을 추가하는 패턴
 
@@ -16,7 +16,7 @@
 
 ### 변경 전
 
-### ![스크린샷 2023-07-06 오후 2.23.55](img/decorator-02.png)
+### ![스크린샷 2023-07-06 오후 2.23.55](../img/decorator-02.png)
 
 - pam 과 Trim 기능을 둘 다 적용하려면, 새로운 함수 혹은 class를 정의해서 client단에서 조합으로 로직을 추가해야 한다.
 
@@ -45,7 +45,7 @@ public class Client {
 
 ### 변경 후
 
-![스크린샷 2023-07-06 오후 2.23.55](img/decorator-03.png)
+![스크린샷 2023-07-06 오후 2.23.55](../img/decorator-03.png)
 
 - client에서 spam과, trim 적용에 대한 조합(분기처리)를 해야 하는것은 동일하지만, 두 기능을 동시에 해야 하는 조합에 대해서는 따로 처리하지 않아도 된다.
 - ConcreteComponent : DefaultDommentService

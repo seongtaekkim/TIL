@@ -1,6 +1,6 @@
 ## 1. intro
 
-![스크린샷 2023-07-03 오후 2.51.58](img/adapter-01.png)
+![스크린샷 2023-07-03 오후 2.51.58](../img/adapter-01.png)
 
 기존 코드를 클라이언트가 사용하는 인터페이스의 구현체로 바꿔주는 패턴
 
@@ -69,7 +69,7 @@ public class AccountUserDetailsService implements UserDetailsService {
 
 ## 3. Strength and Weakness
 
-![스크린샷 2023-07-03 오후 2.53.07](img/adapter-02.png)
+![스크린샷 2023-07-03 오후 2.53.07](../img/adapter-02.png)
 
 
 

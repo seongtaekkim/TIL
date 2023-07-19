@@ -1,6 +1,6 @@
 ## 1. intro
 
-![스크린샷 2023-07-05 오후 1.23.30](img/composite-01.png)
+![스크린샷 2023-07-05 오후 1.23.30](../img/composite-01.png)
 
 그룹 전체와 개별 객체를 동일하게 처리할 수 있는 패턴.
 
@@ -14,7 +14,7 @@
 
 ## 2. implement
 
-![스크린샷 2023-07-05 오후 1.24.37](img/composite-02.png)
+![스크린샷 2023-07-05 오후 1.24.37](../img/composite-02.png)
 
 
 
@@ -73,7 +73,7 @@ private void printPrice(Component component) {
 
 ## 4. API example
 
-![스크린샷 2023-07-05 오후 1.24.50](img/composite-03.png)
+![스크린샷 2023-07-05 오후 1.24.50](../img/composite-03.png)
 
 
 

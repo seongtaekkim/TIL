@@ -1,6 +1,6 @@
 ## 1. intro
 
-![](img/factorymethod-01.png)
+![](../img/factorymethod-01.png)
 
 - 구체적으로 어떤 인스턴스를 만들지는 서브 클래스가 정한다.
 
@@ -16,7 +16,7 @@
 
 ### 변경 전 구조
 
-### ![](img/factorymethod-02.png)
+### ![](../img/factorymethod-02.png)
 
 - 배의 인스턴스 생성 시, 인스턴스 특성 조건(이름)에 따라 내부 속성이 변경되는 경우,
 - 이름이 다를때, 분기에 따라 속성을 변경한다.
@@ -24,7 +24,7 @@
 
 ### 변경 후 구조
 
-![](img/factorymethod-03.png)
+![](../img/factorymethod-03.png)
 
 - 새로운 종류의 배구 추가될 때 분기문을 추가하지 않기 위해서 인터페이스를 상속받는
 - 팩토리들을 만든다.
@@ -32,7 +32,7 @@
 
 ## 3. interface with implement
 
-![](img/factorymethod-04.png)
+![](../img/factorymethod-04.png)
 
 client 코드는 구체적인 코드가 계속 변경되지 않느냐 ?
 
@@ -73,7 +73,7 @@ interface
 
 ### Calendar
 
-![](img/factorymethod-05.png)
+![](../img/factorymethod-05.png)
 
 - getInstance 인자에 따라 concrete class 를 생성한다.
 

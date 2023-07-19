@@ -6,7 +6,7 @@
 
 ⇒ 경우에 따라 취사선택하도록 하자.
 
-![스크린샷 2023-07-14 오전 8.43.41](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-07-14 오전 8.43.41.png)
+![스크린샷 2023-07-14 오전 8.43.41](../img/template-method-01.png)
 
 - 추상클래스는 템플릿을 제공하고 하위클래스는 구체적인 알고리즘을 제공한다.
 
@@ -18,7 +18,7 @@
 
 ### 변경전
 
-### ![스크린샷 2023-07-14 오전 8.46.03](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-07-14 오전 8.46.03.png) 
+### ![스크린샷 2023-07-14 오전 8.46.03](../img/template-method-02.png) 
 
 
 
@@ -69,7 +69,7 @@ public class MultuplyFileProcessor {
 
 ### 변경 후
 
-![스크린샷 2023-07-14 오전 8.44.26](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-07-14 오전 8.44.26.png)
+![스크린샷 2023-07-14 오전 8.44.26](../img/template-method-03.png)
 
 
 
@@ -116,14 +116,14 @@ public class Multiply extends FileProcessor {
 
 ## 템플릿 콜백 패턴
 
-![스크린샷 2023-07-14 오전 8.44.39](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-07-14 오전 8.44.39.png)
+![스크린샷 2023-07-14 오전 8.44.39](../img/template-method-04.png)
 
 - 마치 전략패턴처럼 사용할 수 있다.
 - 전략과 다른점은 콜백은 하나의 메소드만 사용한다.
 - 전략처럼 위임을 사용할 수 있고 상속을 사용하지 않는다.
 - concreteCallback은 익명클래스로 사용한다
 
-![스크린샷 2023-07-14 오전 8.45.33](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-07-14 오전 8.45.33.png)
+![스크린샷 2023-07-14 오전 8.45.33](../img/template-method-05.png)
 
 
 

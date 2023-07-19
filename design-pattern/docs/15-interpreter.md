@@ -2,7 +2,7 @@
 
 ex)정규표현식
 
-<img src="img/interpreter-01.png" alt="스크린샷 2023-07-16 오후 3.11.18" style="zoom:150%;" />
+<../img src="../img/interpreter-01.png" alt="스크린샷 2023-07-16 오후 3.11.18" style="zoom:150%;" />
 
 반복되는 문제패턴을 언어 또는 문법으로 정의하고 확장할 수 있다.
 
@@ -10,13 +10,13 @@ ex)정규표현식
 
 - (아래이미지) 인터프리터패턴의 이 부분이 컴포짓 패턴과 유사하다.
 
-![스크린샷 2023-07-16 오후 3.11.46](img/interpreter-02.png)
+![스크린샷 2023-07-16 오후 3.11.46](../img/interpreter-02.png)
 
 
 
 
 
-![스크린샷 2023-07-16 오후 3.12.01](img/interpreter-03.png)
+![스크린샷 2023-07-16 오후 3.12.01](../img/interpreter-03.png)
 
 컴포짓 패턴을 사용해서 정의한 트리구조는 AST라고 한다. (Abstract Syntax Tree)
 
@@ -75,7 +75,7 @@ public class PostfixNotation {
 
 ### 변경 후 햇
 
-![스크린샷 2023-07-16 오후 3.12.20](img/interpreter-04.png)
+![스크린샷 2023-07-16 오후 3.12.20](../img/interpreter-04.png)
 
 
 
@@ -119,7 +119,7 @@ public static void main(String[] args) {
 
 
 
-![스크린샷 2023-07-16 오후 3.13.14](img/interpreter-05.png)
+![스크린샷 2023-07-16 오후 3.13.14](../img/interpreter-05.png)
 
 
 

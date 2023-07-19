@@ -1,6 +1,6 @@
 ## 1. intro
 
-![스크린샷 2023-07-07 오후 4.15.37](img/facade-01.png)
+![스크린샷 2023-07-07 오후 4.15.37](../img/facade-01.png)
 
 복잡한 서브시스템 의존성을 최소화하는 방법
 
@@ -49,7 +49,7 @@ public class Client {
 - client 에서는 세팅할 데이터만 세팅하고, sendmail() 만 호출하면 된다.
 - 메일을 보내기위한 상세 기능은 EmailSender 에 감춰져 있어 client 가 신경쓰지 않아도 된다.
 
-![스크린샷 2023-07-07 오후 4.16.17](img/facade-02.png)
+![스크린샷 2023-07-07 오후 4.16.17](../img/facade-02.png)
 
 ```java
 public static void main(String[] args) {

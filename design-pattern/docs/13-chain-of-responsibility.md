@@ -1,6 +1,6 @@
 ## 1. intro
 
-![스크린샷 2023-07-10 오후 11.45.33](img/chain-of-responsibility-01.png)
+![스크린샷 2023-07-10 오후 11.45.33](../img/chain-of-responsibility-01.png)
 
 - 핸들러 체인을 사용해서 요청을 처리한다
 
@@ -39,7 +39,7 @@
 
 ### 스프링 시큐리티 필터
 
-![스크린샷 2023-07-10 오후 11.46.30](img/chain-of-responsibility-02.png)
+![스크린샷 2023-07-10 오후 11.46.30](../img/chain-of-responsibility-02.png)
 
 
 

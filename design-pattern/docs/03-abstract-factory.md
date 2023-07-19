@@ -8,13 +8,13 @@
 
 - 구체적으로 어떤 클래스의 인스턴스를(concrete product)를 사용하는지 감출 수 있다.
 
-![image-20230630091225928](img/abstract-factory-01.png)
+![image-20230630091225928](../img/abstract-factory-01.png)
 
 
 
 ## 2. implement
 
-![image-20230630091602204](img/abstract-factory-02.png)
+![image-20230630091602204](../img/abstract-factory-02.png)
 
 1. 제품 anchor, wheel 인터페이스를 만들고, 이를 상속하는 제품(concrete class)를 만든다. 팩토리(whiteshipPartsFactory)에서 실제 제품(WhiteWheel, WhiteAnchor)을 생성하는 코드를 만든다.
 2. 제품이 변경될 수 있으므로, 팩토리를 추상화하여 추상팩토리(ShipPartFactory)를 만들어준다.
@@ -120,7 +120,7 @@ public class DocumentBuilderFactoryExample {
 
 ### spring FactoryBean
 
-![스크린샷 2023-06-30 오전 9.17.38](img/abstract-factory-03.png)
+![스크린샷 2023-06-30 오전 9.17.38](../img/abstract-factory-03.png)
 
 
 
