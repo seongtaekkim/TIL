@@ -1,0 +1,1 @@
+# Consider static factory methods insteads of constructors
