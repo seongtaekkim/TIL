@@ -5,10 +5,10 @@
 
 # Sections
 - [01-introduction](docs/01-introduction)
- - [introduction](docs/01-introduction/introduction.md)
+  - [introduction](docs/01-introduction/introduction.md)
 
 - [02-creating-and-destroying-objects](docs/02-creating-and-destroying-objects)
-  - [item01](docs/item01.md)
+  - [item01](docs/02-creating-and-destroying-objects/item01.md)
 
 - [03-methods-common-to-all-objects](docs/03-methods-common-to-all-objects)
 
