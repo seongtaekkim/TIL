@@ -6,6 +6,8 @@
 
 ![스크린샷 2023-08-08 오후 2.13.42](../../../img/item03-01.png)
 
+- intellij 에서 serializable id 를 선언하지 않으면 warning 표기하도록 설정할 수 있다.
+
 ~~~java
 public class Book implements Serializable {
 
@@ -57,9 +59,9 @@ public class SerializationExample {
 ~~~
 
 - 시리얼버전uid 는 명시하지 않으면 런타임에 생성된다.
-  - 클래스가 바뀌엇기 때문에 아이디가 바뀐다.
+  - 클래스가 바뀌었기 때문에 아이디가 바뀐다.
 
-- 직렬화를 해서 저장된 바이트코드파일(.obj ) 을 변형된 클래스 로 역직렬화 하려고 하면 실패한다.
+- 직렬화를 해서 저장된 바이트코드파일(.obj ) 을 수정한 클래스로 역직렬화 하려고 하면 실패한다.
 
   ~~~
   Caused by: java.io.InvalidClassException: me.whiteship.chapter01.item03.serialization.Book; local class incompatible: stream classdesc serialVersionUID = -2900959438276945523, local class serialVersionUID = 5665474867782462767
