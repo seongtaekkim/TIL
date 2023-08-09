@@ -93,7 +93,7 @@ try {
 
 ### 이슈3. 역직렬화 할 때 새로운 인스턴스가 생길 수 있다.
 
-- [<span style="color:#ffbce0">serialization </span>](./item03-serialization,md)
+- [<span style="color:#ffbce0">serialization </span>](./item03-serialization.md)
 
 ~~~java
 try (ObjectOutput out = new ObjectOutputStream(new FileOutputStream("elvis.obj"))) {
