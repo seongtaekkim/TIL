@@ -24,7 +24,7 @@ public synchronized Throwable fillInStackTrace() {
           stackTrace = UNASSIGNED_STACK;
       }
       return this;
-  }
+}
 ~~~
 
 
