@@ -3,15 +3,23 @@
 
 
 
-# Sections
+# Section
 - [01-introduction](docs/01-introduction)
   - [introduction](docs/01-introduction/introduction.md)
 
 - [02-creating-and-destroying-objects](docs/02-creating-and-destroying-objects)
   - [item01](docs/02-creating-and-destroying-objects/item01)
   - [item02](docs/02-creating-and-destroying-objects/item02)
+  - [item03](docs/02-creating-and-destroying-objects/item03)
+  - [item04](docs/02-creating-and-destroying-objects/item04)
+  - [item05](docs/02-creating-and-destroying-objects/item05)
+  - [item06](docs/02-creating-and-destroying-objects/item06)
+  - [item07](docs/02-creating-and-destroying-objects/item07)
+  - [item08](docs/02-creating-and-destroying-objects/item08)
+  - [item09](docs/02-creating-and-destroying-objects/item09)
   
 - [03-methods-common-to-all-objects](docs/03-methods-common-to-all-objects)
+  - [item10](docs/03-methods-common-to-all-objects/item10)
 
 - [04-classes-and-interfaces](docs/04-classes-and-interfaces)
 
@@ -30,6 +38,39 @@
 - [11-concurrency](docs/11-concurrency)
 
 - [12-serialization](docs/12-serialization)
+
+
+
+
+
+
+
+
+
+
+
+8/12 스터디 이슈
+
+item01
+
+- serviceLoader 정적팩토리메서드 리턴인데 왜 호출할 때마다 해시코드가 다르게 나올까 ?
+
+item03
+
+- 유일한 인스턴스를 반환하던 백터리 메서드가 호출하는 스레드별로 다른 인스턴스를 넘겨주게 할 수 있다. ???
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Reference
