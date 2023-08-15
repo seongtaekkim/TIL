@@ -1,6 +1,6 @@
 # binaries
 
-- `sha512sum` 으로 바이너리 해시값 비교하는 문제
+- `sha512sum` 으로 바이너리 해시값을 비교한다.
 
 - kubectl, kubeadm, kubelets, etcd 가 비교 대상이다.
 - before using binaries compare checksum with its official sha256/sha512 cryptographic hash value
