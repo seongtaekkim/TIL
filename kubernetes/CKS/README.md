@@ -10,16 +10,16 @@
 
 ### 1. Use Network security policies to restrict cluster level access
 
-- NetworkPolicy 설정. [link](../docs/networkpolicy.md)
+- NetworkPolicy 설정. [link](./docs/networkpolicy.md)
 
 ### 2. Use CIS benchmark to review the security configuration of Kubernetes components (etcd, kubelet, kubedns, kubeapi)
 
-- kube-bench 를 이용해서 위반사항 추출 및 개선. [link](../docs/kube-bench.md)
+- kube-bench 를 이용해서 위반사항 추출 및 개선. [link](./docs/kube-bench.md)
 
 
 ### 3. Properly set up Ingress objects with security control
 
-- ingress에 tls 설정하는 문제 [link](../docs/ingress-and-TLS.md)
+- ingress에 tls 설정하는 문제 [link](./docs/ingress-and-TLS.md)
 
   - Create TLS Certificate & key
   - Create a Secret
@@ -29,13 +29,13 @@
 
 ### 4. Protect node metadata and endpoints
 
-- NetworkPolicy 설정해서  서버 접근 못하게 하는 문제. 네임스페이스 만 허용하도록 하는 변형 가능해보임. [link](../docs/networkpolicy.md)
+- NetworkPolicy 설정해서  서버 접근 못하게 하는 문제. 네임스페이스 만 허용하도록 하는 변형 가능해보임. [link](./docs/networkpolicy.md)
 - 클라우드 프로바이더 metadata 서버 쪽으로 접근 못하게 설정. `podSelector`를 통해 특정 파드는 접근 열 수 있음.
 
 ### 5. Minimize use of, and access to, GUI elements
 
 - Restrict Access to GUI like Kubernetes Dashboard
-- kubernetes-dashboard RBAC 설정. [link](../docs/dashboard-by-RBAC.md)
+- kubernetes-dashboard RBAC 설정. [link](./docs/dashboard-by-RBAC.md)
   - Creating a Service Account User
   - Create ClusterRole
   - Create ClusterRoleBinding
@@ -43,7 +43,7 @@
 
 ### 6. Verify platform binaries before deploying
 
-- `sha512sum` 으로 바이너리 해시값 비교하는 문제 [link](../docs/binaries.md)
+- `sha512sum` 으로 바이너리 해시값 비교하는 문제 [link](./docs/binaries.md)
 
 ​	
 
@@ -51,26 +51,26 @@
 
 ### 7. Restrict access to Kubernetes API
 
-- 유저 생성,CERT 발급, kubeconfig 설정, role생성. [link](../docs/clusterrole.md)
+- 유저 생성,CERT 발급, kubeconfig 설정, role생성. [link](./docs/clusterrole.md)
 
 
 
 ### 8. Use Role Based Access Controls to minimize exposure
 
-- sa, role, rolebinding 만들고 Pod에 설정. [link](../docs/role.md)
+- sa, role, rolebinding 만들고 Pod에 설정. [link](./docs/role.md)
 
 
 
 
 ### 9. Exercise caution in using service accounts e.g. disable defaults, minimize permissions on newly created ones
 
-- 권한 & SA 생성하고 바인딩. 그리고 특정 파드에서 sa 사용하는 문제 [link](../docs/role.md)
+- 권한 & SA 생성하고 바인딩. 그리고 특정 파드에서 sa 사용하는 문제 [link](./docs/role.md)
 
   
 
 ### 10. Update Kubernetes frequently
 
-- [link](../docs/upgrade.md)
+- [link](./docs/upgrade.md)
 
 
 
@@ -274,7 +274,7 @@ check lighthttpd service port       netstat -natulp | grep -i light
 
 ### 13. Minimize external access to the network
 
-- network policy [link](../docs/networkpolicy.md)
+- network policy [link](./docs/networkpolicy.md)
 
 
 
@@ -875,21 +875,21 @@ check lighthttpd service port       netstat -natulp | grep -i light
 
 ### 16. Manage Kubernetes secrets
 
-- EncryptionConfiguration 설정해서 시크릿 암호화해서 저장하고 복호화 하는 문제 [link](../docs/secret.md), [link2](../docs/etcd.md)
+- EncryptionConfiguration 설정해서 시크릿 암호화해서 저장하고 복호화 하는 문제 [link](./docs/secret.md), [link2](./docs/etcd.md)
 - 컨테이너를 통한 시크릿 노출 확인하는 문제 `볼륨`, `env`, `api-server`
 
 
 
 ### 17. Use container runtime sandboxes in multi-tenant environments (e.g. gvisor, kata containers)
 
-- runtimeclass 생성, pod에 지정 [link](../docs/runtime-class.md)
+- runtimeclass 생성, pod에 지정 [link](./docs/runtime-class.md)
 
   
 
 
 ### 18. Implement pod to pod encryption by use of mTLS
 
-- istio, pod encryption [link](../docs/csr.md)
+- istio, pod encryption [link](./docs/csr.md)
 
 
 
@@ -913,7 +913,7 @@ check lighthttpd service port       netstat -natulp | grep -i light
 
 ### 20. Secure your supply chain: whitelist allowed registries, sign and validate images
 
--  ImagePolicyWebhook Admission 설정하는 문제 [link](../docs/image-policy-webhook.md)
+-  ImagePolicyWebhook Admission 설정하는 문제 [link](./docs/image-policy-webhook.md)
   - kube-apiserver 매니패스트에서 폴리시 위치 확인하고 문제에 맞게 수정 `--admission-control-config-file`
   - 폴리시에 맞는 플러그인 설정 활성화 `--enable-admission-plugins`
   - config 경로에 있는 kubeconfig 도 확인
@@ -922,11 +922,11 @@ check lighthttpd service port       netstat -natulp | grep -i light
 
 ### 21. Use static analysis of user workloads (e.g.Kubernetes resources, Docker files)
 
-- kubesec, dockerfile 수정 [link](../docs/static-analysis.md)
+- kubesec, dockerfile 수정 [link](./docs/static-analysis.md)
 
 ### 22. Scan images for known vulnerabilities
 
-trivy 사용해서 취약점 파악된 이미지 삭제 [link](../docs/trivy.md)
+trivy 사용해서 취약점 파악된 이미지 삭제 [link](./docs/trivy.md)
 
 
 
@@ -938,7 +938,7 @@ trivy 사용해서 취약점 파악된 이미지 삭제 [link](../docs/trivy.md)
 
 ### 23. Perform behavioral analytics of syscall process and file activities at the host and container level to detect malicious activities
 
-- Falco rule 설정으로 특정 pod, image 이벤트에 대한 원하는 메세지 logging [link](../docs/falco.md)
+- Falco rule 설정으로 특정 pod, image 이벤트에 대한 원하는 메세지 logging [link](./docs/falco.md)
 
 ### 24. Detect threats within physical infrastructure, apps, networks, data, users and workloads
 
@@ -981,11 +981,11 @@ trivy 사용해서 취약점 파악된 이미지 삭제 [link](../docs/trivy.md)
 
 ### 27. Ensure immutability of containers at runtime
 
-- container에 root 접근, 파일쓰기 등을 제한하는 방법. [link](../docs/pod-security-policy.md)
+- container에 root 접근, 파일쓰기 등을 제한하는 방법. [link](./docs/pod-security-policy.md)
 
 ### 28. Use Audit Logs to monitor access
 
-- Audit log [link](../docs/audit.md)
+- Audit log [link](./docs/audit.md)
 
 
 
