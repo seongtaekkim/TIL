@@ -108,6 +108,8 @@ GC 종류 : https://memostack.tistory.com/229#article-3-2--parallel-gc-(-xx:+use
 
 ## 공부해야 할거
 
-- GC type 구조 공부
+- GC type 구조 공부 (ZGC)
+  - throughput, latency, footprint 관점에서 공부해야함.
+  - latency (stop the world)
 - 성능 테스트
 - 메모리누수 케이스 학습

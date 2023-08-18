@@ -1,5 +1,9 @@
 # GC
 
+- 스택영역이 힙영역의 인스턴스와 연결되어 있지 않으면 해당 인스턴스는 GC 대상이 된다.
+-  [GC noded](../../../../jvm/gc-structure.md)
+-  [GC Monitor noded](../../../../jvm/gc-structure.md)
+
 
 
 ### memory leak test
@@ -69,7 +73,8 @@ class GenericStack<E> {
         }
 
         @SuppressWarnings("unchecked")  E result = (E) elements[--size];
-        elements[size] = null; // reference release
+        elements[size] = null; // reference release 
+      												 // null 안해주면 GC 대상에서 제외된다.
         return result;
     }
 
@@ -84,23 +89,4 @@ class GenericStack<E> {
 }
 ~~~
 
-
-
 ![스크린샷 2023-08-13 오후 2.31.19](../../../img/item06-01.png)
-
-
-
-
-
-
-
-### refrence
-
-[gc 개념](https://www.youtube.com/watch?v=FMUpVA0Vvjw)
-
-[jstat](https://utoi.tistory.com/entry/jstat-JVM-%ED%86%B5%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B0%90%EC%8B%9C-%ED%88%B4)
-
-
-
-
-
