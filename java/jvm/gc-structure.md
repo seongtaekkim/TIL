@@ -10,7 +10,7 @@
 
 ## GC 구조
 
-![스크린샷 2023-08-18 오후 8.21.46](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-08-18 오후 8.21.46.png)
+![스크린샷 2023-08-18 오후 8.21.46](./img/structure-01.png)
 
 ### Root space ?
 
@@ -28,7 +28,7 @@
 - 어플리케이션 실행과 GC실행을 병행함.
 - 최적화가 어렵다.
 
-![스크린샷 2023-08-18 오후 8.22.09](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-08-18 오후 8.22.09.png)
+![스크린샷 2023-08-18 오후 8.22.09](./img/structure-02.png)
 
 **루트에서 접근가능한지를 해제 기준으로 삼음 (그래픽순회)**
 
@@ -50,13 +50,13 @@
 
 - HEAP (모든 thread가 공유하는 영역)
 
-![스크린샷 2023-08-18 오후 8.30.06](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-08-18 오후 8.30.06.png)
+![스크린샷 2023-08-18 오후 8.30.06](./img/structure-03.png)
 
 
 
 ### Heap 내용
 
-![스크린샷 2023-08-18 오후 8.38.13](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-08-18 오후 8.38.13.png)
+![스크린샷 2023-08-18 오후 8.38.13](./img/structure-04.png)
 
 사용하고 있는 신규객체 : Eden에 할당됨. 꽉차면, minorGC 일어남 (mark and sweep)
 리처블은 s0 으로 옮겨지고 나머지는 해제된다.
