@@ -2,7 +2,7 @@
 
 - 스택영역이 힙영역의 인스턴스와 연결되어 있지 않으면 해당 인스턴스는 GC 대상이 된다.
 -  [GC noded](../../../../jvm/gc-structure.md)
--  [GC Monitor noded](../../../../jvm/gc-structure.md)
+-  [GC Monitor noded](../../../../jvm/gc-monitoring.md)
 
 
 
