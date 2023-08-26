@@ -6,7 +6,7 @@ class OptimisticLockCounter{
 
     private AtomicLong count = new AtomicLong();
 
-
+	
     public void inc() {
 
         boolean incSuccessful = false;
@@ -45,12 +45,16 @@ public class CompareAndSwapInc {
     public static void main(String[] args) throws Exception {
         OptimisticLockCounter counter =new OptimisticLockCounter();
         RunnableOne run1 = new RunnableOne(counter);
-        RunnableOne run2 = new RunnableOne(counter);
-        Thread t1 = new Thread(run1);
-        Thread t2 = new Thread(run2);
-        t1.start(); t2.start();
-        t1.join(); t2.join();
-        System.out.println("Result: " + run1.counter.getCount() );
+		int len = 100;
+		Thread t[] = new Thread[len];
+		for (int i = 0 ; i < len ; i++) {
+			t[i] = new Thread(run1);
+			t[i].start();
+		}
+		for (int i = 0 ; i < len ; i++) {
+			t[i].join();
+		}
+        System.out.println("Result: " + counter.getCount() );
     }
 }
 

@@ -39,8 +39,8 @@ class CompareAndSwapLock {
 
 class RunnableTwo implements Runnable {
     static int count = 0;
-    CompareAndSwapLock lock;
-    public RunnableTwo(CompareAndSwapLock lock) {
+    ProblematicLock lock;
+    public RunnableTwo(ProblematicLock lock) {
         this.lock = lock;
     }
 
@@ -58,13 +58,20 @@ class RunnableTwo implements Runnable {
 public class CompareAndSwap {
 
     public static void main(String[] args) throws Exception {
-        CompareAndSwapLock lock =new CompareAndSwapLock();
+
+		ProblematicLock lock =new ProblematicLock();
         RunnableTwo run1 = new RunnableTwo(lock);
-        RunnableTwo run2 = new RunnableTwo(lock);
-        Thread t1 = new Thread(run1);
-        Thread t2 = new Thread(run2);
-        t1.start(); t2.start();
-        t1.join(); t2.join();
+		int len = 2;
+		Thread t[] = new Thread[len];
+		for (int i = 0 ; i < len ; i++) {
+			t[i] = new Thread(run1);
+			
+		}
+		for (int i = 0 ; i < len ; i++) 
+			t[i].start();
+		for (int i = 0 ; i < len ; i++) {
+			t[i].join();
+		}
         System.out.println("Result: " + run1.count );
     }
 }
