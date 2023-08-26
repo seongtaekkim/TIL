@@ -1,7 +1,6 @@
 package me.staek.chapter02.item14.comparable_and_comparator;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 /* class name switch test */
 class Student implements Comparable<Student> {
@@ -74,6 +73,23 @@ public class ComparatorEx {
         });
         for(int i=0 ; i<p.o.length ; i++)
             System.out.println(student[i]);
+
+
+
+
+        /**
+         *
+         *   public static <T extends Comparable<? super T>> void sort(List<T> list) {
+         *         list.sort(null);
+         *   }
+         * TODO API예제) Collections.sort(..);
+         *      Collections 의 sort 제네릭 메서드를 사용하기 위해선
+         *      List의 타입은 Comparable 구현체여야 한다.
+         *      그렇지 않으면 컴파일에러가 발생한다.
+         */
+        List<Student2> list = new ArrayList<>();
+        list.add(new Student2("kim", 20120001));
+        Collections.sort(list);
 
     }
 }
