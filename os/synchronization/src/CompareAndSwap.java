@@ -12,7 +12,6 @@ class CompareAndSwapLock {
 
     public void lock() {
         while(!this.locked.compareAndSet(false, true)) {
-            // busy wait - until compareAndSet() succeeds
         }
     }
 }
@@ -25,7 +24,6 @@ class CompareAndSwapLock {
     public synchronized void lock() {
 
         while(this.locked) {
-            // busy wait - until this.locked == false
         }
 
         this.locked = true;
@@ -39,8 +37,8 @@ class CompareAndSwapLock {
 
 class RunnableTwo implements Runnable {
     static int count = 0;
-    ProblematicLock lock;
-    public RunnableTwo(ProblematicLock lock) {
+    CompareAndSwapLock lock;
+    public RunnableTwo(CompareAndSwapLock lock) {
         this.lock = lock;
     }
 
@@ -55,13 +53,19 @@ class RunnableTwo implements Runnable {
     }
 }
 
+/**
+ * TODO thread 2개일 경우 synchronized 와 compareAndSwap 완료시간을 비교.
+ *      thread 100개일 경우 같은테스느 진행
+ *      1번케이스 : compareAndSwap 빠름
+ *      2번케이스 : synchronized 빠름
+ */
 public class CompareAndSwap {
 
     public static void main(String[] args) throws Exception {
 
-		ProblematicLock lock =new ProblematicLock();
+		CompareAndSwapLock lock =new CompareAndSwapLock();
         RunnableTwo run1 = new RunnableTwo(lock);
-		int len = 2;
+		int len = 8;
 		Thread t[] = new Thread[len];
 		for (int i = 0 ; i < len ; i++) {
 			t[i] = new Thread(run1);

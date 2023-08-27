@@ -45,7 +45,7 @@ public class CompareAndSwapInc {
     public static void main(String[] args) throws Exception {
         OptimisticLockCounter counter =new OptimisticLockCounter();
         RunnableOne run1 = new RunnableOne(counter);
-		int len = 100;
+		int len = 8;
 		Thread t[] = new Thread[len];
 		for (int i = 0 ; i < len ; i++) {
 			t[i] = new Thread(run1);
