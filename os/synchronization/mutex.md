@@ -58,7 +58,7 @@ unlock()
   - spinlocks are the *preferable* choice for locking.
   - Onet hread can *spin on one process ingcore*
   - while another thread performs its critical section *on another core*
-- **뮤텍스가 바쁜대기를 하는걸로 보이지만, 실제로는 block 처리된다.**
+- **뮤텍스가 바쁜대기를 하는걸로 보이지만, 실제로는 block 처리된다.** 
 
 
 

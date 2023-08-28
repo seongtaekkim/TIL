@@ -51,3 +51,14 @@ public synchronized void removeElementAt(int index) {
 ~~~
 
 ![스크린샷 2023-08-19 오전 2.38.34](../../../img/item07-01.png)
+
+
+
+
+
+
+
+![스크린샷 2023-08-19 오후 5.20.43](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-08-19 오후 5.20.43.png)
+
+
+

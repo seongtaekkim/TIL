@@ -97,10 +97,13 @@ java -verbosegc -XX:+UseSerialGC me/staek/gc/GCMonitor
 ## Reference
 
 jstat : https://mobicon.tistory.com/254
+          https://mobicon.tistory.com/254
 
 메모리누수 : https://junghyungil.tistory.com/133
 
 GC 종류 : https://memostack.tistory.com/229#article-3-2--parallel-gc-(-xx:+useparallelgc)
+
+
 
 
 

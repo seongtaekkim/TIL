@@ -301,6 +301,24 @@ int main(void)
 
 
 
+
+
+
+
+![스크린샷 2023-08-26 오후 11.11.54](/Users/staek/Library/Application Support/typora-user-images/스크린샷 2023-08-26 오후 11.11.54.png)
+
+
+
+
+
+
+
+두개의 스레드는 다른 cpu 에잇어야 의미가 잇음
+
+
+
+
+
 ### CAS Reference
 
 [Test-and-set - Wikipedia](https://en.wikipedia.org/wiki/Test-and-set)

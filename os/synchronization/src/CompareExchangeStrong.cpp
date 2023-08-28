@@ -9,7 +9,7 @@ using namespace std;
 
 mutex mtx;  //mutual exclusion
 
-volatile int shared_memory(0); // race condition
+int shared_memory(0); // race condition
 //  atomic<long> shared_memory(0);
 int main(void)
 {
@@ -47,7 +47,7 @@ int main(void)
     };
 
 
-	int len = 2;
+	int len = 100;
 	thread t[len];
 
 	for (int i=0 ; i< len ; i++) 

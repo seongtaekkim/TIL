@@ -38,3 +38,4 @@ static String firstLineOfFile_suppressed(String path) throws IOException {
 - addSuppressed 에 의해 예외내용이 스택에 쌓이게 되어 출력시 모든 예외가 출력됨을 알 수 있다.
 
 ![스크린샷 2023-08-27 오전 11.33.58](../../../img/item09-03.png)
+

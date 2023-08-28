@@ -37,8 +37,8 @@ class CompareAndSwapLock {
 
 class RunnableTwo implements Runnable {
     static int count = 0;
-    CompareAndSwapLock lock;
-    public RunnableTwo(CompareAndSwapLock lock) {
+    ProblematicLock lock;
+    public RunnableTwo(ProblematicLock lock) {
         this.lock = lock;
     }
 
@@ -63,9 +63,9 @@ public class CompareAndSwap {
 
     public static void main(String[] args) throws Exception {
 
-		CompareAndSwapLock lock =new CompareAndSwapLock();
+		ProblematicLock lock =new ProblematicLock();
         RunnableTwo run1 = new RunnableTwo(lock);
-		int len = 8;
+		int len = 100;
 		Thread t[] = new Thread[len];
 		for (int i = 0 ; i < len ; i++) {
 			t[i] = new Thread(run1);

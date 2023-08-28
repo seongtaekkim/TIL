@@ -13,7 +13,7 @@ class OptimisticLockCounter{
         while(!incSuccessful) {
             long value = this.count.get();
             long newValue = value + 1;
-
+			
             incSuccessful = this.count.compareAndSet(value, newValue);
         }
     }
@@ -45,7 +45,7 @@ public class CompareAndSwapInc {
     public static void main(String[] args) throws Exception {
         OptimisticLockCounter counter =new OptimisticLockCounter();
         RunnableOne run1 = new RunnableOne(counter);
-		int len = 8;
+		int len = 100;
 		Thread t[] = new Thread[len];
 		for (int i = 0 ; i < len ; i++) {
 			t[i] = new Thread(run1);

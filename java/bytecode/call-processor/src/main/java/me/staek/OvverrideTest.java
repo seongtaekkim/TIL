@@ -2,7 +2,7 @@ package me.staek;
 
 public class OvverrideTest {
 //    @Override
-//    public String toString2() {
+//    public String toString() {
 //        return super.toString();
 //    }
 }

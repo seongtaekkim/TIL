@@ -1,5 +1,6 @@
 package me.staek;
 
+import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
@@ -9,6 +10,7 @@ import org.checkerframework.checker.signature.qual.ClassGetSimpleName;
 import javax.annotation.processing.AbstractProcessor;
 
 import javax.annotation.processing.Filer;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -69,7 +71,6 @@ public class StaekProcessor extends AbstractProcessor {
             }
 
         }
-
 
         return true;
     }

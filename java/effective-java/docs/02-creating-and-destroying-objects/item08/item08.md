@@ -94,7 +94,6 @@ public static void main(String[] args) throws InterruptedException {
    // cleaner 생성
    Cleaner cleaner = Cleaner.create();
 
-   
     List<Object> resourceToCleanUp = new ArrayList<>();
     BigObject bigObject = new BigObject(resourceToCleanUp);
     // GC로 해제될 오브젝트와 해제코드가 담긴 Runnable객체 인자로 넘겨준다.
@@ -122,7 +121,7 @@ public static void main(String[] args) throws InterruptedException {
 
 - cleaner나 finalizer가 즉시 (혹은 끝까지) 호출되리라는 보장은 없지만, 클라이언트가 하지 않은 자원회수를 늦게라도 해주는 것이 아예 안하는 것보다는 나으니 말이다.
 - 이런 안전망 역할의 finalizer를 작성할때는 그럴만한 값어치가 있는 지 심사숙고하자.
-- 자바 라이브러리의 일부 클래스는 안전망 역할의 finalizer를 제공한다. (ThreadPoolExecutor) 
+- 자바 라이브러리의 일부 클래스는 안전망 역할의 finalizer를 제공한다. (**ThreadPoolExecutor**) 
 
 ### 2. native peer 와 연결된 객체에서 사용한다.
 - native peer란 일반 자바객체가 네이티브메서드를 통해 기능을 위임한 네이티브 객체를 말한다.
@@ -187,7 +186,7 @@ public class AutoClosableIsGood implements AutoCloseable {
   3. catch 후 throw new runtimeException 등으로 처리.
   ~~~
 
-  - close 를 여러번 호출하지 않도록 한다.
+  - close 를 여러번 호출하지 않도록 한다. (멱등성)
 
 
 
