@@ -1,27 +1,33 @@
 # Effective Java
 
-
-
+- 2023년 스터디 내용 정리.
+- 기간: 23.08.12 ~ 진행중
 
 # Section
+
 - [01-introduction](docs/01-introduction)
   - [introduction](docs/01-introduction/introduction.md)
 
 - [02-creating-and-destroying-objects](docs/02-creating-and-destroying-objects)
-  - [item01](docs/02-creating-and-destroying-objects/item01)
-  - [item02](docs/02-creating-and-destroying-objects/item02)
-  - [item03](docs/02-creating-and-destroying-objects/item03)
-  - [item04](docs/02-creating-and-destroying-objects/item04)
-  - [item05](docs/02-creating-and-destroying-objects/item05)
-  - [item06](docs/02-creating-and-destroying-objects/item06)
-  - [item07](docs/02-creating-and-destroying-objects/item07)
-  - [item08](docs/02-creating-and-destroying-objects/item08)
-  - [item09](docs/02-creating-and-destroying-objects/item09)
+  - [item01](docs/02-creating-and-destroying-objects/item01) 정적팩터리메서드 |  service-provider, reflaction | 인터페이스와 정적메서드
+  - [item02](docs/02-creating-and-destroying-objects/item02) Builder |  immutable-string
+  - [item03](docs/02-creating-and-destroying-objects/item03) 싱글턴 | Serialization | method-reference
+  - [item04](docs/02-creating-and-destroying-objects/item04) private 생성자 | AssertionError
+  - [item05](docs/02-creating-and-destroying-objects/item05) 의존객체주입 |  Supplier | Factory-Method
+  - [item06](docs/02-creating-and-destroying-objects/item06) 불필요한 객체생성 | Depracation
+  - [item07](docs/02-creating-and-destroying-objects/item07) 리소스해제 | GC, Reference | Executor
+  - [item08](docs/02-creating-and-destroying-objects/item08) Finalizer | Cleaner | AutoCloseable
+  - [item09](docs/02-creating-and-destroying-objects/item09) try-with-resources | Throwable suppress
   
 - [03-methods-common-to-all-objects](docs/03-methods-common-to-all-objects)
-  - [item10](docs/03-methods-common-to-all-objects/item10)
-
+  - [item10](docs/03-methods-common-to-all-objects/item10) equals 재정의 | value-based-class | stackoverflow | 리스코프원칙 | Atomic
+  - [item11](docs/03-methods-common-to-all-objects/item11) 해시코드 재정의 | 해시맵 구조 | Thread safe | ConcurrentModificationException
+  - [item12](docs/03-methods-common-to-all-objects/item12) toString 재정의
+  - [item13](docs/03-methods-common-to-all-objects/item13) Comparable | 제네릭과 Comparable | Comparable과 Comparator
+  - [item14](docs/03-methods-common-to-all-objects/item14) 클래스맴버 접근권한 최소화 | java9 module
+  
 - [04-classes-and-interfaces](docs/04-classes-and-interfaces)
+  - [item15](docs/04-classes-and-interfaces/item15)
 
 - [05-generics](docs/05-generics)
 
@@ -38,38 +44,6 @@
 - [11-concurrency](docs/11-concurrency)
 
 - [12-serialization](docs/12-serialization)
-
-
-
-
-
-
-
-
-
-
-
-8/12 스터디 이슈
-
-item01
-
-- serviceLoader 정적팩토리메서드 리턴인데 왜 호출할 때마다 해시코드가 다르게 나올까 ?
-
-item03
-
-- 유일한 인스턴스를 반환하던 백터리 메서드가 호출하는 스레드별로 다른 인스턴스를 넘겨주게 할 수 있다. ???
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
