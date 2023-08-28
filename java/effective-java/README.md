@@ -21,13 +21,13 @@
   
 - [03-methods-common-to-all-objects](docs/03-methods-common-to-all-objects)
   - [item10](docs/03-methods-common-to-all-objects/item10) equals 재정의 | value-based-class | stackoverflow | 리스코프원칙 | Atomic
-  - [item11](docs/03-methods-common-to-all-objects/item11) 해시코드 재정의 | 해시맵 구조 | Thread safe | ConcurrentModificationException
+  - [item11](docs/03-methods-common-to-all-objects/item11) 해시코드 재정의 | HashMap | Thread safe | ConcurrentModificationException
   - [item12](docs/03-methods-common-to-all-objects/item12) toString 재정의
-  - [item13](docs/03-methods-common-to-all-objects/item13) Comparable | 제네릭과 Comparable | Comparable과 Comparator
-  - [item14](docs/03-methods-common-to-all-objects/item14) 클래스맴버 접근권한 최소화 | java9 module
+  - [item13](docs/03-methods-common-to-all-objects/item13) clone 재정의 | UncheckedException | TreeSet
+  - [item14](docs/03-methods-common-to-all-objects/item14) Comparable | 제네릭과 Comparable | Comparable과 Comparator
   
 - [04-classes-and-interfaces](docs/04-classes-and-interfaces)
-  - [item15](docs/04-classes-and-interfaces/item15)
+  - [item15](docs/04-classes-and-interfaces/item15)  클래스맴버 접근권한 최소화 | java9 module
 
 - [05-generics](docs/05-generics)
 
