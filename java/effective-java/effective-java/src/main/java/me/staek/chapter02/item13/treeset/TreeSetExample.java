@@ -29,6 +29,9 @@ public class TreeSetExample {
     public static void main(String[] args) {
 
         System.out.println("기본타입 test =============================================");
+        /**
+         * TODO 기본적으로 오름차순으로 정렬되어 입력된다.
+         */
         TreeSet<Integer> treeSet1 = new TreeSet<>();
         treeSet1.add(10);
         treeSet1.add(4);
