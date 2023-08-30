@@ -1,4 +1,4 @@
-package me.staek.chapter02.item14.comparable_and_comparator;
+package me.staek.chapter03.item14.comparable_and_comparator;
 
 import java.util.*;
 

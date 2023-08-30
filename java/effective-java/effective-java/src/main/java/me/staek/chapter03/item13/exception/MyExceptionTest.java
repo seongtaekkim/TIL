@@ -1,4 +1,4 @@
-package me.staek.chapter02.item13.exception;
+package me.staek.chapter03.item13.exception;
 
 class MyException extends Exception { }
 
