@@ -233,6 +233,16 @@ module module02 {
     </dependencies>
 ~~~
 
+~~~xml
+<packaging>pom</packaging>
+<modules>
+    <module>module01</module>
+    <module>module02</module>
+</modules>
+~~~
+
+- modules 을 패키징하는 프로젝트는 jar가 아닌 pom 형식으로 해야 한다.
+
 
 
 ### main source 에 module02 호출 추가.
