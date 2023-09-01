@@ -64,5 +64,5 @@ public void hello(String name) throws MyException {
 - 복구할 수 없다면 unchecked exception 으로 처리하자.
   - 코드가 복잡하지 않아서 좋음.
   - 어차피 복구할 방법이 없기에 catch가 무의미 하다.
-
+- [예외처리를 남발하면 성능에 영향이 미칠 수 있으므로 주의해야 한다.](../../99-issue/checked-exception-performance.md)
 
