@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 
+/**
+ * TODO HashMap iterator test
+ *      - Iterator 를 얻고 읽기전에 데이터를 변경하면 ConcurrentModificationException 발생함 (fail-fast)
+ */
 public class HashMapTest {
     public static void main(String[] args) {
 
