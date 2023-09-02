@@ -8,7 +8,7 @@
 ## Section
 
 - [02-creating-and-destroying-objects](docs/02-creating-and-destroying-objects)
-  - [item01](docs/02-creating-and-destroying-objects/item01) 정적팩터리메서드 |  service-provider, reflaction | 인터페이스와 정적메서드
+  - [item01](docs/02-creating-and-destroying-objects/item01) 정적팩터리메서드 |  service-provider | reflaction | 인터페이스와 정적메서드
   - [item02](docs/02-creating-and-destroying-objects/item02) Builder |  immutable-string
   - [item03](docs/02-creating-and-destroying-objects/item03) 싱글턴 | Serialization | method-reference
   - [item04](docs/02-creating-and-destroying-objects/item04) private 생성자 | AssertionError
@@ -19,12 +19,17 @@
   - [item09](docs/02-creating-and-destroying-objects/item09) try-with-resources | Throwable suppress
 - [03-methods-common-to-all-objects](docs/03-methods-common-to-all-objects)
   - [item10](docs/03-methods-common-to-all-objects/item10) equals 재정의 | value-based-class | stackoverflow | 리스코프원칙 | Atomic
-  - [item11](docs/03-methods-common-to-all-objects/item11) 해시코드 재정의 | HashMap | Thread safe | ConcurrentModificationException
+  - [item11](docs/03-methods-common-to-all-objects/item11) 해시코드 재정의 | HashMap | Thread safe | Concurrent Read And Write
   - [item12](docs/03-methods-common-to-all-objects/item12) toString 재정의
   - [item13](docs/03-methods-common-to-all-objects/item13) clone 재정의 | UncheckedException | TreeSet
   - [item14](docs/03-methods-common-to-all-objects/item14) Comparable | 제네릭과 Comparable | Comparable과 Comparator
 - [04-classes-and-interfaces](docs/04-classes-and-interfaces)
   - [item15](docs/04-classes-and-interfaces/item15)  클래스맴버 접근권한 최소화 | java9 module
+  - [item16](docs/04-classes-and-interfaces/item16)  public 클래스에서는 public 필드가 아닌 접근자 메서드를 사용하라. | Dimension copy 문제
+  - [item17](docs/04-classes-and-interfaces/item17) 변경 가능성을 최소화 하라 | 자바 메모리 모델 | java.util.concurrent | CountDownLatch
+  - [item18](docs/04-classes-and-interfaces/item18) 상속보다는 컴포지션(위임) | 데코레이터 패턴 | 콜백 프레임워크
+  - [item19](docs/04-classes-and-interfaces/item19) 상속을 고려한 설계 | 문서화
+  - [item20](docs/04-classes-and-interfaces/item20) 추상클래스보다는 인터페이스 | 템플릿 메서드 패턴
 - [05-generics](docs/05-generics)
 - [06-enums-and-annotations](docs/06-enums-and-annotations)
 - [07-lambdas-and-streams](docs/07-lambdas-and-streams)
@@ -36,17 +41,13 @@
 
 ## [study issue](./99-issue)
 
-- [volatile]() volatile 개념 및 테스트
-- catched-exception
+- [volatile](./docs/99-issue/volatile.md) volatile 개념 및 테스트
+- [catched-exception](./docs/99-issue/checked-exception-performance.md)
 - real-memory-reference
 - AssertionError 동작순서
 - stack-pop GC test
 - AutoCloseable - close() 호출위치
 - Reference And Concurrency
-
-
-
-
 
 
 
