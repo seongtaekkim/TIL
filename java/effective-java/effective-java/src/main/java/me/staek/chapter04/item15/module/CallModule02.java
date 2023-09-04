@@ -1,4 +1,4 @@
-package me.staek.chapter04.item15;
+package me.staek.chapter04.item15.module;
 
 import me.staek.module02.Module02;
 
