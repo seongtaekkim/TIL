@@ -15,9 +15,10 @@ package me.staek.chapter04.item17;
  * - 객체를 만들 때 불변객체로 구성하면 이점이 많다.
  * - 실패원자성을 제공한다. (아이템 76, p407)
  *   ->>> 어떤 작업을 진행하다가 예외 등이 발생해 실패해도, 내부에 어떤 값도 변경되지 않음이 보장된다.
- * - 다단계연산
+ * - 객체생성에 여러단계 필요: 다단계연산
  *   ->>> plus, minus, divideby 를 모두 샐행해야 한다면 현재로서는 인스턴스가 세개 만들어진다.
  *   ->>> 이 세개를 합쳐서 하나의 인스턴스가 나오도록 하면 된다.
+ *   ->>> 혹은 가변동반클래스를 이용한다. (string -> StringBuilder)
  */
 public final class Complex {
     private final double re;
