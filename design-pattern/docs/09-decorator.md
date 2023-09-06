@@ -1,6 +1,6 @@
 ## 1. intro
 
-<../img src="../img/decorator-01.png" alt="스크린샷 2023-07-06 오후 2.23.09" style="zoom:50%;" />
+![스크린샷 2023-07-06 오후 2.23.55](../img/decorator-01.png)
 
 기존 코드를 변경하지 않고 부가기능을 추가하는 패턴
 
@@ -18,7 +18,7 @@
 
 ### ![스크린샷 2023-07-06 오후 2.23.55](../img/decorator-02.png)
 
-- pam 과 Trim 기능을 둘 다 적용하려면, 새로운 함수 혹은 class를 정의해서 client단에서 조합으로 로직을 추가해야 한다.
+- spam 과 Trim 기능을 둘 다 적용하려면, 새로운 함수 혹은 class를 정의해서 client단에서 조합으로 로직을 추가해야 한다.
 
 ```java
 public class Client {
@@ -156,7 +156,7 @@ public class DefaultCommentService implements CommentService {
 
 장점
 
-- 새로운 클래스를 만들지 않고 기존기느응ㄹ 조합할 수 있다.
+- 새로운 클래스를 만들지 않고 기존기능을 조합할 수 있다.
 - 컴파일 타임이 아닌 런타임에 동적으로 기능을 변경할 수 있다.
 
 단점
