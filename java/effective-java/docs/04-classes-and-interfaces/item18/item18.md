@@ -75,6 +75,8 @@ public class InstrumentedHashSet<E> extends HashSet<E> {
 
 ### Composition
 
+- [decorator 참조](../../../../../design-pattern/docs/09-decorator.md)
+
 ~~~java
 /**
  *  TODO ForwardingSet의 위임을 통해 Set을 composition을 한다. 위임을 하기에 decorator pattern 을 사용하고 있기도 하다.
