@@ -53,6 +53,12 @@ public class Client {
 - ConcreteDecorator : Trimming~ , Spam ~
 - Compoment : CommentService
 
+
+
+### 시퀀스 다이어크램
+
+![image-20230917214408975](../img/decorator-04.png)
+
 ### 코드
 
 ```java
