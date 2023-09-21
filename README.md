@@ -17,7 +17,7 @@ IT 관련 배운 내용을 정리합니다.
   - [refactoring](./OOP/refactoring)
 - [os](./os)
   - [synchronization](./os/synchronization)
-- [OSI-7Layer](./OSI-7Layer)
-  - prepare.....
+- [network](./network)
+  - [OSI-7Layer](./network/OSI-7Layer) Open System Interconnection 1~7 계층 프로토콜 개념, 통신 실습 정리
 - [spring-projects](./spring-projects)
   - prepare...
