@@ -184,7 +184,7 @@ Object를 Number로 변환하려 해서 ClassCastExceptioin 발생함
 elements = (E[]) new Object[DEFAULT_INITIAL_CAPACITY];
 ~~~
 
-![image-20230921230348477](/Users/staek/Library/Application Support/typora-user-images/image-20230921230348477.png)
+![image-20230921230348477](../../../img/item29-03.png)
 
 - E를 Number 로변경하게 되면, 타입이 Number 이 되기 때문에 문제가 없다.
 
