@@ -36,6 +36,12 @@
   - [item24](docs/04-classes-and-interfaces/item24) 맴버클래스와 static | 어댑터
   - [item25](docs/04-classes-and-interfaces/item25) 톱레벨 클래스 
 - [05-generics](docs/05-generics)
+  - [item26](docs/05-generics/item26) raw type 사용하지마 | GenericRepository
+  - [item27](docs/05-generics/item27) 비검사 경고 제거
+  - [item28](docs/05-generics/item28) 배열보다는 리스트 | @SafeVarags
+  - [item29](docs/05-generics/item29) 이왕이면 제네릭타입 | 한정적 타입 매개변수
+  - [item30](docs/05-generics/item30) 이왕이면 제네릭메서드 | 재귀적 타입 한정
+
 - [06-enums-and-annotations](docs/06-enums-and-annotations)
 - [07-lambdas-and-streams](docs/07-lambdas-and-streams)
 - [08-methods](docs/08-methods)
