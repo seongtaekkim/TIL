@@ -17,7 +17,9 @@ public class MemoFrame implements ActionListener {
     JMenu menuFile, menuEdit, menuFormat, menuColor;
     JMenuItem fileNew, fileOpen, fileSave, fileSaveas, fileExit;
 
-    JMenuItem iWrap;
+    JMenuItem iWrap, iFontArial, iFontCSMS, iFontTNR,
+            iFontSize8, iFontSize12, iFontSize16, iFontSize24;
+    JMenu menuFont, menuFontSize;
 
 
     JMenuItem undo, redu;
@@ -25,13 +27,18 @@ public class MemoFrame implements ActionListener {
 
     boolean wordWarpOn = false;
     FileMenu fileMenu = new FileMenu(this);
+    FormatMenu formatMenu = new FormatMenu(this);
 
     EditMenu editMenu = new EditMenu(this);
     public MemoFrame() {
         newWindow();
         newTextArea();
         newMenu();
+        newFormatMenu();
         createEditMenu();
+        formatMenu.selectedFont = "Arial";
+        formatMenu.createFont(16);
+        formatMenu.wordWarp();
         frame.setVisible(true);
     }
 
@@ -118,6 +125,53 @@ public class MemoFrame implements ActionListener {
     }
 
 
+    public void newFormatMenu() {
+        iWrap = new JMenuItem("Word Wrap: Off");
+        iWrap.addActionListener(this);
+        iWrap.setActionCommand("Word Wrap");
+        menuFormat.add(iWrap);
+
+        menuFont = new JMenu("Font");
+        menuFormat.add(menuFont);
+
+        iFontArial = new JMenuItem("Arial");
+        iFontArial.addActionListener(this);
+        iFontArial.setActionCommand("Arial");
+        menuFont.add(iFontArial);
+
+        iFontCSMS = new JMenuItem("CSMS");
+        iFontCSMS.addActionListener(this);
+        iFontCSMS.setActionCommand("CSMS");
+        menuFont.add(iFontCSMS);
+
+        iFontTNR = new JMenuItem("TNR");
+        iFontTNR.addActionListener(this);
+        iFontTNR.setActionCommand("TNR");
+        menuFont.add(iFontTNR);
+
+        menuFontSize = new JMenu("FontSize");
+        menuFormat.add(menuFontSize);
+
+        iFontSize8 = new JMenuItem("8");
+        iFontSize8.addActionListener(this);
+        iFontSize8.setActionCommand("size8");
+        menuFontSize.add(iFontSize8);
+
+        iFontSize12 = new JMenuItem("12");
+        iFontSize12.addActionListener(this);
+        iFontSize12.setActionCommand("size12");
+        menuFontSize.add(iFontSize12);
+
+        iFontSize16 = new JMenuItem("16");
+        iFontSize16.addActionListener(this);
+        iFontSize16.setActionCommand("size16");
+        menuFontSize.add(iFontSize16);
+
+        iFontSize24 = new JMenuItem("24");
+        iFontSize24.addActionListener(this);
+        iFontSize24.setActionCommand("size24");
+        menuFontSize.add(iFontSize24);
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
@@ -130,6 +184,14 @@ public class MemoFrame implements ActionListener {
             case "Exit": fileMenu.exit(); break;
             case "Undo": editMenu.undo(); break;
             case "Redo": editMenu.redo(); break;
+            case "Arial": formatMenu.setFont(command); break;
+            case "CSMS": formatMenu.setFont(command); break;
+            case "TNR": formatMenu.setFont(command); break;
+            case "Word Wrap": formatMenu.wordWarp(); break;
+            case "size8": formatMenu.createFont(8); break;
+            case "size12": formatMenu.createFont(12); break;
+            case "size16": formatMenu.createFont(16); break;
+            case "size24": formatMenu.createFont(24); break;
         }
     }
 }
