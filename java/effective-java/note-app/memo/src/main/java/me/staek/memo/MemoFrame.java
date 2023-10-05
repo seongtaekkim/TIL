@@ -2,7 +2,9 @@ package me.staek.memo;
 
 
 import javax.swing.*;
-
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.undo.UndoManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,20 +17,35 @@ public class MemoFrame implements ActionListener {
     JMenu menuFile, menuEdit, menuFormat, menuColor;
     JMenuItem fileNew, fileOpen, fileSave, fileSaveas, fileExit;
 
+    JMenuItem iWrap;
 
 
+    JMenuItem undo, redu;
+    UndoManager um = new UndoManager();
 
+    boolean wordWarpOn = false;
     FileMenu fileMenu = new FileMenu(this);
 
+    EditMenu editMenu = new EditMenu(this);
     public MemoFrame() {
         newWindow();
         newTextArea();
         newMenu();
-
-
+        createEditMenu();
         frame.setVisible(true);
     }
 
+    public void createEditMenu() {
+        undo = new JMenuItem("Undo");
+        undo.addActionListener(this);
+        undo.setActionCommand("Undo");
+        menuEdit.add(undo);
+
+        redu = new JMenuItem("Redo");
+        redu.addActionListener(this);
+        redu.setActionCommand("Redo");
+        menuEdit.add(redu);
+    }
 
     private void newMenu() {
         menuBar = new JMenuBar();
@@ -79,6 +96,14 @@ public class MemoFrame implements ActionListener {
         textArea = new JTextArea();
 
 
+        textArea.getDocument().addUndoableEditListener(
+                new UndoableEditListener() {
+                    @Override
+                    public void undoableEditHappened(UndoableEditEvent e) {
+                        um.addEdit(e.getEdit());
+                    }
+                }
+        );
 
         scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
                 , JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -103,6 +128,8 @@ public class MemoFrame implements ActionListener {
             case "Save": fileMenu.save(); break;
             case "SaveAs": fileMenu.saveAs(); break;
             case "Exit": fileMenu.exit(); break;
+            case "Undo": editMenu.undo(); break;
+            case "Redo": editMenu.redo(); break;
         }
     }
 }
