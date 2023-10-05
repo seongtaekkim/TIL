@@ -30,6 +30,7 @@ public class MemoFrame implements ActionListener {
     FormatMenu formatMenu = new FormatMenu(this);
 
     EditMenu editMenu = new EditMenu(this);
+    KeyHandler keyHandler = new KeyHandler(this);
     public MemoFrame() {
         newWindow();
         newTextArea();
@@ -102,6 +103,7 @@ public class MemoFrame implements ActionListener {
     private void newTextArea() {
         textArea = new JTextArea();
 
+        textArea.addKeyListener(keyHandler);
 
         textArea.getDocument().addUndoableEditListener(
                 new UndoableEditListener() {
