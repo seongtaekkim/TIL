@@ -1,11 +1,13 @@
 package me.staek.memo;
 
+import me.staek.memo.menuenum.Menu;
+
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-public class FileMenu {
+public class FileMenu implements MemoMenu {
     MemoFrame memoFrame;
     String fileName;
     String path;
@@ -17,6 +19,17 @@ public class FileMenu {
         memoFrame.frame.setTitle("New");
         fileName = null;
         path = null;
+    }
+
+    @Override
+    public void doItem(String command) {
+        switch(command) {
+            case "New": newFile(); break;
+            case "Open": open(); break;
+            case "Save": save(); break;
+            case "SaveAs": saveAs(); break;
+            case "Exit": exit(); break;
+        }
     }
 
     public void open() {
@@ -78,4 +91,5 @@ public class FileMenu {
     public void exit() {
         System.exit(0);
     }
+
 }

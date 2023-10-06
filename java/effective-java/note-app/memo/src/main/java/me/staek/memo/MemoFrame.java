@@ -18,12 +18,14 @@ public class MemoFrame {
 
     UndoManager um = new UndoManager();
     boolean wordWarpOn = false;
-    FileMenu fileMenu = new FileMenu(this);
-    FormatMenu formatMenu = new FormatMenu(this);
-    EditMenu  editMenu = new EditMenu(this);
+    MemoMenu fileMenu = new FileMenu(this);
+    MemoMenu formatMenu = new FormatMenu(this);
+    MemoMenu  editMenu = new EditMenu(this);
     KeyHandler  keyHandler = new KeyHandler(this);
 
-    MemoActionListener listener;
+    MemoActionHandler listener1;
+    MemoActionHandler listener2;
+    MemoActionHandler listener3;
     private void init() {
         frame = new JFrame("note");
         frame.setSize(500,500);
@@ -32,7 +34,9 @@ public class MemoFrame {
 
     public MemoFrame() {
         init();
-        listener = new MemoActionListener(fileMenu, formatMenu, editMenu);
+        listener1 = new MemoActionHandler(fileMenu);
+        listener2 = new MemoActionHandler(formatMenu);
+        listener3 = new MemoActionHandler(editMenu);
         newTextArea();
         newMenu();
 //        formatMenu.selectedFont = "Arial";
@@ -64,7 +68,9 @@ public class MemoFrame {
                 parent.add(jMenu);
             } else if (f.type() == MenuType.ITEM) {
                 JMenuItem item = new JMenuItem(f.value());
-                item.addActionListener(listener);
+                item.addActionListener(listener1);
+                item.addActionListener(listener2);
+                item.addActionListener(listener3);
                 item.setActionCommand(f.value());
                 parent.add(item);
             }
