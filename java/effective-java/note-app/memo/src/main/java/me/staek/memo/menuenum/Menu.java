@@ -8,16 +8,17 @@ import java.util.List;
  */
 public enum Menu {
 
-    FILE("File", MenuType.MENU, null)
+    ROOT("Root", MenuType.MENU, null),
+    FILE("File", MenuType.MENU, ROOT)
     , NEW("New", MenuType.ITEM, FILE)
     , OPEN("Open", MenuType.ITEM, FILE)
     , SAVE("Save", MenuType.ITEM, FILE)
     , SAVEAS("SaveAs", MenuType.ITEM, FILE)
     , EXIT("Exit", MenuType.ITEM, FILE),
-    EDIT("Edit", MenuType.MENU,null)
+    EDIT("Edit", MenuType.MENU,ROOT)
     , UNDO("Undo", MenuType.ITEM, EDIT)
     , REDO("Redo", MenuType.ITEM, EDIT),
-    FORMAT("Format", MenuType.MENU,null)
+    FORMAT("Format", MenuType.MENU,ROOT)
     , FONT("Font", MenuType.MENU, FORMAT)
         , ARIAL("Arial", MenuType.ITEM, FONT)
         , CSMS("Comic Sans MS", MenuType.ITEM,FONT)
@@ -30,7 +31,7 @@ public enum Menu {
     ;
 
     private Menu parent;
-    private List<Menu> children;
+    private List<Menu> children = null;
 
     private String menu;
     private MenuType type;
@@ -55,4 +56,16 @@ public enum Menu {
     public MenuType type() {
         return this.type;
     }
+
+    /**
+     * child 여부
+     */
+    public boolean isChild() {
+        Menu child = valueOf(this.name());
+        if (child.children().size() == 0)
+            return false;
+        return true;
+    }
+
+
 }
