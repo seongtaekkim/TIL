@@ -1,4 +1,6 @@
-package me.staek.memo;
+package me.staek.memo.handler;
+
+import me.staek.memo.MemoMenu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,11 +10,7 @@ import java.awt.event.ActionListener;
  */
 public class MemoActionHandler implements ActionListener {
 
-    FileMenu fileMenu;
-    FormatMenu formatMenu;
-    EditMenu  editMenu;
-
-    MemoMenu memoMenu;
+    private final MemoMenu memoMenu;
 
     public MemoActionHandler(MemoMenu memoMenu) {
         this.memoMenu = memoMenu;
