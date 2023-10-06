@@ -1,4 +1,4 @@
-package me.staek.memo.menuenum;
+package me.staek.memo.code;
 
 import java.util.ArrayList;
 import java.util.List;
