@@ -3,9 +3,9 @@ package me.staek.memo;
 
 import me.staek.memo.factory.ActionListenerFactory;
 import me.staek.memo.handler.KeyHandler;
-import me.staek.memo.menuenum.Menu;
-import me.staek.memo.menuenum.MenuType;
-import me.staek.memo.menuenum.Program;
+import me.staek.memo.code.Menu;
+import me.staek.memo.code.MenuType;
+import me.staek.memo.code.Program;
 
 import javax.swing.*;
 import javax.swing.undo.UndoManager;

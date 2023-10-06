@@ -1,4 +1,4 @@
-package me.staek.memo.menuenum;
+package me.staek.memo.code;
 
 public class Program {
     public static final String APP_NAME = "note";

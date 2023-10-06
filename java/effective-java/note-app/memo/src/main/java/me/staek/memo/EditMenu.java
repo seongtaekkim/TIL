@@ -1,6 +1,6 @@
 package me.staek.memo;
 
-import me.staek.memo.menuenum.Menu;
+import me.staek.memo.code.Menu;
 
 public class EditMenu implements MemoMenu {
     MemoFrame memoFrame;
