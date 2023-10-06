@@ -68,9 +68,12 @@ public class MemoFrame {
                 parent.add(jMenu);
             } else if (f.type() == MenuType.ITEM) {
                 JMenuItem item = new JMenuItem(f.value());
-                item.addActionListener(listener1);
-                item.addActionListener(listener2);
-                item.addActionListener(listener3);
+                if (menu.value() == "File")
+                    item.addActionListener(listener1);
+                if (menu.value() == "Font" || menu.value() == "FontSize")
+                    item.addActionListener(listener2);
+                if (menu.value() == "Edit")
+                    item.addActionListener(listener3);
                 item.setActionCommand(f.value());
                 parent.add(item);
             }
