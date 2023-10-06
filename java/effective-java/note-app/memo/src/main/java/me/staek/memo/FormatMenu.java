@@ -2,7 +2,7 @@ package me.staek.memo;
 
 import java.awt.*;
 
-public class FormatMenu {
+public class FormatMenu implements MemoMenu {
     MemoFrame memoFrame;
     Font arial, csms, tnr;
     String selectedFont;
@@ -30,7 +30,7 @@ public class FormatMenu {
         csms = new Font("Comic Sans MS", Font.PLAIN, size);
         tnr = new Font("Times New Roman", Font.PLAIN, size);
 
-        setFont(selectedFont);
+        setFont("Arial");
     }
 
     public void setFont(String font) {
@@ -45,6 +45,20 @@ public class FormatMenu {
             case "TNR":
                 memoFrame.textArea.setFont(tnr);
                 break;
+        }
+    }
+
+    @Override
+    public void doItem(String command) {
+        switch(command) {
+            case "Arial": setFont(command); break;
+            case "CSMS": setFont(command); break;
+            case "TNR": setFont(command); break;
+            case "Word Wrap": wordWarp(); break;
+            case "Size8": createFont(8); break;
+            case "Size12": createFont(12); break;
+            case "Size16": createFont(16); break;
+            case "Size24": createFont(24); break;
         }
     }
 }

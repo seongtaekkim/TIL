@@ -1,4 +1,4 @@
-package me.staek.memo.menuenum;
+package me.staek.memo.code;
 
 import org.junit.jupiter.api.Test;
 
