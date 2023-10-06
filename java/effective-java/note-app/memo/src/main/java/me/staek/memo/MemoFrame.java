@@ -1,8 +1,11 @@
 package me.staek.memo;
 
 
+import me.staek.memo.factory.ActionListenerFactory;
+import me.staek.memo.handler.KeyHandler;
 import me.staek.memo.menuenum.Menu;
 import me.staek.memo.menuenum.MenuType;
+import me.staek.memo.menuenum.Program;
 
 import javax.swing.*;
 import javax.swing.undo.UndoManager;
@@ -15,28 +18,22 @@ public class MemoFrame {
     JMenuBar menuBar;
     JMenuItem iWrap;
 
-
     UndoManager um = new UndoManager();
     boolean wordWarpOn = false;
-    MemoMenu fileMenu = new FileMenu(this);
-    MemoMenu formatMenu = new FormatMenu(this);
-    MemoMenu  editMenu = new EditMenu(this);
-    KeyHandler  keyHandler = new KeyHandler(this);
+    KeyHandler keyHandler = new KeyHandler(this);
+    private ActionListenerFactory actionListenerFactory;
 
-    MemoActionHandler listener1;
-    MemoActionHandler listener2;
-    MemoActionHandler listener3;
+
     private void init() {
-        frame = new JFrame("note");
-        frame.setSize(500,500);
+        frame = new JFrame(Program.APP_NAME);
+        frame.setSize(Program.WITDH,Program.HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public MemoFrame() {
+    public void start(ActionListenerFactory actionListenerFactory) {
+        this.actionListenerFactory = actionListenerFactory;
+
         init();
-        listener1 = new MemoActionHandler(fileMenu);
-        listener2 = new MemoActionHandler(formatMenu);
-        listener3 = new MemoActionHandler(editMenu);
         newTextArea();
         newMenu();
 //        formatMenu.selectedFont = "Arial";
@@ -68,12 +65,7 @@ public class MemoFrame {
                 parent.add(jMenu);
             } else if (f.type() == MenuType.ITEM) {
                 JMenuItem item = new JMenuItem(f.value());
-                if (menu.value() == "File")
-                    item.addActionListener(listener1);
-                if (menu.value() == "Font" || menu.value() == "FontSize")
-                    item.addActionListener(listener2);
-                if (menu.value() == "Edit")
-                    item.addActionListener(listener3);
+                item.addActionListener(actionListenerFactory.actionListener(menu.value()));
                 item.setActionCommand(f.value());
                 parent.add(item);
             }
