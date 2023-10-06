@@ -6,10 +6,8 @@ import me.staek.memo.menuenum.MenuType;
 
 import javax.swing.*;
 import javax.swing.undo.UndoManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class MemoFrame implements ActionListener {
+public class MemoFrame {
 
     JFrame frame;
     JTextArea textArea;
@@ -20,18 +18,12 @@ public class MemoFrame implements ActionListener {
 
     UndoManager um = new UndoManager();
     boolean wordWarpOn = false;
-    FileMenu fileMenu;
-    FormatMenu formatMenu;
-    EditMenu editMenu;
-    KeyHandler keyHandler;
+    FileMenu fileMenu = new FileMenu(this);
+    FormatMenu formatMenu = new FormatMenu(this);
+    EditMenu  editMenu = new EditMenu(this);
+    KeyHandler  keyHandler = new KeyHandler(this);
 
-    private void method() {
-         fileMenu = new FileMenu(this);
-         formatMenu = new FormatMenu(this);
-         editMenu = new EditMenu(this);
-         keyHandler = new KeyHandler(this);
-    }
-
+    MemoActionListener listener;
     private void init() {
         frame = new JFrame("note");
         frame.setSize(500,500);
@@ -40,12 +32,12 @@ public class MemoFrame implements ActionListener {
 
     public MemoFrame() {
         init();
+        listener = new MemoActionListener(fileMenu, formatMenu, editMenu);
         newTextArea();
         newMenu();
 //        formatMenu.selectedFont = "Arial";
 //        formatMenu.createFont(16);
 //        formatMenu.wordWarp();
-        method();
         frame.setVisible(true);
     }
 
@@ -72,7 +64,7 @@ public class MemoFrame implements ActionListener {
                 parent.add(jMenu);
             } else if (f.type() == MenuType.ITEM) {
                 JMenuItem item = new JMenuItem(f.value());
-                item.addActionListener(this);
+                item.addActionListener(listener);
                 item.setActionCommand(f.value());
                 parent.add(item);
             }
@@ -81,7 +73,6 @@ public class MemoFrame implements ActionListener {
 
     private void newTextArea() {
         textArea = new JTextArea();
-
         textArea.addKeyListener(keyHandler);
         textArea.getDocument().addUndoableEditListener(e -> um.addEdit(e.getEdit()));
 
@@ -91,25 +82,4 @@ public class MemoFrame implements ActionListener {
         frame.add(scrollPane);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String command = e.getActionCommand();
-        switch(command) {
-            case "New": fileMenu.newFile(); break;
-            case "Open": fileMenu.open(); break;
-            case "Save": fileMenu.save(); break;
-            case "SaveAs": fileMenu.saveAs(); break;
-            case "Exit": fileMenu.exit(); break;
-            case "Undo": editMenu.undo(); break;
-            case "Redo": editMenu.redo(); break;
-            case "Arial": formatMenu.setFont(command); break;
-            case "CSMS": formatMenu.setFont(command); break;
-            case "TNR": formatMenu.setFont(command); break;
-            case "Word Wrap": formatMenu.wordWarp(); break;
-            case "Size8": formatMenu.createFont(8); break;
-            case "Size12": formatMenu.createFont(12); break;
-            case "Size16": formatMenu.createFont(16); break;
-            case "Size24": formatMenu.createFont(24); break;
-        }
-    }
 }
