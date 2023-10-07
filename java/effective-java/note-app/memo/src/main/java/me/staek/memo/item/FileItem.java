@@ -7,6 +7,7 @@ import me.staek.memo.MemoFrame;
 
 import java.awt.*;
 import java.io.*;
+import java.util.Optional;
 
 public class FileItem extends AbstractMenu {
     String fileName;
@@ -52,8 +53,10 @@ public class FileItem extends AbstractMenu {
                     memoFrame.textArea().append(line + "\n");
                 }
 
-                Format format = FormatFAO.getFormat(fileName);
-                memoFrame.textArea().setFont(new Font(format.getFontName(), format.getFontStyle(), format.getFontSize()));
+                Optional<Format> format = FormatFAO.getFormat(fileName);
+
+                format.ifPresentOrElse((f) -> memoFrame.textArea().setFont(new Font(f.getFontName(), f.getFontStyle(), f.getFontSize())),
+                        () -> memoFrame.textArea().setFont(Format.INIT_FONT));
 
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
