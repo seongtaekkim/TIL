@@ -1,9 +1,7 @@
 package me.staek.memo;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 
 public class FileMenu implements MemoMenu {
     MemoFrame memoFrame;
@@ -39,30 +37,33 @@ public class FileMenu implements MemoMenu {
             path = dialog.getDirectory();
             memoFrame.frame.setTitle(fileName);
         }
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(path + fileName));
+        try (BufferedReader br =
+                     new BufferedReader(new FileReader(path + fileName))) {
             memoFrame.textArea.setText("");
             String line = null;
             while ((line = br.readLine()) != null) {
                 memoFrame.textArea.append(line + "\n");
             }
-            br.close();
-        } catch(Exception e) {
-            System.out.println("noe opened");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public void save() {
 
+//        DataOutputStream info;
         if (fileName == null) {
             saveAs();
         } else {
-            try {
-                FileWriter fw = new FileWriter(path + fileName);
+//                info = new DataOutputStream(new FileOutputStream(fileName+ ".log"));
+//                info.write
+            try (FileWriter fw =
+                         new FileWriter(path + fileName)) {
                 fw.write(memoFrame.textArea.getText());
-                fw.close();
-            } catch(Exception e) {
-                System.out.println("wrong");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -77,12 +78,11 @@ public class FileMenu implements MemoMenu {
             memoFrame.frame.setTitle(fileName);
         }
 
-        try {
-            FileWriter fw = new FileWriter(path + fileName);
+        try (FileWriter fw =
+                     new FileWriter(path + fileName)) {
             fw.write(memoFrame.textArea.getText());
-            fw.close();
-        } catch(Exception e) {
-            System.out.println("wrong");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
