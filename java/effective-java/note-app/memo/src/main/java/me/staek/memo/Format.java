@@ -1,5 +1,8 @@
 package me.staek.memo;
 
+import me.staek.memo.code.Program;
+
+import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,14 @@ public class Format implements Serializable {
     public Format() {
 
     }
+    private int fontSize;
+    private String fontName;
+    private int fontStyle;
+
+    public static final Font INIT_FONT = new Font(Program.DEFAULT_FONT_NAME
+            , Program.DEFAULT_FONT_STYLE
+            , Program.DEFAULT_FONT_SIZE);
+
     public void put(Format format) {
         resource.add(format);
     }
@@ -43,10 +54,6 @@ public class Format implements Serializable {
                 ", fontStyle=" + fontStyle +
                 '}';
     }
-
-    private int fontSize;
-    private String fontName;
-    private int fontStyle;
 
     public int getFontSize() {
         return fontSize;
