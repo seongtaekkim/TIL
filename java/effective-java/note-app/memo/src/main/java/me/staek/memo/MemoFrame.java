@@ -13,16 +13,18 @@ import javax.swing.undo.UndoManager;
 public class MemoFrame {
 
     JFrame frame;
-    JTextArea textArea;
-    JScrollPane scrollPane;
-    JMenuBar menuBar;
+     MemoTextArea textArea;
     JMenuItem iWrap;
-
-    UndoManager um = new UndoManager();
     boolean wordWarpOn = false;
-    KeyHandler keyHandler = new KeyHandler(this);
     private ActionListenerFactory actionListenerFactory;
 
+    public MemoFrame(MemoTextArea textArea) {
+        this.textArea = textArea;
+    }
+
+    public MemoTextArea textArea() {
+        return textArea;
+    }
 
     private void init() {
         frame = new JFrame(Program.APP_NAME);
@@ -43,14 +45,13 @@ public class MemoFrame {
     }
 
     private void newMenu() {
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);
         addMenu(Menu.ROOT, menuBar);
     }
 
     private void addMenu(Menu menu, JMenuBar jMenuBar) {
         menu.children().stream().forEach((f) -> {
-            System.out.println(f.value());
             JMenu jMenu = new JMenu(f.value());
             addItem(f, jMenu);
             jMenuBar.add(jMenu);
@@ -73,14 +74,10 @@ public class MemoFrame {
     }
 
     private void newTextArea() {
-        textArea = new JTextArea();
-        textArea.addKeyListener(keyHandler);
-        textArea.getDocument().addUndoableEditListener(e -> um.addEdit(e.getEdit()));
-
-        scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+        textArea.addKeyListener(new KeyHandler(this));
+        JScrollPane scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
                 , JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         frame.add(scrollPane);
     }
-
 }
