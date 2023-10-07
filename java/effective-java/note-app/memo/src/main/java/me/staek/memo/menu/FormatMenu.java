@@ -2,7 +2,6 @@ package me.staek.memo.menu;
 
 
 import me.staek.memo.MemoFrame;
-import me.staek.memo.MemoMenu;
 
 public abstract class FormatMenu implements MemoMenu {
     protected MemoFrame memoFrame;

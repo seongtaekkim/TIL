@@ -1,6 +1,6 @@
 package me.staek.memo.handler;
 
-import me.staek.memo.MemoMenu;
+import me.staek.memo.menu.MemoMenu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
