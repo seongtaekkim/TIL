@@ -1,15 +1,15 @@
 package me.staek.memo.item;
 
-import me.staek.memo.menu.EditMenu;
 import me.staek.memo.MemoFrame;
 import me.staek.memo.code.Menu;
+import me.staek.memo.menu.AbstractMenu;
 
 import javax.swing.undo.UndoManager;
 
 /**
  * Undo manage class
  */
-public class UndoItem extends EditMenu {
+public class UndoItem extends AbstractMenu {
     UndoManager um;
     public UndoItem(MemoFrame memoFrame) {
         super(memoFrame);

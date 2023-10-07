@@ -1,12 +1,12 @@
 package me.staek.memo.item;
-import me.staek.memo.menu.FormatMenu;
+import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;
 import me.staek.memo.code.Menu;
 import me.staek.memo.code.Program;
 
 import java.awt.*;
 
-public class FontItem extends FormatMenu {
+public class FontItem extends AbstractMenu {
     public FontItem(MemoFrame memoFrame) {
         super(memoFrame);
         init();

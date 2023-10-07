@@ -1,12 +1,12 @@
 package me.staek.memo.item;
 
-import me.staek.memo.menu.FileMenu;
+import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;
 
 import java.awt.*;
 import java.io.*;
 
-public class FileItem extends FileMenu {
+public class FileItem extends AbstractMenu {
     String fileName;
     String path;
 
@@ -41,13 +41,14 @@ public class FileItem extends FileMenu {
             path = dialog.getDirectory();
             memoFrame.frame().setTitle(fileName);
         }
-        try (BufferedReader br =
-                     new BufferedReader(new FileReader(path + fileName))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(path + fileName));
+             DataInputStream  info = new DataInputStream(new FileInputStream("cfg/" +fileName + ".cfg"))) {
             memoFrame.textArea().setText("");
             String line = null;
             while ((line = br.readLine()) != null) {
                 memoFrame.textArea().append(line + "\n");
             }
+            System.out.println(info.readInt());
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -57,15 +58,15 @@ public class FileItem extends FileMenu {
 
     public void save() {
 
-//        DataOutputStream info;
         if (fileName == null) {
             saveAs();
         } else {
-//                info = new DataOutputStream(new FileOutputStream(fileName+ ".log"));
-//                info.write
-            try (FileWriter fw =
-                         new FileWriter(path + fileName)) {
+            try (FileWriter fw = new FileWriter(path + fileName);
+                 DataOutputStream  info = new DataOutputStream(new FileOutputStream("cfg/" +fileName + ".cfg"))) {
+                System.out.println(path);
                 fw.write(memoFrame.textArea().getText());
+                info.writeInt(3333);
+//                info.write();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

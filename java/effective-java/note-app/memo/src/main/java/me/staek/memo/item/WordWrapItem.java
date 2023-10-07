@@ -1,9 +1,9 @@
 package me.staek.memo.item;
 
-import me.staek.memo.menu.FormatMenu;
+import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;
 
-public class WordWrapItem extends FormatMenu {
+public class WordWrapItem extends AbstractMenu {
     boolean onoffWrap = false;
     public WordWrapItem(MemoFrame memoFrame) {
         super(memoFrame);
