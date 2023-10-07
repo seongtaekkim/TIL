@@ -22,11 +22,14 @@ public class ActionListenerFactory implements AutoCloseable {
         ActionListenerStrategy fl = new FileMenuListener();
         menuMap.put(fl.name(), fl.createListener(new FileMenu(frame)));
 
+        ActionListenerStrategy wl = new WrapMenuListener();
+        menuMap.put(wl.name(), wl.createListener(new WordWrapItem(frame)));
+
         ActionListenerStrategy fl2 = new FontMenuListener();
-        menuMap.put(fl2.name(), fl2.createListener(new FormatMenu(frame)));
+        menuMap.put(fl2.name(), fl2.createListener(new FontItem(frame)));
 
         ActionListenerStrategy fsl = new FontSizeMenuListener();
-        menuMap.put(fsl.name(), fsl.createListener(new FormatMenu(frame)));
+        menuMap.put(fsl.name(), fsl.createListener(new FontItem(frame)));
 
         ActionListenerStrategy el = new EditMenuListener();
         menuMap.put(el.name(), el.createListener(new UndoItem(frame)));

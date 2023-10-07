@@ -19,6 +19,7 @@ public enum Menu {
     , UNDO("Undo", MenuType.ITEM, EDIT)
     , REDO("Redo", MenuType.ITEM, EDIT),
     FORMAT("Format", MenuType.MENU,ROOT)
+    , WRAP("Wrap", MenuType.ITEM, FORMAT)
     , FONT("Font", MenuType.MENU, FORMAT)
         , ARIAL("Arial", MenuType.ITEM, FONT)
         , CSMS("Comic Sans MS", MenuType.ITEM,FONT)

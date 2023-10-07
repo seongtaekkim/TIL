@@ -13,9 +13,7 @@ import javax.swing.undo.UndoManager;
 public class MemoFrame {
 
     JFrame frame;
-     MemoTextArea textArea;
-    JMenuItem iWrap;
-    boolean wordWarpOn = false;
+    MemoTextArea textArea;
     private ActionListenerFactory actionListenerFactory;
 
     public MemoFrame(MemoTextArea textArea) {
@@ -38,9 +36,6 @@ public class MemoFrame {
         init();
         newTextArea();
         newMenu();
-//        formatMenu.selectedFont = "Arial";
-//        formatMenu.createFont(16);
-//        formatMenu.wordWarp();
         frame.setVisible(true);
     }
 
