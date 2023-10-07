@@ -1,12 +1,14 @@
 package me.staek.memo.item;
 
-import me.staek.memo.menu.FileMenu;
+import me.staek.memo.fao.FormatFAO;
+import me.staek.memo.Format;
+import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;
 
 import java.awt.*;
 import java.io.*;
 
-public class FileItem extends FileMenu {
+public class FileItem extends AbstractMenu {
     String fileName;
     String path;
 
@@ -19,6 +21,8 @@ public class FileItem extends FileMenu {
         memoFrame.frame().setTitle("New");
         fileName = null;
         path = null;
+        FormatFAO.createFormat("New");
+        FormatFAO.edit(Format.INIT_FONT);
     }
 
     @Override
@@ -33,6 +37,7 @@ public class FileItem extends FileMenu {
     }
 
     public void open() {
+        FormatFAO.clear();
         FileDialog dialog = new FileDialog(memoFrame.frame(), "Open", FileDialog.LOAD);
         dialog.setVisible(true);
 
@@ -40,32 +45,32 @@ public class FileItem extends FileMenu {
             fileName = dialog.getFile();
             path = dialog.getDirectory();
             memoFrame.frame().setTitle(fileName);
-        }
-        try (BufferedReader br =
-                     new BufferedReader(new FileReader(path + fileName))) {
-            memoFrame.textArea().setText("");
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                memoFrame.textArea().append(line + "\n");
+            try (BufferedReader br = new BufferedReader(new FileReader(path + fileName))) {
+                memoFrame.textArea().setText("");
+                String line = null;
+                while ((line = br.readLine()) != null) {
+                    memoFrame.textArea().append(line + "\n");
+                }
+
+                Format format = FormatFAO.getFormat(fileName);
+                memoFrame.textArea().setFont(new Font(format.getFontName(), format.getFontStyle(), format.getFontSize()));
+
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
     public void save() {
 
-//        DataOutputStream info;
         if (fileName == null) {
             saveAs();
         } else {
-//                info = new DataOutputStream(new FileOutputStream(fileName+ ".log"));
-//                info.write
-            try (FileWriter fw =
-                         new FileWriter(path + fileName)) {
+            try (FileWriter fw = new FileWriter(path + fileName)) {
                 fw.write(memoFrame.textArea().getText());
+                FormatFAO.save(fileName);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -80,6 +85,7 @@ public class FileItem extends FileMenu {
             fileName = dialog.getFile();
             path = dialog.getDirectory();
             memoFrame.frame().setTitle(fileName);
+            FormatFAO.save(fileName);
         }
 
         try (FileWriter fw =

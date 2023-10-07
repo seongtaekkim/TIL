@@ -1,7 +1,7 @@
 package me.staek.memo.listener;
 
 
-import me.staek.memo.MemoMenu;
+import me.staek.memo.menu.MemoMenu;
 import me.staek.memo.code.Menu;
 import me.staek.memo.handler.MemoActionHandler;
 

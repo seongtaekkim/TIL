@@ -1,22 +1,23 @@
 package me.staek.memo.item;
-import me.staek.memo.menu.FormatMenu;
+import me.staek.memo.fao.FormatFAO;
+import me.staek.memo.Format;
+import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;
 import me.staek.memo.code.Menu;
 import me.staek.memo.code.Program;
 
 import java.awt.*;
 
-public class FontItem extends FormatMenu {
+public class FontItem extends AbstractMenu {
     public FontItem(MemoFrame memoFrame) {
         super(memoFrame);
         init();
     }
 
     private void init() {
-        memoFrame.textArea()
-                .setFont(new Font(Program.DEFAULT_FONT_NAME
-                                , Program.DEFAULT_FONT_STYLE
-                                , Program.DEFAULT_FONT_SIZE));
+        Font font = Format.INIT_FONT;
+        FormatFAO.edit(font);
+        memoFrame.textArea().setFont(font);
     }
 
     @Override
@@ -36,12 +37,16 @@ public class FontItem extends FormatMenu {
 
     public void createFont(int size) {
         Font font = this.memoFrame.textArea().getFont();
-        this.memoFrame.textArea().setFont(new Font(font.getName(), font.getStyle(), size));
+        Font editFont = new Font(font.getName(), font.getStyle(), size);
+        FormatFAO.edit(editFont);
+        this.memoFrame.textArea().setFont(editFont);
     }
 
     public void createFont(String name) {
         Font font = this.memoFrame.textArea().getFont();
-        this.memoFrame.textArea().setFont(new Font(name, font.getStyle(), font.getSize()));
+        Font editFont = new Font(name, font.getStyle(), font.getSize());
+        FormatFAO.edit(editFont);
+        this.memoFrame.textArea().setFont(editFont);
     }
 
 }

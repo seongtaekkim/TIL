@@ -1,11 +1,10 @@
 package me.staek.memo.menu;
 
 import me.staek.memo.MemoFrame;
-import me.staek.memo.MemoMenu;
 
-public abstract class FileMenu implements MemoMenu {
+public abstract class AbstractMenu implements MemoMenu {
     protected MemoFrame memoFrame;
-    public FileMenu(MemoFrame memoFrame) {
+    public AbstractMenu(MemoFrame memoFrame) {
         this.memoFrame = memoFrame;
     }
     @Override
