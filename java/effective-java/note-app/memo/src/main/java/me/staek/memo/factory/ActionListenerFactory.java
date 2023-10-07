@@ -29,7 +29,7 @@ public class ActionListenerFactory implements AutoCloseable {
         menuMap.put(fsl.name(), fsl.createListener(new FormatMenu(frame)));
 
         ActionListenerStrategy el = new EditMenuListener();
-        menuMap.put(el.name(), el.createListener(new EditMenu(frame)));
+        menuMap.put(el.name(), el.createListener(new UndoItem(frame)));
     }
 
     @Override
