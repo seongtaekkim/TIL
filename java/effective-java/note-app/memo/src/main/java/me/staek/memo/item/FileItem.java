@@ -1,5 +1,7 @@
 package me.staek.memo.item;
 
+import me.staek.memo.fao.FormatFAO;
+import me.staek.memo.Format;
 import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;
 
@@ -19,6 +21,8 @@ public class FileItem extends AbstractMenu {
         memoFrame.frame().setTitle("New");
         fileName = null;
         path = null;
+        FormatFAO.createFormat("New");
+        FormatFAO.edit(Format.INIT_FONT);
     }
 
     @Override
@@ -33,6 +37,7 @@ public class FileItem extends AbstractMenu {
     }
 
     public void open() {
+        FormatFAO.clear();
         FileDialog dialog = new FileDialog(memoFrame.frame(), "Open", FileDialog.LOAD);
         dialog.setVisible(true);
 
@@ -40,19 +45,21 @@ public class FileItem extends AbstractMenu {
             fileName = dialog.getFile();
             path = dialog.getDirectory();
             memoFrame.frame().setTitle(fileName);
-        }
-        try (BufferedReader br = new BufferedReader(new FileReader(path + fileName));
-             DataInputStream  info = new DataInputStream(new FileInputStream("cfg/" +fileName + ".cfg"))) {
-            memoFrame.textArea().setText("");
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                memoFrame.textArea().append(line + "\n");
+            try (BufferedReader br = new BufferedReader(new FileReader(path + fileName))) {
+                memoFrame.textArea().setText("");
+                String line = null;
+                while ((line = br.readLine()) != null) {
+                    memoFrame.textArea().append(line + "\n");
+                }
+
+                Format format = FormatFAO.getFormat(fileName);
+                memoFrame.textArea().setFont(new Font(format.getFontName(), format.getFontStyle(), format.getFontSize()));
+
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            System.out.println(info.readInt());
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -61,12 +68,9 @@ public class FileItem extends AbstractMenu {
         if (fileName == null) {
             saveAs();
         } else {
-            try (FileWriter fw = new FileWriter(path + fileName);
-                 DataOutputStream  info = new DataOutputStream(new FileOutputStream("cfg/" +fileName + ".cfg"))) {
-                System.out.println(path);
+            try (FileWriter fw = new FileWriter(path + fileName)) {
                 fw.write(memoFrame.textArea().getText());
-                info.writeInt(3333);
-//                info.write();
+                FormatFAO.save(fileName);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -81,6 +85,7 @@ public class FileItem extends AbstractMenu {
             fileName = dialog.getFile();
             path = dialog.getDirectory();
             memoFrame.frame().setTitle(fileName);
+            FormatFAO.save(fileName);
         }
 
         try (FileWriter fw =
