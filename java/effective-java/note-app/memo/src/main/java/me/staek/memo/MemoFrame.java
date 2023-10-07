@@ -8,12 +8,11 @@ import me.staek.memo.code.MenuType;
 import me.staek.memo.code.Program;
 
 import javax.swing.*;
-import javax.swing.undo.UndoManager;
 
 public class MemoFrame {
 
-    JFrame frame;
-    MemoTextArea textArea;
+    private JFrame frame;
+    private final MemoTextArea textArea;
     private ActionListenerFactory actionListenerFactory;
 
     public MemoFrame(MemoTextArea textArea) {
@@ -22,6 +21,9 @@ public class MemoFrame {
 
     public MemoTextArea textArea() {
         return textArea;
+    }
+    public JFrame frame() {
+        return this.frame;
     }
 
     private void init() {

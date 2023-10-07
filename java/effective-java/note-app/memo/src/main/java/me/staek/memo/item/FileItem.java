@@ -1,18 +1,22 @@
-package me.staek.memo;
+package me.staek.memo.item;
+
+import me.staek.memo.menu.FileMenu;
+import me.staek.memo.MemoFrame;
 
 import java.awt.*;
 import java.io.*;
 
-public class FileMenu implements MemoMenu {
-    MemoFrame memoFrame;
+public class FileItem extends FileMenu {
     String fileName;
     String path;
-    public FileMenu(MemoFrame memoFrame) {
-        this.memoFrame = memoFrame;
+
+    public FileItem(MemoFrame memoFrame) {
+        super(memoFrame);
     }
+
     public void newFile() {
-        memoFrame.textArea.setText("");
-        memoFrame.frame.setTitle("New");
+        memoFrame.textArea().setText("");
+        memoFrame.frame().setTitle("New");
         fileName = null;
         path = null;
     }
@@ -29,20 +33,20 @@ public class FileMenu implements MemoMenu {
     }
 
     public void open() {
-        FileDialog dialog = new FileDialog(memoFrame.frame, "Open", FileDialog.LOAD);
+        FileDialog dialog = new FileDialog(memoFrame.frame(), "Open", FileDialog.LOAD);
         dialog.setVisible(true);
 
         if (dialog.getFile() != null) {
             fileName = dialog.getFile();
             path = dialog.getDirectory();
-            memoFrame.frame.setTitle(fileName);
+            memoFrame.frame().setTitle(fileName);
         }
         try (BufferedReader br =
                      new BufferedReader(new FileReader(path + fileName))) {
-            memoFrame.textArea.setText("");
+            memoFrame.textArea().setText("");
             String line = null;
             while ((line = br.readLine()) != null) {
-                memoFrame.textArea.append(line + "\n");
+                memoFrame.textArea().append(line + "\n");
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -61,7 +65,7 @@ public class FileMenu implements MemoMenu {
 //                info.write
             try (FileWriter fw =
                          new FileWriter(path + fileName)) {
-                fw.write(memoFrame.textArea.getText());
+                fw.write(memoFrame.textArea().getText());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -69,18 +73,18 @@ public class FileMenu implements MemoMenu {
     }
 
     public void saveAs() {
-        FileDialog dialog = new FileDialog(memoFrame.frame, "Save", FileDialog.SAVE);
+        FileDialog dialog = new FileDialog(memoFrame.frame(), "Save", FileDialog.SAVE);
         dialog.setVisible(true);
 
         if (dialog.getFile() != null) {
             fileName = dialog.getFile();
             path = dialog.getDirectory();
-            memoFrame.frame.setTitle(fileName);
+            memoFrame.frame().setTitle(fileName);
         }
 
         try (FileWriter fw =
                      new FileWriter(path + fileName)) {
-            fw.write(memoFrame.textArea.getText());
+            fw.write(memoFrame.textArea().getText());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

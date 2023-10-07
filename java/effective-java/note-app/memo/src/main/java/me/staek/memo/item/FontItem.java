@@ -1,4 +1,6 @@
-package me.staek.memo;
+package me.staek.memo.item;
+import me.staek.memo.menu.FormatMenu;
+import me.staek.memo.MemoFrame;
 import me.staek.memo.code.Menu;
 import me.staek.memo.code.Program;
 
