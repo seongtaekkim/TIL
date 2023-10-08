@@ -6,6 +6,7 @@ import me.staek.memo.handler.KeyHandler;
 import me.staek.memo.code.Menu;
 import me.staek.memo.code.MenuType;
 import me.staek.memo.code.Program;
+import me.staek.memo.view.MemoTextArea;
 
 import javax.swing.*;
 

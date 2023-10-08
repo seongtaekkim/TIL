@@ -1,12 +1,18 @@
 package me.staek.memo.item;
 
+import me.staek.memo.dto.MyFont;
 import me.staek.memo.fao.FormatFAO;
-import me.staek.memo.Format;
+import me.staek.memo.dto.Format;
+import me.staek.memo.view.decorator.Component;
+import me.staek.memo.view.decorator.DefaultComponent;
+import me.staek.memo.view.decorator.FontDecorator;
+import me.staek.memo.view.decorator.WordWrapDecorator;
 import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;
 
 import java.awt.*;
 import java.io.*;
+import java.util.Optional;
 
 public class FileItem extends AbstractMenu {
     String fileName;
@@ -17,12 +23,13 @@ public class FileItem extends AbstractMenu {
     }
 
     public void newFile() {
+        FormatFAO.createFormat("New");
+        FormatFAO.edit(MyFont.INIT_FONT);
         memoFrame.textArea().setText("");
+        memoFrame.textArea().setFont(FormatFAO.getFormat().get().getFont());
         memoFrame.frame().setTitle("New");
         fileName = null;
         path = null;
-        FormatFAO.createFormat("New");
-        FormatFAO.edit(Format.INIT_FONT);
     }
 
     @Override
@@ -37,11 +44,11 @@ public class FileItem extends AbstractMenu {
     }
 
     public void open() {
-        FormatFAO.clear();
         FileDialog dialog = new FileDialog(memoFrame.frame(), "Open", FileDialog.LOAD);
         dialog.setVisible(true);
 
         if (dialog.getFile() != null) {
+            FormatFAO.clear();
             fileName = dialog.getFile();
             path = dialog.getDirectory();
             memoFrame.frame().setTitle(fileName);
@@ -52,8 +59,11 @@ public class FileItem extends AbstractMenu {
                     memoFrame.textArea().append(line + "\n");
                 }
 
-                Format format = FormatFAO.getFormat(fileName);
-                memoFrame.textArea().setFont(new Font(format.getFontName(), format.getFontStyle(), format.getFontSize()));
+                Optional<Format> format = FormatFAO.getFormat(fileName);
+                Component component = new DefaultComponent();
+                component = new FontDecorator(component);
+                component = new WordWrapDecorator(component);
+                component.textAreaDecorate(memoFrame.textArea(), format);
 
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
@@ -99,5 +109,4 @@ public class FileItem extends AbstractMenu {
     public void exit() {
         System.exit(0);
     }
-
 }
