@@ -1,7 +1,7 @@
 package me.staek.memo.fao;
 
-import me.staek.memo.Format;
-import me.staek.memo.WordWrap;
+import me.staek.memo.dto.Format;
+import me.staek.memo.dto.WordWrap;
 import me.staek.memo.common.Util;
 
 import java.awt.*;

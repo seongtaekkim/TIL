@@ -1,7 +1,7 @@
 package me.staek.memo.view.decorator;
 
-import me.staek.memo.Format;
-import me.staek.memo.MyFont;
+import me.staek.memo.dto.Format;
+import me.staek.memo.dto.MyFont;
 
 import javax.swing.*;
 import java.util.Optional;

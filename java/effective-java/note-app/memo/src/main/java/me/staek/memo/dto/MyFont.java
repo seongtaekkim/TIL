@@ -1,4 +1,4 @@
-package me.staek.memo;
+package me.staek.memo.dto;
 
 import me.staek.memo.code.Program;
 

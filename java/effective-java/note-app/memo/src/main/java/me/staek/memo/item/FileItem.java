@@ -1,8 +1,8 @@
 package me.staek.memo.item;
 
-import me.staek.memo.MyFont;
+import me.staek.memo.dto.MyFont;
 import me.staek.memo.fao.FormatFAO;
-import me.staek.memo.Format;
+import me.staek.memo.dto.Format;
 import me.staek.memo.view.decorator.Component;
 import me.staek.memo.view.decorator.DefaultComponent;
 import me.staek.memo.view.decorator.FontDecorator;
