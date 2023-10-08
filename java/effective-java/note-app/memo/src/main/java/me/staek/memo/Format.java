@@ -78,4 +78,8 @@ public class Format implements Serializable {
     public void setFontStyle(int fontStyle) {
         this.fontStyle = fontStyle;
     }
+
+    private Object readResolve() {
+        return this;
+    }
 }
