@@ -3,6 +3,10 @@ package me.staek.memo.item;
 import me.staek.memo.MyFont;
 import me.staek.memo.fao.FormatFAO;
 import me.staek.memo.Format;
+import me.staek.memo.view.decorator.Component;
+import me.staek.memo.view.decorator.DefaultComponent;
+import me.staek.memo.view.decorator.FontDecorator;
+import me.staek.memo.view.decorator.WordWrapDecorator;
 import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;
 
@@ -56,12 +60,10 @@ public class FileItem extends AbstractMenu {
                 }
 
                 Optional<Format> format = FormatFAO.getFormat(fileName);
-                format.ifPresentOrElse((f) -> memoFrame.textArea().setFont(f.getFont()),
-                        () -> memoFrame.textArea().setFont(MyFont.INIT_FONT));
-
-                memoFrame.textArea().setLineWrap(format.get().getWrap().getOnoffWrap());
-                memoFrame.textArea().setWrapStyleWord(format.get().getWrap().getOnoffWrap());
-
+                Component component = new DefaultComponent();
+                component = new FontDecorator(component);
+                component = new WordWrapDecorator(component);
+                component.textAreaDecorate(memoFrame.textArea(), format);
 
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
@@ -107,5 +109,4 @@ public class FileItem extends AbstractMenu {
     public void exit() {
         System.exit(0);
     }
-
 }

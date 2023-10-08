@@ -1,4 +1,4 @@
-package me.staek.memo;
+package me.staek.memo.view;
 
 import javax.swing.*;
 
