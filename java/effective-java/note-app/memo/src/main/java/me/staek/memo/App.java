@@ -1,6 +1,7 @@
 package me.staek.memo;
 
 import me.staek.memo.factory.ActionListenerFactory;
+import me.staek.memo.view.MemoTextArea;
 
 import java.io.File;
 
