@@ -1,5 +1,6 @@
 package me.staek.memo.item;
 
+import me.staek.memo.MyFont;
 import me.staek.memo.fao.FormatFAO;
 import me.staek.memo.Format;
 import me.staek.memo.menu.AbstractMenu;
@@ -18,12 +19,13 @@ public class FileItem extends AbstractMenu {
     }
 
     public void newFile() {
+        FormatFAO.createFormat("New");
+        FormatFAO.edit(MyFont.INIT_FONT);
         memoFrame.textArea().setText("");
+        memoFrame.textArea().setFont(FormatFAO.getFormat().get().getFont());
         memoFrame.frame().setTitle("New");
         fileName = null;
         path = null;
-        FormatFAO.createFormat("New");
-        FormatFAO.edit(Format.INIT_FONT);
     }
 
     @Override
@@ -54,9 +56,12 @@ public class FileItem extends AbstractMenu {
                 }
 
                 Optional<Format> format = FormatFAO.getFormat(fileName);
+                format.ifPresentOrElse((f) -> memoFrame.textArea().setFont(f.getFont()),
+                        () -> memoFrame.textArea().setFont(MyFont.INIT_FONT));
 
-                format.ifPresentOrElse((f) -> memoFrame.textArea().setFont(new Font(f.getFontName(), f.getFontStyle(), f.getFontSize())),
-                        () -> memoFrame.textArea().setFont(Format.INIT_FONT));
+                memoFrame.textArea().setLineWrap(format.get().getWrap().getOnoffWrap());
+                memoFrame.textArea().setWrapStyleWord(format.get().getWrap().getOnoffWrap());
+
 
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
