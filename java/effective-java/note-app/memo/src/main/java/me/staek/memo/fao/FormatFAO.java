@@ -1,6 +1,7 @@
 package me.staek.memo.fao;
 
 import me.staek.memo.Format;
+import me.staek.memo.WordWrap;
 import me.staek.memo.common.Util;
 
 import java.awt.*;
@@ -39,11 +40,19 @@ public class FormatFAO implements AutoCloseable {
         }
     }
 
+    public static Optional<Format> getFormat() {
+        if (cache == null) {
+            System.out.println("서식이 없다.");
+            return Optional.empty();
+        }
+        return cache;
+    }
+
     public static void save(String fileName) {
         if (cache == null) throw new RuntimeException();
         try {
             DataOutputStream config = new DataOutputStream(new FileOutputStream(prefix + fileName + postfix));
-            config.write(Util.convertObjectToBytes(cache));
+            config.write(Util.convertObjectToBytes(cache.get()));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -52,9 +61,11 @@ public class FormatFAO implements AutoCloseable {
     }
 
     public static void edit(Font font) {
-        cache.get().setFontSize(font.getSize());
-        cache.get().setFontName(font.getName());
-        cache.get().setFontStyle(font.getStyle());
+        cache.get().setFont(font);
+    }
+
+    public static void edit(WordWrap wrap) {
+        cache.get().getWrap().setOnoffWrap(wrap.getOnoffWrap());
     }
 
     public static void createFormat(String s) {

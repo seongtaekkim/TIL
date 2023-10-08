@@ -1,6 +1,6 @@
 package me.staek.memo.item;
+import me.staek.memo.MyFont;
 import me.staek.memo.fao.FormatFAO;
-import me.staek.memo.Format;
 import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;
 import me.staek.memo.code.Menu;
@@ -15,7 +15,7 @@ public class FontItem extends AbstractMenu {
     }
 
     private void init() {
-        Font font = Format.INIT_FONT;
+        Font font = MyFont.INIT_FONT;
         FormatFAO.edit(font);
         memoFrame.textArea().setFont(font);
     }
