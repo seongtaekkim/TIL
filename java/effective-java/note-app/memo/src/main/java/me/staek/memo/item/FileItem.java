@@ -44,11 +44,11 @@ public class FileItem extends AbstractMenu {
     }
 
     public void open() {
-        FormatFAO.clear();
         FileDialog dialog = new FileDialog(memoFrame.frame(), "Open", FileDialog.LOAD);
         dialog.setVisible(true);
 
         if (dialog.getFile() != null) {
+            FormatFAO.clear();
             fileName = dialog.getFile();
             path = dialog.getDirectory();
             memoFrame.frame().setTitle(fileName);
