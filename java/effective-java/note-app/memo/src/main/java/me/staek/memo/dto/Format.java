@@ -1,4 +1,4 @@
-package me.staek.memo;
+package me.staek.memo.dto;
 
 import java.awt.*;
 import java.io.Serializable;

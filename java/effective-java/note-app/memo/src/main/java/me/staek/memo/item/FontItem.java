@@ -1,5 +1,5 @@
 package me.staek.memo.item;
-import me.staek.memo.MyFont;
+import me.staek.memo.dto.MyFont;
 import me.staek.memo.fao.FormatFAO;
 import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;

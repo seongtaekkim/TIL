@@ -1,6 +1,6 @@
 package me.staek.memo.item;
 
-import me.staek.memo.WordWrap;
+import me.staek.memo.dto.WordWrap;
 import me.staek.memo.fao.FormatFAO;
 import me.staek.memo.menu.AbstractMenu;
 import me.staek.memo.MemoFrame;

@@ -1,6 +1,6 @@
 package me.staek.memo.view.decorator;
 
-import me.staek.memo.Format;
+import me.staek.memo.dto.Format;
 
 import javax.swing.*;
 import java.util.Optional;
