@@ -41,8 +41,13 @@
   - [item28](docs/05-generics/item28) 배열보다는 리스트 | @SafeVarags
   - [item29](docs/05-generics/item29) 이왕이면 제네릭타입 | 한정적 타입 매개변수
   - [item30](docs/05-generics/item30) 이왕이면 제네릭메서드 | 재귀적 타입 한정
-
+  - [item31](docs/05-generics/item31) 한정적 와일드카드 | PECS | Comparable | Type Inference
+  - [item32](docs/05-generics/item32) 제네릭과 가변인수 | ThreadLocal | ThreadLocalRandom
+  - [item33](docs/05-generics/item33) 타입안전 이종 컨테이너 | 수퍼타입 토큰 | 한정적 타입 토큰
 - [06-enums-and-annotations](docs/06-enums-and-annotations)
+  - [item34](docs/05-generics/item34) int상수 말고 열거타입 | RoundingMode와 BigDecimal | 전략열거타입패턴 | switch 키워드
+  - [item35](docs/05-generics/item35) original과 인스턴스 필드
+
 - [07-lambdas-and-streams](docs/07-lambdas-and-streams)
 - [08-methods](docs/08-methods)
 - [09-general-programming](docs/09-general-programming)
