@@ -1,6 +1,6 @@
 package me.staek.chapter06.item39._01_markerannotation;
 
-import me.staek.Test;
+import me.staek.chapter06.item39.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
