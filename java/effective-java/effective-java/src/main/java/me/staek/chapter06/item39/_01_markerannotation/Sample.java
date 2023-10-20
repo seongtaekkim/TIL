@@ -1,7 +1,7 @@
 package me.staek.chapter06.item39._01_markerannotation;
 
 
-import me.staek.Test;
+import me.staek.chapter06.item39.Test;
 
 public class Sample {
     @Test
