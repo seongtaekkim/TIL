@@ -196,3 +196,16 @@ inal enum me/staek/enumset/test$aa extends java/lang/Enum {
     MAXLOCALS = 0
 ~~~
 
+
+
+
+
+- `final String name()` 메서드는 상수의 이름을 반환합니다.
+- `final int ordinal()` 메서드는 위에서도 설명했듯 상수의 열거형에서의 순서를 반환합니다.
+- `String toString()` 메서드는 열거형 상수의 문자열 표현을 반환합니다. 재정의 가능합니다.
+- `final boolean equals(Object obj)` 메서드는 매개변수로 전달된 객체가 열거형 상수와 같다면 `true`를 반환하고, 그렇지 않다면 `false`를 반환합니다.
+- `final int hashCode()` 메서드는 이 열거형 상수에 대한 해시 코드를 반환합니다. 실제 구현은 `super.hashCode()`를 호춣합니다.
+- `final int compareTo(E obj)` 메서드는 열거형의 순서를 비교합니다. 순서가 낮은 경우 음수, 같은 경우 0, 높은 경우 양수를 반환합니다.
+- `final Class <E> getDeclaringClass()` 메서드는 열거형 상수의 타입에 해당하는 `Class` 객체를 반환합니다.
+- `final Object clone()` 메서드는 열거형이 복제되지 않도록 보장하며, 단일 상태임을 보장해줍니다. 사용시 `CloneNotSupportedException`이 발생합니다. 열거형 상수를 만들기 위해 컴파일러 내부적으로 사용된다고 합니다.
+- `final void finalize()` 메서드는 enum 클래스가 `finalize` 메서드를 가질 수 없음을 보장해줍니다.
