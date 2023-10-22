@@ -42,5 +42,11 @@ public class _01_example {
 //        immutableStyles.add(Style.BOLD); // UnsupportedOperationException
 
 
+        /**
+         * 동기화를 위해서는 아래처럼 래핑해야 한다.
+         */
+        Set<Style> styles1 = Collections.synchronizedSet(styles);
+        System.out.println(styles1);
+
     }
 }
