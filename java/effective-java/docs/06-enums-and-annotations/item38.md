@@ -111,6 +111,14 @@ test(Collection<? extends Operation> opSet, double x, double y) {
 
 - 코드가 좀 덜 복잡하고 test메서드가 좀 더 유연해졌다. 
 - 특정 연산에서 EnumMap이나 EnumSet을 사용할 수 없다는 단점이 있다.
+  ~~~java
+  Set<BasicOperation> s = EnumSet.of(BasicOperation.PLUS, BasicOperation.MINUS); // 가능
+  Set<Operation> s2 = EnumSet.of(BasicOperation.PLUS, BasicOperation.MINUS); // 불가능
+  Set<BasicOperation> s3 = EnumSet.of(BasicOperation.PLUS, ExtendedOperation.EXP); // 불가능
+  ~~~
+
+  - EnumSet.of 인자는 같은 타입만 입력될 수 있고, 리턴타입또한 입력한 인자와 같은 타입이어야 한다. 
+  - 그런데 interface를 확장한 여러 연산자 Enum 클래스들의 경우에는  EnumSet 생성에 동시에 사용될 수 없다.
 
 
 
