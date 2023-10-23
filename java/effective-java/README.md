@@ -41,14 +41,25 @@
   - [item28](docs/05-generics/item28) 배열보다는 리스트 | @SafeVarags
   - [item29](docs/05-generics/item29) 이왕이면 제네릭타입 | 한정적 타입 매개변수
   - [item30](docs/05-generics/item30) 이왕이면 제네릭메서드 | 재귀적 타입 한정
-  - [item31](docs/05-generics/item31) 한정적 와일드카드 | PECS | Comparable | Type Inference
-  - [item32](docs/05-generics/item32) 제네릭과 가변인수 | ThreadLocal | ThreadLocalRandom
-  - [item33](docs/05-generics/item33) 타입안전 이종 컨테이너 | 수퍼타입 토큰 | 한정적 타입 토큰
+  - [item31](docs/05-generics/item31.md) 한정적 와일드카드 | PECS | Comparable | Type Inference
+  - [item32](docs/05-generics/item32.md) 제네릭과 가변인수 | ThreadLocal | ThreadLocalRandom
+  - [item33](docs/05-generics/item33.md) 타입안전 이종 컨테이너 | 수퍼타입 토큰 | 한정적 타입 토큰
 - [06-enums-and-annotations](docs/06-enums-and-annotations)
-  - [item34](docs/05-generics/item34) int상수 말고 열거타입 | RoundingMode와 BigDecimal | 전략열거타입패턴 | switch 키워드
-  - [item35](docs/05-generics/item35) original과 인스턴스 필드
-
+  - [item34](docs/06-enums-and-annotations/item34.md) int상수 말고 열거타입 | RoundingMode와 BigDecimal | 전략열거타입패턴 | switch 키워드
+  - [item35](docs/06-enums-and-annotations/item35.md) original과 인스턴스 필드
+  - [item36](docs/06-enums-and-annotations/item36.md) EnumSet
+  - [item37](docs/06-enums-and-annotations/item37.md) EnumMap
+  - [item38](docs/06-enums-and-annotations/item38.md) Enum 확장
+  - [item39](docs/06-enums-and-annotations/item39.md) 명명패턴과 애너테이션 | annotation processor
+  - [item40](docs/06-enums-and-annotations/item40.md) @Override
+  - [item41](docs/06-enums-and-annotations/item41.md) marker interface
+  
 - [07-lambdas-and-streams](docs/07-lambdas-and-streams)
+  - [item42](docs/07-lambdas-and-streams/item42.md) 익명클래스와 람다 | Comparator와 전략패턴
+  - [item43](docs/07-lambdas-and-streams/item43.md) 람다와 메서드레퍼런스
+  - [item44](docs/07-lambdas-and-streams/item44.md) @FunctionalInterface | java.util.function
+  - [item45](docs/07-lambdas-and-streams/item45.md) Stream | Stream pipeline | java.util.stream
+
 - [08-methods](docs/08-methods)
 - [09-general-programming](docs/09-general-programming)
 - [10-exceptions](docs/10-exceptions)
