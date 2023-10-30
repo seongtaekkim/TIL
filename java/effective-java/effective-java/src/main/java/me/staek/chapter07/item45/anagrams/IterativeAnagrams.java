@@ -3,6 +3,7 @@ package me.staek.chapter07.item45.anagrams;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
 
 /**
  *
@@ -24,8 +25,17 @@ public class IterativeAnagrams {
         try (Scanner s = new Scanner(dictionary)) {
             while (s.hasNext()) {
                 String word = s.next();
+
+                /**
+                 * computeIfAbsent 두번째 인자 Function 의 첫번째 인자는 사용하지 않았다.
+                 */
                 groups.computeIfAbsent(alphabetize(word),
-                        (unused) -> new TreeSet<>()).add(word);
+                        new Function<String, Set<String>>() {
+                            @Override
+                            public Set<String> apply(String unused) {
+                                return new TreeSet<>();
+                            }
+                        }).add(word);
             }
         }
 //        for (String group : groups.keySet())
