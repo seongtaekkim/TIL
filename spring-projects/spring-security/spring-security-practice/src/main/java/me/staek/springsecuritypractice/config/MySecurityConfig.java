@@ -24,7 +24,7 @@ public class MySecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(
-                    authorize -> authorize.requestMatchers("/","info").permitAll()
+                    authorize -> authorize.requestMatchers("/","info", "/account/**").permitAll()
                             .requestMatchers("/admin").hasRole("ADMIN")
                             .anyRequest().authenticated()
             );
@@ -46,8 +46,10 @@ public class MySecurityConfig {
 //    }
 
     /**
-     *
+     * 초기 유저 자동생성 커스텀 로직
+     * - inmemory 에 하드코드로 작성하는 것 자체가 문제가 있음.
      */
+    /*
     @Bean
     public UserDetailsManager users() {
         UserDetails user = User.withDefaultPasswordEncoder()
@@ -65,5 +67,6 @@ public class MySecurityConfig {
         in.createUser(admin);
         return in;
     }
+     */
 
 }
