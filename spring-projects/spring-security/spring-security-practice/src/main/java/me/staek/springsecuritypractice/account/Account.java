@@ -43,6 +43,8 @@ public class Account {
         this.role = role;
     }
 
+    // TODO {noop}"originalpassword"
+    // TODO spring-security 는 encode 규칙을 주어야하는데, 아무것도 없을 경우 {noop} 로 작성한다,
     public void encodePassword() {
         this.password = "{noop}" + this.password;
     }
