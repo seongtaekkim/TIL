@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 public class Account {
@@ -43,9 +44,10 @@ public class Account {
         this.role = role;
     }
 
-    // TODO {noop}"originalpassword"
-    // TODO spring-security 는 encode 규칙을 주어야하는데, 아무것도 없을 경우 {noop} 로 작성한다,
-    public void encodePassword() {
-        this.password = "{noop}" + this.password;
+    /**
+     * PasswordEncoder 에 패스워드 인코드 정보가 담겨온다.
+     */
+    public void encodePassword(PasswordEncoder passwordEncoder) {
+        this.password = passwordEncoder.encode(this.password);
     }
 }
