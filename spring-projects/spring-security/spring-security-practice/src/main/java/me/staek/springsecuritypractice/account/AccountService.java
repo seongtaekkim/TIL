@@ -34,4 +34,13 @@ public class AccountService implements UserDetailsService {
         this.accountRepository.save(account);
         return account;
     }
+
+    /**
+     * ThreadLocal은 요청(thread) 별로 제네릭 타입 정보가 격리되어 있기 때문에,
+     * 인자를 받지 않고도 해당 thread의 제네릭타입 정보를 얻을 수 있다.
+     */
+    public void printUsername() {
+        Account account = AccountContext.getAccount();
+        System.out.println(account.toString());
+    }
 }
