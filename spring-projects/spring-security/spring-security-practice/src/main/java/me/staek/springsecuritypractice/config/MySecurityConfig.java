@@ -2,6 +2,8 @@ package me.staek.springsecuritypractice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
@@ -18,6 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
  * https://devlog-wjdrbs96.tistory.com/434
  */
 @Configuration
+@Order(Ordered.LOWEST_PRECEDENCE - 100)
 public class MySecurityConfig {
 
     @Bean
