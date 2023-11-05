@@ -1,6 +1,7 @@
 package me.staek.springsecuritypractice;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +32,19 @@ public class DefaultController {
         return "admin";
     }
 
+    @Autowired DefaultService defaultService;
+
     @GetMapping("/dashboard")
     public String dashboard(Model model, Principal principal) {
         model.addAttribute("message", "dashboard : " + principal.getName());
+        defaultService.printPrincipal();
+        return "dashboard";
+    }
+
+    @GetMapping("/principal")
+    public String principal(Model model, Principal principal) {
+        model.addAttribute("message", "principal : " + principal.getName());
+        defaultService.printPrincipal();
         return "dashboard";
     }
 }
