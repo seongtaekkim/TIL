@@ -58,6 +58,9 @@ public class MySecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+        /**
+         * ADMIN 유저는 USER role 을 포함한다는 계층구조를 정의
+         */
         var access = AuthorityAuthorizationManager.<RequestAuthorizationContext>hasRole("USER");
         var hierarchy = new RoleHierarchyImpl();
         hierarchy.setHierarchy("ROLE_ADMIN > ROLE_USER");
@@ -67,7 +70,7 @@ public class MySecurityConfig {
             .authorizeHttpRequests(
                     authorize -> authorize.requestMatchers("/","info", "/account/**").permitAll()
                             .requestMatchers("/admin").hasRole("ADMIN")
-                            .requestMatchers("/user").access(access)
+                            .requestMatchers("/user").access(access) // 계층구조 설정 추가
                             .anyRequest().authenticated()
 
             );
