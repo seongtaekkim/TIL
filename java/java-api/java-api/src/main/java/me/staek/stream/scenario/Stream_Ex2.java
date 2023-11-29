@@ -1,4 +1,4 @@
-package me.staek.stream;
+package me.staek.stream.scenario;
 
 import java.util.stream.Stream;
 
