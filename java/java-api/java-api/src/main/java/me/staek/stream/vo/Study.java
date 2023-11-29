@@ -1,4 +1,4 @@
-package me.staek.stream;
+package me.staek.stream.vo;
 
 public class Study {
     private int id;
