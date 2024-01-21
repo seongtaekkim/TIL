@@ -11,13 +11,10 @@ pipeline {
         stage('Docker Build And Push') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'seongtaekkim', toolName: 'Docker', url: 'https://hub.docker.com') {
-                        withDockerContainer(image: 'seongtaekkim/demo-springboot:v1', toolName: 'Docker') {
-                            sh 'docker push'
-                        }
+                    docker.withRegistry('https://hub.docker.com/', 'seongtaekkim') {
+                        image = docker.build("seongtaekkim/demo-springboot:v1");
+                        image.push();
                     }
-
-                  
                 }
             }
         }
