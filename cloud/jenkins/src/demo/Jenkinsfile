@@ -8,5 +8,15 @@ pipeline {
                 }
             }
         }
+        stage('Docker Build And Push') {
+            steps {
+                script {
+                    docker.withRegistry('https://hub.docker.com/', 'seongatekkim') {
+                        image = docker.build("seongtaekkim/demo-springboot:v1");
+                        image.push();
+                    }
+                }
+            }
+        }
     }
 }
