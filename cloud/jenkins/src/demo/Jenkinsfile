@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -f cloud/jenkins/src/demo clean package';
+                withMaven(globalMavenSettingsConfig: '', jdk: 'jdk17', maven: 'Maven3.9.6', mavenSettingsConfig: '', traceability: true) {
+                    sh 'mvn -f cloud/jenkins/src/demo clean package'
+                }
             }
         }
     }
