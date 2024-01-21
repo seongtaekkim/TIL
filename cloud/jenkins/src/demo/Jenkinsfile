@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com/', 'seongtaekkim') {
-                        image = docker.build("seongtaekkim/demo-springboot:v1");
+                        image = docker.build("seongtaekkim/demo-springboot:v1", "./cloud/jenkins/src/demo");
                         image.push();
                     }
                 }
