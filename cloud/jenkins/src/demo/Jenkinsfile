@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Hello') {
+        stage('Build') {
             steps {
-                echo "hello world";
+                sh 'mvn -f cloud/jenkins/src/demo clean package';
             }
         }
     }
