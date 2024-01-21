@@ -11,7 +11,7 @@ pipeline {
         stage('Docker Build And Push') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/', 'seongtaekkim') {
+                    docker.withRegistry('https://registry.hub.docker.com/', 'seongtaekkim') {
                         image = docker.build("seongtaekkim/demo-springboot:v1");
                         image.push();
                     }
