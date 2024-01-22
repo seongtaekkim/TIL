@@ -20,7 +20,7 @@ podTemplate(
                 }
 
                 //-- 환경변수 파일 읽어서 변수값 셋팅
-                def props = readProperties  file:"deployment/pipeline.properties"
+                def props = readProperties  file:"cloud/jenkins/src/demo/pipeline.properties"
                 def tag = props["version"]
                 def dockerRegistry = props["dockerRegistry"]
                 def credential_registry=props["credential_registry"]
