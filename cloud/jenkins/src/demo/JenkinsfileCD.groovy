@@ -28,7 +28,7 @@ podTemplate(
                 def deployment = props["deployment"]
                 def service = props["service"]
                 def ingress = props["ingress"]
-                def deployment_name = props["deployment_name"]
+                def label_name = props["label_name"]
                 def namespace = props["namespace"]
 
                 try {
@@ -42,11 +42,11 @@ podTemplate(
 //                            }
 //                        }
 //                    }
-//                    stage( "Clean Up Existing Deployments" ) {
-//                        container("kubectl") {
-//                            sh "kubectl delete deployments -n ${namespace} ${deployment_name}"
-//                        }
-//                    }
+                    stage( "Clean Up Existing Deployments" ) {
+                        container("kubectl") {
+                            sh "kubectl delete deployments -n ${namespace} -l ${label_name}"
+                        }
+                    }
 
                     stage( "Deploy to Cluster" ) {
                         container("kubectl") {
