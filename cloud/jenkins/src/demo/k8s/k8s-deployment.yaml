@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: batch-visualizer-auth-deployment
+  name: springboot-helloworld
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: batch-visualizer-auth
+      app: springboot-helloworld
   template:
     metadata:
       labels:
-        app: batch-visualizer-auth
+        app: springboot-helloworld
     spec:
       containers:
-        - name: batch-visualizer-auth
+        - name: springboot-helloworld
           image: seongtaekkim/demo-springboot:v1
           ports:
             - containerPort: 8080

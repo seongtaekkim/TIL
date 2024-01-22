@@ -28,8 +28,7 @@ podTemplate(
                 def deployment = props["deployment"]
                 def service = props["service"]
                 def ingress = props["ingress"]
-                def selector_key = props["selector_key"]
-                def selector_val = props["selector_val"]
+                def deployment_name = props["deployment_name"]
                 def namespace = props["namespace"]
 
                 try {
@@ -45,7 +44,7 @@ podTemplate(
 //                    }
                     stage( "Clean Up Existing Deployments" ) {
                         container("kubectl") {
-                            sh "kubectl delete deployments -n ${namespace} --selector=${selector_key}=${selector_val}"
+                            sh "kubectl delete deployments -n ${namespace} ${deployment_name}"
                         }
                     }
 
