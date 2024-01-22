@@ -33,16 +33,16 @@ podTemplate(
                 def namespace = props["namespace"]
 
                 try {
-//                    stage("Build Microservice image") {
-//                        container("docker") {
-//                            docker.withRegistry("${dockerRegistry}", "${credential_registry}") {
-//                                sh "docker build -f ./cloud/jenkins/src/demo/Dockerfile -t ${image}:${tag} ."
-//                                sh "docker push ${image}:${tag}"
-//                                sh "docker tag ${image}:${tag} ${image}:latest"
-//                                sh "docker push ${image}:latest"
-//                            }
-//                        }
-//                    }
+                    stage("Build Microservice image") {
+                        container("docker") {
+                            docker.withRegistry("${dockerRegistry}", "${credential_registry}") {
+                                sh "docker build -f ./cloud/jenkins/src/demo/Dockerfile -t ${image}:${tag} ."
+                                sh "docker push ${image}:${tag}"
+                                sh "docker tag ${image}:${tag} ${image}:latest"
+                                sh "docker push ${image}:latest"
+                            }
+                        }
+                    }
                     stage( "Clean Up Existing Deployments" ) {
                         container("kubectl") {
                             sh "kubectl delete deployments -n ${namespace} --selector=${selector_key}=${selector_val}"
