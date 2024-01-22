@@ -6,12 +6,15 @@
 
 - k8s 로컬 vm 구성
 - jenkins를 pod으로 실행했을 때, docker build 등 docker 명령어 사용 방법
+- jenkins springboot ci 구성.
 
 
 
 ### jenkins 플러그인 설치
 
-~~~
+~~~sh
+Maven Integration
+Maven Pipeline Integration
 Docker Pipeline
 ~~~
 
@@ -21,6 +24,7 @@ Docker Pipeline
 
 - jenkins를 root로 실행한다.
 - sidecar를 docker로 구성하고, docker.sock를 volume 으로 연결해준다. (jenkins에서 사용하기 위해)
+- nfs server 디렉토리를 volume으로 설정한다.
 
 ~~~yaml
 ---
@@ -47,17 +51,22 @@ Docker Pipeline
             ports:
             - containerPort: 8080
             volumeMounts:
+            - name: jenkins
+              mountPath: /var/jenkins_home
             - name: shared
               mountPath: /var/run
-          - image: docker
-            securityContext:
-              privileged: true
+          - image: docker:dind
             imagePullPolicy: IfNotPresent
             name: docker
+            securityContext:
+              privileged: true
             volumeMounts:
             - mountPath: /var/run
               name: shared
           volumes:
+            - name: jenkins
+              persistentVolumeClaim:
+                claimName: jenkins-pvc
             - name: shared
               emptyDir: {}
 ~~~
@@ -100,7 +109,7 @@ pipeline {
         stage('Build') {
             steps {
                 withMaven(globalMavenSettingsConfig: '', jdk: 'jdk17', maven: 'Maven3.9.6', mavenSettingsConfig: '', traceability: true) {
-                    sh 'mvn -f cloud/jenkins/src/demo clean package'
+                    sh 'mvn -f cloud/jenkins/src/demo clean package -Dmaven.test.skip=true'
                 }
             }
         }
