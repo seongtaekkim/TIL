@@ -42,11 +42,11 @@ podTemplate(
 //                            }
 //                        }
 //                    }
-                    stage( "Clean Up Existing Deployments" ) {
-                        container("kubectl") {
-                            sh "kubectl delete deployments -n ${namespace} ${deployment_name}"
-                        }
-                    }
+//                    stage( "Clean Up Existing Deployments" ) {
+//                        container("kubectl") {
+//                            sh "kubectl delete deployments -n ${namespace} ${deployment_name}"
+//                        }
+//                    }
 
                     stage( "Deploy to Cluster" ) {
                         container("kubectl") {
