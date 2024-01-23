@@ -28,7 +28,7 @@ pipeline {
         }
         stage('dockerizing project by dockerfile') {
             steps {
-                sh '''
+                sh '''x
         		 docker build -t $IMAGE_NAME:$BUILD_NUMBER .
         		 docker tag $IMAGE_NAME:$BUILD_NUMBER $IMAGE_NAME:latest
 
@@ -43,20 +43,20 @@ pipeline {
                 }
             }
         }
-//        stage('upload aws ECR') {
-//            steps {
-//                script{
-//                    // cleanup current user docker credentials
-//                    sh 'rm -f ~/.dockercfg ~/.docker/config.json || true'
-//
-//
-//                    docker.withRegistry("https://${ECR_PATH}", "ecr:${REGION}:${AWS_CREDENTIAL_NAME}") {
-//                        docker.image("${IMAGE_NAME}:${BUILD_NUMBER}").push()
-//                        docker.image("${IMAGE_NAME}:latest").push()
-//                    }
-//
-//                }
-//            }
+        stage('upload aws ECR') {
+            steps {
+                script{
+                    // cleanup current user docker credentials
+                    sh 'rm -f ~/.dockercfg ~/.docker/config.json || true'
+
+
+                    docker.withRegistry("https://${ECR_PATH}", "ecr:${REGION}:${AWS_CREDENTIAL_NAME}") {
+                        docker.image("${IMAGE_NAME}:${BUILD_NUMBER}").push()
+                        docker.image("${IMAGE_NAME}:latest").push()
+                    }
+
+                }
+            }
 //            post {
 //                success {
 //                    echo 'success upload image'
@@ -65,6 +65,6 @@ pipeline {
 //                    error 'fail upload image' // exit pipeline
 //                }
 //            }
-//        }
+        }
     }
 }
