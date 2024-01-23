@@ -36,7 +36,7 @@ pipeline {
         stage('Maven Build') {
             steps {
                 withMaven(globalMavenSettingsConfig: '', jdk: 'jdk17', maven: 'Maven3.9.6', mavenSettingsConfig: '', traceability: true) {
-                    sh 'mvn -f cloud/jenkins/src/demo clean package -Dmaven.test.skip=true'
+                    sh 'mvn -f cloud/jenkins/src/eks-springboot clean package -Dmaven.test.skip=true'
                 }
             }
         }
