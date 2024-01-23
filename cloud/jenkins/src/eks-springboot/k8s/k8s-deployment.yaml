@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-helloworld
+  labels:
+    app: springboot-helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-helloworld
+  template:
+    metadata:
+      labels:
+        app: springboot-helloworld
+    spec:
+      containers:
+        - name: springboot-helloworld
+          image: seongtaekkim/demo-springboot:v1
+          ports:
+            - containerPort: 8081
