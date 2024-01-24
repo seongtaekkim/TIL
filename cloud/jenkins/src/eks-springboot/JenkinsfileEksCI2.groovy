@@ -3,7 +3,9 @@ pipeline {
     tools {
         maven 'Maven3.9.6'
     }
-    agent any
+    agent  {
+        label 'dind-agent'
+    }
     environment {
         registry = "738612635754.dkr.ecr.ap-northeast-2.amazonaws.com/stecr"
     }
