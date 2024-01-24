@@ -5,8 +5,8 @@ metadata:
 spec:
   ports:
     - name: "8080"
-      port: 8082
+      port: 80
       targetPort: 8080
   selector:
     app: springboot-helloworld
-  type: NodePort
+  type: LoadBalancer
