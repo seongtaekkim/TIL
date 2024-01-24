@@ -32,7 +32,7 @@ pipeline {
             steps {
                 sh '''
                  cd cloud/jenkins/src/eks-springboot
-                 ech pwd
+                 echo pwd
         		 docker build -t $IMAGE_NAME:$BUILD_NUMBER .
         		 docker tag $IMAGE_NAME:$BUILD_NUMBER $IMAGE_NAME:latest
 
