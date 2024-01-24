@@ -30,7 +30,7 @@ pipeline {
         }
         stage('dockerizing project by dockerfile') {
             steps {
-                sh '''x
+                sh '''
         		 docker build -t $IMAGE_NAME:$BUILD_NUMBER .
         		 docker tag $IMAGE_NAME:$BUILD_NUMBER $IMAGE_NAME:latest
 
