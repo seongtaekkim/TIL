@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: springboot-helloworld
-          image: seongtaekkim/demo-springboot:v1
+          image: 738612635754.dkr.ecr.ap-northeast-2.amazonaws.com/stecr:latest
           ports:
             - containerPort: 8081
