@@ -1,0 +1,16 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: jenkins-ebc-csi-sc
+provisioner: ebs.csi.aws.com
+volumeBindingMode: Immediate
+reclaimPolicy: Delete
+parameters:
+  csi.storage.k8s.io/fstype: ext4
+  type: gp2
+allowedTopologies:
+  - matchLabelExpressions:
+    - key: topology.ebs.csi.aws.com/zone
+      values:
+      - ap-northeast-2a
+      - ap-northeast-2c

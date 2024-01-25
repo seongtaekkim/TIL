@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>me.staek</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>eks-springboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
-    <description>demo</description>
+    <name>eks-springboot</name>
+    <description>eks-springboot</description>
     <properties>
         <java.version>17</java.version>
     </properties>

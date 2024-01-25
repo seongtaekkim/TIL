@@ -20,7 +20,7 @@ podTemplate(
                 }
 
                 //-- 환경변수 파일 읽어서 변수값 셋팅
-                def props = readProperties  file:"cloud/jenkins/src/demo/pipeline.properties"
+                def props = readProperties  file:"cloud/jenkins/src/local-k8s-springboot/pipeline.properties"
                 def tag = props["version"]
                 def dockerRegistry = props["dockerRegistry"]
                 def credential_registry=props["credential_registry"]
@@ -33,16 +33,6 @@ podTemplate(
                 def namespace = props["namespace"]
 
                 try {
-//                    stage("Build Microservice image") {
-//                        container("docker") {
-//                            docker.withRegistry("${dockerRegistry}", "${credential_registry}") {
-//                                sh "docker build -f ./cloud/jenkins/src/demo/Dockerfile -t ${image}:${tag} ."
-//                                sh "docker push ${image}:${tag}"
-//                                sh "docker tag ${image}:${tag} ${image}:latest"
-//                                sh "docker push ${image}:latest"
-//                            }
-//                        }
-//                    }
                     stage( "Clean Up Existing Deployments" ) {
                         container("kubectl") {
                             sh "kubectl delete deployments -n ${namespace} -l ${label_key}=${label_value}"
