@@ -130,7 +130,7 @@ controller:
     runAsGroup: 1000
     readOnlyRootFilesystem: true
     allowPrivilegeEscalation: false
-  servicePort: 8080
+  servicePort: 80
   targetPort: 8080
   # For minikube, set this to NodePort, elsewhere use LoadBalancer
   # Use ClusterIP if your setup includes ingress controller
@@ -141,7 +141,7 @@ controller:
   # Jenkins controller service annotations
   serviceAnnotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0959334729b48bccd,subnet-083fd61df41589bf1
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-03448e2baf0a8cd9c,subnet-0e3e88be22c01fb5a
   # Jenkins controller custom labels
   statefulSetLabels: {}
   #   foo: bar
@@ -249,10 +249,10 @@ controller:
 
   # List of plugins to be install during Jenkins controller start
   installPlugins:
-    - kubernetes:4174.v4230d0ccd951
+    - kubernetes:4179.v3b_88431df708
     - workflow-aggregator:596.v8c21c963d92d
-    - git:5.1.0
-    - configuration-as-code:1670.v564dc8b_982d0
+    - git:5.2.1
+    - configuration-as-code:1775.v810dc950b_514
 
   # Set to false to download the minimum required version of all dependencies.
   installLatestPlugins: true
