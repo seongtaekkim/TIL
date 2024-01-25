@@ -6,7 +6,7 @@ pipeline {
         stage('Maven Build') {
             steps {
                 withMaven(globalMavenSettingsConfig: '', jdk: 'jdk17', maven: 'Maven3.9.6', mavenSettingsConfig: '', traceability: true) {
-                    sh 'mvn -f cloud/jenkins/src/demo clean package -Dmaven.test.skip=true'
+                    sh 'mvn -f cloud/jenkins/src/local-k8s-springboot clean package -Dmaven.test.skip=true'
                 }
             }
         }
@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com/', 'seongtaekkim') {
-                        image = docker.build("seongtaekkim/demo-springboot:v1", "./cloud/jenkins/src/demo");
+                        image = docker.build("seongtaekkim/local-k8s-springboot:v1", "./cloud/jenkins/src/local-k8s-springboot");
                         image.push();
                     }
                 }
