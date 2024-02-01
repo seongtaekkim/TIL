@@ -4,8 +4,8 @@ metadata:
   name: postgres-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: efs-sc
   resources:
     requests:
-      storage: 10Gi
+      storage: 5Gi

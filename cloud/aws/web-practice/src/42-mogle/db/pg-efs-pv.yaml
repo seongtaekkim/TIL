@@ -6,12 +6,12 @@ metadata:
     type: local
 spec:
   capacity:
-    storage: 10Gi
+    storage: 5Gi
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: efs-sc
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: "input EFS FileSystemId"
+    volumeHandle: "efs fileid"
