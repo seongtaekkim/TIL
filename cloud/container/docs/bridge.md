@@ -100,7 +100,7 @@ Aging
 
 
 
-### iptalbes
+### iptables
 
 - netfilter가 파놓은 hook에 룰을 등록하고 관리하는 방법을 제공하는 툴
 - netfilter에 내가 원하는 정책을 넣어야 하는데 그럴 때 사용하는 프로그램. 룰을 넣고 조회하는 역할을 한다.
